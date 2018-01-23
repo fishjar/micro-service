@@ -8,17 +8,17 @@
 
 ### 推广码表 `promo`
 
-| KEY         | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
-|-------------|--------------|---------|----------|-----------|---------|---------|--------|
-| id          | BIGINT       |         | Y        | Y         | Y       |         |        |
-| promo_type  | TINYINT      |         | Y        |           |         |         |        |
-| user_id     | BIGINT       |         | Y        |           |         | Y       |        |
-| referrer    | BIGINT       |         |          |           |         | Y       |        |
-| promcode    | VARCHAR(64)  |         | Y        |           |         |         |        |
+| KEY        | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
+|------------|-------------|---------|----------|-----------|---------|---------|--------|
+| id         | BIGINT      |         | Y        | Y         | Y       |         |        |
+| promo_type | INT         |         | Y        |           |         |         |        |
+| user_id    | BIGINT      |         | Y        |           |         | Y       |        |
+| referrer   | BIGINT      |         |          |           |         | Y       |        |
+| promcode   | VARCHAR(64) |         | Y        |           |         |         |        |
 
 ```js
 promo_type: {
-  1: `注册`,
+  1: `注册`, // 其他类型根据需要随时添加
 }
 ```
 
