@@ -37,7 +37,7 @@
 
 ## 微服务
 
-- [用户及登录服务](./service-sso.md)
+- [用户服务](./service-sso.md)
 - [短信服务](./service-msg.md)
 - [文件服务](./service-media.md)
 - [日志服务](./service-log.md)
