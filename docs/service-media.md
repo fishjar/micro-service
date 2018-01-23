@@ -15,13 +15,15 @@
 |-------------|--------------|---------|----------|-----------|---------|---------|--------|
 | id          | BIGINT       |         | Y        | Y         | Y       |         |        |
 | user_id     | BIGINT       |         |          |           |         | Y       |        |
-| media_type  | TINYINT      |         |          |           |         |         |        |
+| media_type  | TINYINT      |         | Y        |           |         |         |        |
 | title       | VARCHAR(64)  |         |          |           |         |         |        |
-| name        | VARCHAR(64)  |         |          |           |         |         |        |
-| ext         | CHAR(4)      |         |          |           |         |         |        |
-| path        | VARCHAR(128) |         |          |           |         |         |        |
+| name        | VARCHAR(64)  |         | Y        |           |         |         |        |
+| ext         | CHAR(4)      |         | Y        |           |         |         |        |
+| path        | VARCHAR(128) |         | Y        |           |         |         |        |
 | description | VARCHAR(128) |         |          |           |         |         |        |
-| size        | INT          |         |          |           |         |         |        |
+| size        | INT          |         | Y        |           |         |         |        |
+| width       | INT          |         |          |           |         |         |        |
+| height      | INT          |         |          |           |         |         |        |
 
 ```js
 media_type: {
@@ -38,7 +40,7 @@ media_type: {
 ### 上传文件
 
 ```sh
-POST /upload
+POST /medias
 ```
 
 Request
@@ -62,5 +64,21 @@ Response
   path: '/media/img/abc/def.png',
   description: '',
   size: 123, //单位K
+}
+```
+
+### 获取文件信息
+
+```sh
+GET /medias/{media_id}
+GET /medias_bynanme/{name}
+```
+
+Request
+
+```js
+{
+  size: 64, // 剪裁边长
+  sharp: 1, // 1等比例，2方形
 }
 ```

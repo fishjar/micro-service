@@ -63,7 +63,16 @@ status: {
 
 ## 全局API说明
 
-- 所有内部ID均不对外暴露，需要用到时，通过`hashids`加解密
+- 所有内部id均不对外暴露，网关API需要用到时，通过`hashids`加密
+- 微服务内部调用还是直接使用id
+
+### token传递方式
+
+```js
+headers: {
+  authToken: 'sdfsdfsdfdfdf'
+}
+```
 
 ### Request
 

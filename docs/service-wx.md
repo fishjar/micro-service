@@ -90,14 +90,14 @@ Response
 ### 获取公众号
 
 ```sh
-GET /wxapps/{id}
+GET /wxapps/{wxapp_id}
 ```
 
 Request Parameters
 
-| KEY | TYPE   | NOT NULL | NOTICE |
-|-----|--------|----------|--------|
-| id  | string | Y        |        |
+| KEY      | TYPE | NOT NULL | NOTICE |
+|----------|------|----------|--------|
+| wxapp_id | int  | Y        |        |
 
 Response
 
@@ -114,7 +114,7 @@ Response
 ### 修改公众号
 
 ```sh
-PUT /wxapps/{id}
+PUT /wxapps/{wxapp_id}
 ```
 
 Request
@@ -138,7 +138,7 @@ Request
 
 ```js
 {
-  appid: 1,
+  appid: 'wewrwrwere',
   unionid: '234234',
   openid: '3werwerewr',
   session_key: '**********',
@@ -155,13 +155,14 @@ Request
 ### 获取微信用户资料
 
 ```sh
-GET /wxusers/{openid/unionid}
+GET /wxusers/{appid}/{openid/unionid}
 ```
 
 Request
 
 ```js
 {
+  appid: '23e2wee',
   unionid: '234234',
   openid: '3werwerewr',
 }
@@ -171,7 +172,8 @@ Response
 
 ```js
 {
-  appid: 1,
+  id: 12,
+  appid: 'wewrwrwere',
   unionid: '234234',
   openid: '3werwerewr',
   session_key: '**********',
@@ -188,10 +190,12 @@ Response
 ### 修改微信用户资料
 
 ```sh
-PUT /wxusers/{openid/unionid}
+PUT /wxusers/{appid}/{openid/unionid}
 ```
 
 ### 微信登录
+
+- `userinfo` 表示自动创建用户资料，减少API调用次数
 
 ```sh
 POST /wxlogin
@@ -203,7 +207,8 @@ Request
 {
   appid: 'sdfdfdsfd',
   code: '123124234234',
-  userinfo: {}, // 小程序端登录获取基本信息
+
+  userinfo: {}, // 小程序获取的基本信息
 }
 ```
 

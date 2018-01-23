@@ -23,6 +23,8 @@
 
 ### 注册
 
+- 小程序端不需要此接口
+
 ```sh
 POST /register
 ```
@@ -31,6 +33,17 @@ POST /register
 
 ```sh
 POST /login
+```
+
+Request
+
+```js
+{
+  appid: 'sdfdfdsfd',
+  code: '123124234234',
+
+  userinfo: {}, // 小程序获取的基本信息
+}
 ```
 
 ### 登出

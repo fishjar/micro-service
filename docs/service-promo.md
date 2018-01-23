@@ -26,6 +26,8 @@ promo_type: {
 
 ### 获取推广码
 
+- 没有则自动创建
+
 ```sh
 GET /promos/{user_id}/{promo_type}
 ```

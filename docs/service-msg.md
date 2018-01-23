@@ -87,5 +87,21 @@ Response
   use_time,
   verify_result: 1, // 0不存在，1成功，2过期，3已使用
 }
+```
 
+### 发送短信
 
+```sh
+POST /msgs
+```
+
+Request
+
+```js
+{
+  msg_type: 1,
+  description: '232',
+  sendto: '13888888888',
+  content: 'wewqewewew',
+}
+```
