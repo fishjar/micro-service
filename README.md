@@ -10,9 +10,14 @@
 
 ## 微服务
 
-- [用户服务](./docs/service-sso.md)
-- [短信服务](./docs/service-msg.md)
-- [文件服务](./docs/service-media.md)
-- [日志服务](./docs/service-log.md)
-- [推广服务](./docs/service-promo.md)
-- [微信服务](./docs/service-wx.md)
+- [用户服务](./service-sso.md)
+- [短信服务](./service-msg.md)
+- [文件服务](./service-media.md)
+- [日志服务](./service-log.md)
+- [推广服务](./service-promo.md)
+- [微信服务](./service-wx.md)
+- [商品管理]
+- [库存管理]
+- [订单管理]
+- [收支管理]
+- [定时任务]
