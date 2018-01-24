@@ -28,14 +28,15 @@
 
 ### 入库单 `entering`
 
-| KEY           | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
-|---------------|-------------|---------|----------|-----------|---------|---------|--------|
-| id            | INT         |         | Y        | Y         | Y       |         |        |
-| supplier      | INT         |         |          |           |         |         | 供应商    |
-| approver      | INT         |         |          |           |         |         | 接收人    |
-| deliverer     | VARCHAR(64) |         |          |           |         |         | 送货人    |
-| recipient     | INT         |         |          |           |         |         | 核准人    |
-| entering_time | TIMESTAMP   |         |          |           |         |         |        |
+| KEY           | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
+|---------------|--------------|---------|----------|-----------|---------|---------|--------|
+| id            | INT          |         | Y        | Y         | Y       |         |        |
+| supplier      | INT          |         |          |           |         |         | 供应商    |
+| approver      | INT          |         |          |           |         |         | 接收人    |
+| deliverer     | VARCHAR(64)  |         |          |           |         |         | 送货人    |
+| recipient     | INT          |         |          |           |         |         | 核准人    |
+| entering_time | TIMESTAMP    |         |          |           |         |         |        |
+| remark        | VARCHAR(128) |         |          |           |         |         |        |
 
 ### 入库详单 `entering_detail`
 
@@ -52,14 +53,15 @@
 
 ### 出库单 `outbound`
 
-| KEY           | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
-|---------------|-------------|---------|----------|-----------|---------|---------|--------|
-| id            | INT         |         | Y        | Y         | Y       |         |        |
-| customer      | INT         |         |          |           |         |         | 客户     |
-| approver      | INT         |         |          |           |         |         | 发货人    |
-| sender        | VARCHAR(64) |         |          |           |         |         | 收货人    |
-| recipient     | INT         |         |          |           |         |         | 核准人    |
-| outbound_time | TIMESTAMP   |         |          |           |         |         |        |
+| KEY           | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
+|---------------|--------------|---------|----------|-----------|---------|---------|--------|
+| id            | INT          |         | Y        | Y         | Y       |         |        |
+| customer      | INT          |         |          |           |         |         | 客户     |
+| approver      | INT          |         |          |           |         |         | 发货人    |
+| sender        | VARCHAR(64)  |         |          |           |         |         | 收货人    |
+| recipient     | INT          |         |          |           |         |         | 核准人    |
+| outbound_time | TIMESTAMP    |         |          |           |         |         |        |
+| remark        | VARCHAR(128) |         |          |           |         |         |        |
 
 ### 出库详单 `outbound_detail`
 

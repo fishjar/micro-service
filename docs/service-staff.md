@@ -48,5 +48,5 @@ rank: {
 | KEY      | TYPE | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |----------|------|---------|----------|-----------|---------|---------|--------|
 | id       | INT  |         | Y        | Y         | Y       |         |        |
-| staff_id |      |         |          |           |         |         |        |
-| job_id   |      |         |          |           |         |         |        |
+| staff_id | INT  |         |          |           |         |         |        |
+| job_id   | INT  |         |          |           |         |         |        |
