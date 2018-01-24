@@ -44,14 +44,14 @@
 - [推广服务](./service-track.md)
 - [微信服务](./service-wx.md)
 - [商品管理](./service-product.md)
-- [库存管理]
+- [库存管理](./service-stock.md)
 - [订单管理](./service-order.md)
 - [收支管理]
 - [定时任务]
 
 ## 数据库共有字段
 
-| KEY         | TYPE      | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
+| KEY         | TYPE      | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |-------------|-----------|---------|----------|-----------|---------|---------|--------|
 | id          | INT       |         | Y        | Y         | Y       |         |        |
 | create_time | TIMESTAMP |         | Y        |           |         |         |        |
@@ -91,7 +91,7 @@ headers: {
 
 ### Request Parameters
 
-| KEY  | TYPE  | NOT NULL | NOTICE |
+| KEY  | TYPE  | NOT NULL | REMARK |
 |------|-------|----------|--------|
 | page | int   |          | 页码     |
 | size | int   |          | 每页数目   |
@@ -110,7 +110,7 @@ headers: {
 
 ### Response Parameters
 
-| KEY     | TYPE   | NOT NULL | NOTICE    |
+| KEY     | TYPE   | NOT NULL | REMARK    |
 |---------|--------|----------|-----------|
 | errcode | int    | Y        | 0正常，其他值错误 |
 | errmsg  | string | Y        | 错误信息      |

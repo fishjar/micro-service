@@ -8,7 +8,7 @@
 
 ### 注册日志表 `register_log`
 
-| KEY             | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
+| KEY             | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |-----------------|-------------|---------|----------|-----------|---------|---------|--------|
 | id              | INT         |         | Y        | Y         | Y       |         |        |
 | user_id         | INT         |         |          |           |         | Y       |        |
@@ -29,7 +29,7 @@ register_type: {
 
 ### 登录、登出日志表 `login_log`
 
-| KEY         | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
+| KEY         | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |-------------|--------------|---------|----------|-----------|---------|---------|--------|
 | id          | INT          |         | Y        | Y         | Y       |         |        |
 | user_id     | INT          |         |          |           |         | Y       |        |
@@ -61,7 +61,7 @@ command: {
 
 ### 操作日志表 `operate_log`
 
-| KEY          | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
+| KEY          | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |--------------|--------------|---------|----------|-----------|---------|---------|--------|
 | id           | INT          |         | Y        | Y         | Y       |         |        |
 | user_id      | INT          |         |          |           |         | Y       |        |

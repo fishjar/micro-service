@@ -8,7 +8,7 @@
 
 ### 推广码表 `track`
 
-| KEY        | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
+| KEY        | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |------------|-------------|---------|----------|-----------|---------|---------|--------|
 | id         | INT         |         | Y        | Y         | Y       |         |        |
 | track_type | INT         |         | Y        |           |         |         |        |

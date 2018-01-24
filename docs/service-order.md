@@ -1,4 +1,4 @@
-# 微服务-商品管理 `product`
+# 微服务-订单管理 `order`
 
 ## 介绍
 
@@ -13,13 +13,13 @@
 
 ### 订单表 `order`
 
-| KEY          | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
+| KEY          | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |--------------|--------------|---------|----------|-----------|---------|---------|--------|
 | id           | INT          |         | Y        | Y         | Y       |         |        |
 | no           | VARCHAR(64)  |         |          |           |         |         |        |
 | user_id      | INT          |         |          |           |         |         |        |
-| addr_id      | INT          |         |          |           |         |         |        |
-| addr         | VARCHAR(128) |         |          |           |         |         |        |
+| address_id   | INT          |         |          |           |         |         |        |
+| address      | VARCHAR(128) |         |          |           |         |         |        |
 | express_id   | INT          |         |          |           |         |         |        |
 | order_status | TINYINT      |         |          |           |         |         |        |
 | order_type   | TINYINT      |         |          |           |         |         |        |
@@ -41,7 +41,7 @@ order_type: {
 
 ### 订单详情表 `order_detail`
 
-| KEY      | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
+| KEY      | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |----------|-------------|---------|----------|-----------|---------|---------|--------|
 | id       | INT         |         | Y        | Y         | Y       |         |        |
 | sku_id   | INT         |         |          |           |         |         |        |
@@ -53,11 +53,13 @@ order_type: {
 
 ### 收件人表 `address`
 
-| KEY       | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
+| KEY       | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |-----------|--------------|---------|----------|-----------|---------|---------|--------|
 | id        | INT          |         | Y        | Y         | Y       |         |        |
 | user_id   | INT          |         |          |           |         |         |        |
 | name      | VARCHAR(64)  |         |          |           |         |         |        |
+| phone     | VARCHAR(16)  |         |          |           |         |         |        |
+| mobile    | VARCHAR(16)  |         |          |           |         |         |        |
 | country   | VARCHAR(64)  |         |          |           |         |         |        |
 | province  | VARCHAR(64)  |         |          |           |         |         |        |
 | city      | VARCHAR(64)  |         |          |           |         |         |        |
@@ -69,13 +71,13 @@ order_type: {
 
 ### 促销表 `order_promo`
 
-| KEY | TYPE | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
+| KEY | TYPE | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |-----|------|---------|----------|-----------|---------|---------|--------|
 | id  | INT  |         | Y        | Y         | Y       |         |        |
 
 ### 快递表 `express`
 
-| KEY      | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
+| KEY      | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |----------|-------------|---------|----------|-----------|---------|---------|--------|
 | id       | INT         |         | Y        | Y         | Y       |         |        |
 | name     | VARCHAR(64) |         |          |           |         |         |        |

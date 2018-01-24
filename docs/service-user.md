@@ -23,7 +23,7 @@
 
 ### 用户鉴权表 `auth`
 
-| KEY          | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
+| KEY          | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |--------------|--------------|---------|----------|-----------|---------|---------|--------|
 | id           | INT          |         | Y        | Y         | Y       |         |        |
 | user_id      | INT          |         | Y        |           |         | Y       |        |
@@ -55,7 +55,7 @@ auth_type: {
 
 ### 用户资料表 `user`
 
-| KEY      | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
+| KEY      | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |----------|--------------|---------|----------|-----------|---------|---------|--------|
 | id       | INT          |         | Y        | Y         | Y       |         |        |
 | uuid     | VARCHAR(32)  |         | Y        |           |         |         |        |
@@ -109,7 +109,7 @@ Response
 
 Response Parameters
 
-| KEY | TYPE   | NOT NULL | NOTICE |
+| KEY | TYPE   | NOT NULL | REMARK |
 |-----|--------|----------|--------|
 | id  | string | Y        |        |
 
@@ -123,7 +123,7 @@ GET /auths/{token}
 
 Request Parameters
 
-| KEY   | TYPE   | NOT NULL | NOTICE |
+| KEY   | TYPE   | NOT NULL | REMARK |
 |-------|--------|----------|--------|
 | token | string | Y        |        |
 
@@ -144,7 +144,7 @@ Response
 
 Response Parameters
 
-| KEY        | TYPE | NOT NULL | NOTICE |
+| KEY        | TYPE | NOT NULL | REMARK |
 |------------|------|----------|--------|
 | user_id    | int  | Y        |        |
 | permission | int  | Y        |        |
@@ -169,7 +169,7 @@ Request
 
 Request Parameters
 
-| KEY        | TYPE   | NOT NULL | NOTICE |
+| KEY        | TYPE   | NOT NULL | REMARK |
 |------------|--------|----------|--------|
 | user_id    | int    | Y        |        |
 | auth_code  | string |          |        |
@@ -197,7 +197,7 @@ Request
 
 Request Parameters
 
-| KEY      | TYPE   | NOT NULL | NOTICE |
+| KEY      | TYPE   | NOT NULL | REMARK |
 |----------|--------|----------|--------|
 | name     | string |          |        |
 | nickname | string |          |        |
@@ -226,7 +226,7 @@ Response
 
 Response Parameters
 
-| KEY  | TYPE   | NOT NULL | NOTICE |
+| KEY  | TYPE   | NOT NULL | REMARK |
 |------|--------|----------|--------|
 | id   | string | Y        |        |
 | uuid | string | Y        |        |
@@ -239,7 +239,7 @@ GET /users/{user_id}
 
 Request Parameters
 
-| KEY     | TYPE | NOT NULL | NOTICE |
+| KEY     | TYPE | NOT NULL | REMARK |
 |---------|------|----------|--------|
 | user_id | int  | Y        |        |
 
@@ -288,7 +288,7 @@ Request
 
 Request Parameters
 
-| KEY       | TYPE   | NOT NULL | NOTICE |
+| KEY       | TYPE   | NOT NULL | REMARK |
 |-----------|--------|----------|--------|
 | auth_type | int    | Y        |        |
 | auth_name | string | Y        |        |
@@ -312,7 +312,7 @@ Response
 
 Response Parameters
 
-| KEY        | TYPE   | NOT NULL | NOTICE |
+| KEY        | TYPE   | NOT NULL | REMARK |
 |------------|--------|----------|--------|
 | user_id    | int    | Y        |        |
 | permission | int    | Y        |        |

@@ -11,7 +11,7 @@
 
 ### 微信公众号，企业号，小程序表 `wxapp`
 
-| KEY          | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
+| KEY          | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |--------------|--------------|---------|----------|-----------|---------|---------|--------|
 | id           | INT          |         | Y        | Y         | Y       |         |        |
 | app_type     | TINYINT      |         |          |           |         |         |        |
@@ -31,7 +31,7 @@ app_type: {
 
 ### 微信用户表 `wxuser`
 
-| KEY         | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
+| KEY         | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |-------------|--------------|---------|----------|-----------|---------|---------|--------|
 | id          | INT          |         | Y        | Y         | Y       |         |        |
 | appid       | VARCHAR(32)  |         | Y        |           |         |         |        |
@@ -67,7 +67,7 @@ Request
 
 Request Parameters
 
-| KEY      | TYPE   | NOT NULL | NOTICE |
+| KEY      | TYPE   | NOT NULL | REMARK |
 |----------|--------|----------|--------|
 | app_type | int    | Y        |        |
 | name     | string | Y        |        |
@@ -95,7 +95,7 @@ GET /wxapps/{wxapp_id}
 
 Request Parameters
 
-| KEY      | TYPE | NOT NULL | NOTICE |
+| KEY      | TYPE | NOT NULL | REMARK |
 |----------|------|----------|--------|
 | wxapp_id | int  | Y        |        |
 

@@ -9,7 +9,7 @@
 
 ### 信息验证表 `verify`
 
-| KEY           | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE        |
+| KEY           | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK        |
 |---------------|--------------|---------|----------|-----------|---------|---------|---------------|
 | id            | INT          |         | Y        | Y         | Y       |         |               |
 | verify_type   | TINYINT      |         | Y        |           |         |         |               |
@@ -27,7 +27,7 @@ verify_type: {
 
 ### 信息发送表 `msg`
 
-| KEY         | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
+| KEY         | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |-------------|--------------|---------|----------|-----------|---------|---------|--------|
 | id          | INT          |         | Y        | Y         | Y       |         |        |
 | msg_type    | TINYINT      |         | Y        |           |         |         |        |
