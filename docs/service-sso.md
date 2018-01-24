@@ -37,7 +37,7 @@
 | token_expire | TIMESTAMP    |         |          |           |         |         |        |
 
 - 当`auth_type`取值1/2/3时
-  - `auth_name` 为微信 用户名、手机、邮箱
+  - `auth_name` 为用户名、手机、邮箱
   - `auth_code` 为密码，需hash加密
 - 当`auth_type`取值4/5时
   - `auth_name` 为微信 `appid`
