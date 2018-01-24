@@ -43,7 +43,7 @@ rank: {
 | name | VARCHAR(64) |         |          |           |         |         |        |
 | rank | INT         |         |          |           |         |         |        |
 
-### 员工-职务表 `user_job`
+### 员工-职务表 `staff_job`
 
 | KEY      | TYPE | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |----------|------|---------|----------|-----------|---------|---------|--------|
