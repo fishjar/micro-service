@@ -37,7 +37,8 @@
 
 ## 微服务
 
-- [用户服务](./service-user.md)
+- [用户系统](./service-user.md)
+- [员工管理](./service-staff.md)
 - [短信服务](./service-msg.md)
 - [文件服务](./service-media.md)
 - [日志服务](./service-log.md)
