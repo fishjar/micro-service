@@ -1,4 +1,4 @@
-# 微服务-日志系统 `promo`
+# 微服务-推广与跟踪系统 `track`
 
 ## 介绍
 
@@ -6,18 +6,18 @@
 
 ## 数据库
 
-### 推广码表 `promo`
+### 推广码表 `track`
 
 | KEY        | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
 |------------|-------------|---------|----------|-----------|---------|---------|--------|
 | id         | BIGINT      |         | Y        | Y         | Y       |         |        |
-| promo_type | INT         |         | Y        |           |         |         |        |
+| track_type | INT         |         | Y        |           |         |         |        |
 | user_id    | BIGINT      |         | Y        |           |         | Y       |        |
 | referrer   | BIGINT      |         |          |           |         | Y       |        |
 | promcode   | VARCHAR(64) |         | Y        |           |         |         |        |
 
 ```js
-promo_type: {
+track_type: {
   1: `注册`, // 其他类型根据需要随时添加
 }
 ```
@@ -29,7 +29,7 @@ promo_type: {
 - 没有则自动创建
 
 ```sh
-GET /promos/{user_id}/{promo_type}
+GET /tracks/{user_id}/{track_type}
 ```
 
 Response
@@ -37,7 +37,7 @@ Response
 ```js
 {
   id: 13213,
-  promo_type: 1,
+  track_type: 1,
   user_id: 12323,
   referrer: 2342343,
   promcode: '2sdfsdasdwe',
@@ -47,7 +47,7 @@ Response
 ### 添加推广记录
 
 ```sh
-POST /promos
+POST /tracks
 ```
 
 Request
@@ -55,7 +55,7 @@ Request
 ```js
 {
   user_id: 6432434,
-  promo_type: 1,
+  track_type: 1,
   referrer: 2323123,
 }
 ```
