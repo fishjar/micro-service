@@ -11,7 +11,7 @@
 
 | KEY           | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE        |
 |---------------|--------------|---------|----------|-----------|---------|---------|---------------|
-| id            | BIGINT       |         | Y        | Y         | Y       |         |               |
+| id            | INT          |         | Y        | Y         | Y       |         |               |
 | verify_type   | TINYINT      |         | Y        |           |         |         |               |
 | verify_name   | VARCHAR(64)  |         | Y        |           |         |         | `13888888888` |
 | verify_code   | VARCHAR(128) |         | Y        |           |         |         | `123456`      |
@@ -29,7 +29,7 @@ verify_type: {
 
 | KEY         | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
 |-------------|--------------|---------|----------|-----------|---------|---------|--------|
-| id          | BIGINT       |         | Y        | Y         | Y       |         |        |
+| id          | INT          |         | Y        | Y         | Y       |         |        |
 | msg_type    | TINYINT      |         | Y        |           |         |         |        |
 | description | VARCHAR(64)  |         |          |           |         |         |        |
 | sendto      | VARCHAR(64)  |         |          |           |         |         |        |

@@ -10,8 +10,8 @@
 
 | KEY             | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
 |-----------------|-------------|---------|----------|-----------|---------|---------|--------|
-| id              | BIGINT      |         | Y        | Y         | Y       |         |        |
-| user_id         | BIGINT      |         |          |           |         | Y       |        |
+| id              | INT         |         | Y        | Y         | Y       |         |        |
+| user_id         | INT         |         |          |           |         | Y       |        |
 | register_type   | TINYINT     |         |          |           |         |         |        |
 | register_time   | TIMESTAMP   |         |          |           |         |         |        |
 | register_ip     | VARCHAR(32) |         |          |           |         |         |        |
@@ -31,8 +31,8 @@ register_type: {
 
 | KEY         | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
 |-------------|--------------|---------|----------|-----------|---------|---------|--------|
-| id          | BIGINT       |         | Y        | Y         | Y       |         |        |
-| user_id     | BIGINT       |         |          |           |         | Y       |        |
+| id          | INT          |         | Y        | Y         | Y       |         |        |
+| user_id     | INT          |         |          |           |         | Y       |        |
 | login_type  | TINYINT      |         |          |           |         |         |        |
 | command     | TINYINT      |         |          |           |         |         |        |
 | version     | VARCHAR(32)  |         |          |           |         |         |        |
@@ -63,8 +63,8 @@ command: {
 
 | KEY          | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
 |--------------|--------------|---------|----------|-----------|---------|---------|--------|
-| id           | BIGINT       |         | Y        | Y         | Y       |         |        |
-| user_id      | BIGINT       |         |          |           |         | Y       |        |
+| id           | INT          |         | Y        | Y         | Y       |         |        |
+| user_id      | INT          |         |          |           |         | Y       |        |
 | operate_type | TINYINT      |         |          |           |         |         |        |
 | description  | VARCHAR(128) |         |          |           |         |         |        |
 

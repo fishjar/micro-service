@@ -37,7 +37,7 @@ is_parent: {
 
 | KEY         | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
 |-------------|--------------|---------|----------|-----------|---------|---------|--------|
-| id          | BIGINT       |         | Y        | Y         | Y       |         |        |
+| id          | INT          |         | Y        | Y         | Y       |         |        |
 | cat_id      | INT          |         |          |           |         |         |        |
 | name_en     | VARCHAR(64)  |         |          |           |         |         |        |
 | name_cn     | VARCHAR(64)  |         |          |           |         |         |        |
@@ -50,10 +50,10 @@ is_parent: {
 
 | KEY            | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
 |----------------|-------------|---------|----------|-----------|---------|---------|--------|
-| id             | BIGINT      |         | Y        | Y         | Y       |         |        |
-| brand_id       | BIGINT      |         |          |           |         |         |        |
+| id             | INT         |         | Y        | Y         | Y       |         |        |
+| brand_id       | INT         |         |          |           |         |         |        |
 | name           | VARCHAR(64) |         |          |           |         |         |        |
-| price          | BIGINT      |         |          |           |         |         |        |
+| price          | INT         |         |          |           |         |         |        |
 | product_status | TINYINT     |         |          |           |         |         |        |
 
 ```js
@@ -69,11 +69,11 @@ product_status: {
 
 | KEY          | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
 |--------------|-------------|---------|----------|-----------|---------|---------|--------|
-| id           | BIGINT      |         | Y        | Y         | Y       |         |        |
-| product_id   | BIGINT      |         |          |           |         |         |        |
+| id           | INT         |         | Y        | Y         | Y       |         |        |
+| product_id   | INT         |         |          |           |         |         |        |
 | name         | VARCHAR(64) |         |          |           |         |         |        |
 | number       | INT         |         |          |           |         |         |        |
-| price        | BIGINT      |         |          |           |         |         |        |
+| price        | INT         |         |          |           |         |         |        |
 | sku_code     | VARCHAR(64) |         |          |           |         |         |        |
 | sku_status   | TINYINT     |         |          |           |         |         |        |
 | extend       | TEXT        |         |          |           |         |         |        |
@@ -103,31 +103,31 @@ subs: [{
 <!--
 ### 打包表 `pack`
 
-| KEY        | TYPE   | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
-|------------|--------|---------|----------|-----------|---------|---------|--------|
-| id         | BIGINT |         | Y        | Y         | Y       |         |        |
-| name       |        |         |          |           |         |         |        |
-| sku_code   |        |         |          |           |         |         |        |
-| sku_status |        |         |          |           |         |         |        |
-| extend     |        |         |          |           |         |         |        |
+| KEY        | TYPE | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
+|------------|------|---------|----------|-----------|---------|---------|--------|
+| id         | INT  |         | Y        | Y         | Y       |         |        |
+| name       |      |         |          |           |         |         |        |
+| sku_code   |      |         |          |           |         |         |        |
+| sku_status |      |         |          |           |         |         |        |
+| extend     |      |         |          |           |         |         |        |
 
 ### 打包子项表 `packitem`
 
-| KEY     | TYPE   | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
-|---------|--------|---------|----------|-----------|---------|---------|--------|
-| id      | BIGINT |         | Y        | Y         | Y       |         |        |
-| pack_id |        |         |          |           |         |         |        |
-| sku_id  |        |         |          |           |         |         |        |
-| number  |        |         |          |           |         |         |        |
-| price   |        |         |          |           |         |         |        |
-| extend  |        |         |          |           |         |         |        |
+| KEY     | TYPE | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
+|---------|------|---------|----------|-----------|---------|---------|--------|
+| id      | INT  |         | Y        | Y         | Y       |         |        |
+| pack_id |      |         |          |           |         |         |        |
+| sku_id  |      |         |          |           |         |         |        |
+| number  |      |         |          |           |         |         |        |
+| price   |      |         |          |           |         |         |        |
+| extend  |      |         |          |           |         |         |        |
 -->
 
 ### 属性名表 `pron`
 
 | KEY       | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
 |-----------|-------------|---------|----------|-----------|---------|---------|--------|
-| id        | BIGINT      |         | Y        | Y         | Y       |         |        |
+| id        | INT         |         | Y        | Y         | Y       |         |        |
 | cat_id    | INT         |         |          |           |         |         |        |
 | pron_type | TINYINT     |         |          |           |         |         |        |
 | is_sku    | TINYINT     |         |          |           |         |         |        |
@@ -152,11 +152,11 @@ is_sku: {
 
 | KEY        | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
 |------------|--------------|---------|----------|-----------|---------|---------|--------|
-| id         | BIGINT       |         | Y        | Y         | Y       |         |        |
-| pron_id    | BIGINT       |         |          |           |         |         |        |
-| product_id | BIGINT       |         |          |           |         |         |        |
+| id         | INT          |         | Y        | Y         | Y       |         |        |
+| pron_id    | INT          |         |          |           |         |         |        |
+| product_id | INT          |         |          |           |         |         |        |
 | is_suk     | TINYINT      |         |          |           |         |         |        |
-| suk_id     | BIGINT       |         |          |           |         |         |        |
+| suk_id     | INT          |         |          |           |         |         |        |
 | value      | VARCHAR(128) |         |          |           |         |         |        |
 | image      | VARCHAR(128) |         |          |           |         |         |        |
 

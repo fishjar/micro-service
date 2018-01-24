@@ -15,19 +15,19 @@
 
 | KEY          | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
 |--------------|--------------|---------|----------|-----------|---------|---------|--------|
-| id           | BIGINT       |         | Y        | Y         | Y       |         |        |
+| id           | INT          |         | Y        | Y         | Y       |         |        |
 | no           | VARCHAR(64)  |         |          |           |         |         |        |
-| user_id      | BIGINT       |         |          |           |         |         |        |
-| addr_id      | BIGINT       |         |          |           |         |         |        |
+| user_id      | INT          |         |          |           |         |         |        |
+| addr_id      | INT          |         |          |           |         |         |        |
 | addr         | VARCHAR(128) |         |          |           |         |         |        |
-| express_id   | BIGINT       |         |          |           |         |         |        |
+| express_id   | INT          |         |          |           |         |         |        |
 | order_status | TINYINT      |         |          |           |         |         |        |
 | order_type   | TINYINT      |         |          |           |         |         |        |
-| all_fee      | BIGINT       |         |          |           |         |         |        |
-| dis_fee      | BIGINT       |         |          |           |         |         |        |
-| exp_fee      | BIGINT       |         |          |           |         |         |        |
-| real_fee     | BIGINT       |         |          |           |         |         |        |
-| pay_fee      | BIGINT       |         |          |           |         |         |        |
+| all_fee      | INT          |         |          |           |         |         |        |
+| dis_fee      | INT          |         |          |           |         |         |        |
+| exp_fee      | INT          |         |          |           |         |         |        |
+| real_fee     | INT          |         |          |           |         |         |        |
+| pay_fee      | INT          |         |          |           |         |         |        |
 | pay_time     | TIMESTAMP    |         |          |           |         |         |        |
 
 ```js
@@ -44,19 +44,19 @@ order_type: {
 | KEY      | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
 |----------|-------------|---------|----------|-----------|---------|---------|--------|
 | id       | INT         |         | Y        | Y         | Y       |         |        |
-| sku_id   | BIGINT      |         |          |           |         |         |        |
+| sku_id   | INT         |         |          |           |         |         |        |
 | title    | VARCHAR(64) |         |          |           |         |         |        |
 | number   | INT         |         |          |           |         |         |        |
-| all_fee  | BIGINT      |         |          |           |         |         |        |
-| dis_fee  | BIGINT      |         |          |           |         |         |        |
-| real_fee | BIGINT      |         |          |           |         |         |        |
+| all_fee  | INT         |         |          |           |         |         |        |
+| dis_fee  | INT         |         |          |           |         |         |        |
+| real_fee | INT         |         |          |           |         |         |        |
 
 ### 收件人表 `address`
 
 | KEY       | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
 |-----------|--------------|---------|----------|-----------|---------|---------|--------|
 | id        | INT          |         | Y        | Y         | Y       |         |        |
-| user_id   | BIGINT       |         |          |           |         |         |        |
+| user_id   | INT          |         |          |           |         |         |        |
 | name      | VARCHAR(64)  |         |          |           |         |         |        |
 | country   | VARCHAR(64)  |         |          |           |         |         |        |
 | province  | VARCHAR(64)  |         |          |           |         |         |        |

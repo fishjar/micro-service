@@ -53,7 +53,7 @@
 
 | KEY         | TYPE      | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
 |-------------|-----------|---------|----------|-----------|---------|---------|--------|
-| id          | BIGINT    |         | Y        | Y         | Y       |         |        |
+| id          | INT       |         | Y        | Y         | Y       |         |        |
 | create_time | TIMESTAMP |         | Y        |           |         |         |        |
 | update_time | TIMESTAMP |         | Y        |           |         |         |        |
 | status      | TINYINT   |         | Y        |           |         |         |        |

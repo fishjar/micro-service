@@ -25,8 +25,8 @@
 
 | KEY          | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
 |--------------|--------------|---------|----------|-----------|---------|---------|--------|
-| id           | BIGINT       |         | Y        | Y         | Y       |         |        |
-| user_id      | BIGINT       |         | Y        |           |         | Y       |        |
+| id           | INT          |         | Y        | Y         | Y       |         |        |
+| user_id      | INT          |         | Y        |           |         | Y       |        |
 | auth_type    | TINYINT      |         | Y        |           |         |         |        |
 | auth_name    | VARCHAR(64)  |         | Y        |           |         |         |        |
 | auth_code    | VARCHAR(128) |         | Y        |           |         |         |        |
@@ -57,7 +57,7 @@ auth_type: {
 
 | KEY      | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
 |----------|--------------|---------|----------|-----------|---------|---------|--------|
-| id       | BIGINT       |         | Y        | Y         | Y       |         |        |
+| id       | INT          |         | Y        | Y         | Y       |         |        |
 | uuid     | VARCHAR(32)  |         | Y        |           |         |         |        |
 | name     | VARCHAR(64)  |         |          |           |         |         |        |
 | nickname | VARCHAR(64)  |         |          |           |         |         |        |
@@ -226,9 +226,9 @@ Response
 
 Response Parameters
 
-| KEY | TYPE   | NOT NULL | NOTICE |
-|-----|--------|----------|--------|
-| id  | string | Y        |        |
+| KEY  | TYPE   | NOT NULL | NOTICE |
+|------|--------|----------|--------|
+| id   | string | Y        |        |
 | uuid | string | Y        |        |
 
 ### 获取用户资料

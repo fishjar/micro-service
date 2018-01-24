@@ -13,8 +13,8 @@
 
 | KEY         | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
 |-------------|--------------|---------|----------|-----------|---------|---------|--------|
-| id          | BIGINT       |         | Y        | Y         | Y       |         |        |
-| user_id     | BIGINT       |         |          |           |         | Y       |        |
+| id          | INT          |         | Y        | Y         | Y       |         |        |
+| user_id     | INT          |         |          |           |         | Y       |        |
 | media_type  | TINYINT      |         | Y        |           |         |         |        |
 | title       | VARCHAR(64)  |         |          |           |         |         |        |
 | name        | VARCHAR(64)  |         | Y        |           |         |         |        |

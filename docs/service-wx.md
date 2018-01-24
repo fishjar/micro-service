@@ -13,7 +13,7 @@
 
 | KEY          | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
 |--------------|--------------|---------|----------|-----------|---------|---------|--------|
-| id           | BIGINT       |         | Y        | Y         | Y       |         |        |
+| id           | INT          |         | Y        | Y         | Y       |         |        |
 | app_type     | TINYINT      |         |          |           |         |         |        |
 | name         | VARCHAR(64)  |         |          |           |         |         |        |
 | appid        | VARCHAR(32)  |         | Y        |           |         |         |        |
@@ -33,7 +33,7 @@ app_type: {
 
 | KEY         | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
 |-------------|--------------|---------|----------|-----------|---------|---------|--------|
-| id          | BIGINT       |         | Y        | Y         | Y       |         |        |
+| id          | INT          |         | Y        | Y         | Y       |         |        |
 | appid       | VARCHAR(32)  |         | Y        |           |         |         |        |
 | unionid     | VARCHAR(32)  |         |          |           |         |         |        |
 | openid      | VARCHAR(32)  |         |          |           |         |         |        |

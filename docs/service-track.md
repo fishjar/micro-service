@@ -10,10 +10,10 @@
 
 | KEY        | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | NOTICE |
 |------------|-------------|---------|----------|-----------|---------|---------|--------|
-| id         | BIGINT      |         | Y        | Y         | Y       |         |        |
+| id         | INT         |         | Y        | Y         | Y       |         |        |
 | track_type | INT         |         | Y        |           |         |         |        |
-| user_id    | BIGINT      |         | Y        |           |         | Y       |        |
-| referrer   | BIGINT      |         |          |           |         | Y       |        |
+| user_id    | INT         |         | Y        |           |         | Y       |        |
+| referrer   | INT         |         |          |           |         | Y       |        |
 | promcode   | VARCHAR(64) |         | Y        |           |         |         |        |
 
 ```js
