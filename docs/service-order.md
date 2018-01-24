@@ -18,9 +18,10 @@
 | id           | INT          |         | Y        | Y         | Y       |         |        |
 | no           | VARCHAR(64)  |         |          |           |         |         |        |
 | user_id      | INT          |         |          |           |         |         |        |
+| crop_id      | INT          |         |          |           |         |         |        |
 | address_id   | INT          |         |          |           |         |         |        |
-| address      | VARCHAR(128) |         |          |           |         |         |        |
-| express_id   | INT          |         |          |           |         |         |        |
+| address      | VARCHAR(128) |         |          |           |         |         | 地址快照   |
+| waybill_id   | INT          |         |          |           |         |         |        |
 | order_status | TINYINT      |         |          |           |         |         |        |
 | order_type   | TINYINT      |         |          |           |         |         |        |
 | all_fee      | INT          |         |          |           |         |         |        |
@@ -75,22 +76,20 @@ order_type: {
 |-----|------|---------|----------|-----------|---------|---------|--------|
 | id  | INT  |         | Y        | Y         | Y       |         |        |
 
-### 快递表 `express`
+### 快递单表 `waybill`
 
-| KEY      | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
-|----------|-------------|---------|----------|-----------|---------|---------|--------|
-| id       | INT         |         | Y        | Y         | Y       |         |        |
-| name     | VARCHAR(64) |         |          |           |         |         |        |
-| exp_type | TINYINT     |         |          |           |         |         |        |
-| exp_code | VARCHAR(64) |         |          |           |         |         |        |
+| KEY        | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
+|------------|-------------|---------|----------|-----------|---------|---------|--------|
+| id         | INT         |         | Y        | Y         | Y       |         |        |
+| name       | VARCHAR(64) |         |          |           |         |         |        |
+| express_id | INT         |         |          |           |         |         |        |
+| no         | VARCHAR(64) |         |          |           |         |         |        |
 
-```js
-exp_type: {
-  0: '其他',
-  1: '顺丰',
-  2: 'EMS',
-  3: '',
-}
-```
+### 快递公司表 `express`
+
+| KEY     | TYPE | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
+|---------|------|---------|----------|-----------|---------|---------|--------|
+| id      | INT  |         | Y        | Y         | Y       |         |        |
+| corp_id | INT  |         |          |           |         |         |        |
 
 ## API

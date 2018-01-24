@@ -47,6 +47,7 @@
 | product_id    | INT       |         |          |           |         |         | 冗余字段   |
 | sku_id        | INT       |         |          |           |         |         |        |
 | amount        | INT       |         |          |           |         |         |        |
+| price         | INT       |         |          |           |         |         |        |
 | complete_time | TIMESTAMP |         |          |           |         |         |        |
 
 ### 出库单 `outbound`
@@ -54,11 +55,11 @@
 | KEY           | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |---------------|-------------|---------|----------|-----------|---------|---------|--------|
 | id            | INT         |         | Y        | Y         | Y       |         |        |
-| customer      | INT         |         |          |           |         |         |        |
-| outbound_time | TIMESTAMP   |         |          |           |         |         |        |
+| customer      | INT         |         |          |           |         |         | 客户     |
 | approver      | INT         |         |          |           |         |         | 发货人    |
 | sender        | VARCHAR(64) |         |          |           |         |         | 收货人    |
 | recipient     | INT         |         |          |           |         |         | 核准人    |
+| outbound_time | TIMESTAMP   |         |          |           |         |         |        |
 
 ### 出库详单 `outbound_detail`
 
@@ -70,4 +71,5 @@
 | product_id    | INT       |         |          |           |         |         | 冗余字段   |
 | sku_id        | INT       |         |          |           |         |         |        |
 | amount        | INT       |         |          |           |         |         |        |
+| price         | INT       |         |          |           |         |         |        |
 | complete_time | TIMESTAMP |         |          |           |         |         |        |
