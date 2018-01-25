@@ -15,6 +15,7 @@
 |--------------|--------------|---------|----------|-----------|---------|---------|--------|
 | id           | INT          |         | Y        | Y         | Y       |         |        |
 | app_type     | TINYINT      |         |          |           |         |         |        |
+| wxmch_id     | INT          |         |          |           |         |         |        |
 | name         | VARCHAR(64)  |         |          |           |         |         |        |
 | appid        | VARCHAR(32)  |         | Y        |           |         |         |        |
 | secret       | VARCHAR(128) |         |          |           |         |         |        |
@@ -28,6 +29,15 @@ app_type: {
   3: `小程序`,
 }
 ```
+
+### 微信商户号表 `wxmch`
+
+| KEY    | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
+|--------|--------------|---------|----------|-----------|---------|---------|--------|
+| id     | INT          |         | Y        | Y         | Y       |         |        |
+| name   | VARCHAR(64)  |         |          |           |         |         |        |
+| mchid  | VARCHAR(32)  |         | Y        |           |         |         |        |
+| secret | VARCHAR(128) |         |          |           |         |         |        |
 
 ### 微信用户表 `wxuser`
 
@@ -45,6 +55,40 @@ app_type: {
 | city        | VARCHAR(32)  |         |          |           |         |         |        |
 | province    | VARCHAR(32)  |         |          |           |         |         |        |
 | country     | VARCHAR(32)  |         |          |           |         |         |        |
+
+### 微信支付表 `wxpay`
+
+| KEY              | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
+|------------------|--------------|---------|----------|-----------|---------|---------|--------|
+| id               | INT          |         | Y        | Y         | Y       |         |        |
+| appid            | VARCHAR(32)  |         |          |           |         |         |        |
+| mch_id           | VARCHAR(32)  |         |          |           |         |         |        |
+| device_info      | VARCHAR(32)  |         |          |           |         |         |        |
+| nonce_str        | VARCHAR(32)  |         |          |           |         |         |        |
+| sign             | VARCHAR(32)  |         |          |           |         |         |        |
+| sign_type        | VARCHAR(32)  |         |          |           |         |         |        |
+| body             | VARCHAR(128) |         |          |           |         |         |        |
+| detail           | TEXT(6000)   |         |          |           |         |         |        |
+| attach           | VARCHAR(128) |         |          |           |         |         |        |
+| out_trade_no     | VARCHAR(32)  |         |          |           |         |         |        |
+| fee_type         | VARCHAR(16)  |         |          |           |         |         |        |
+| total_fee        | INT          |         |          |           |         |         |        |
+| spbill_create_ip | VARCHAR(16)  |         |          |           |         |         |        |
+| time_start       | VARCHAR(14)  |         |          |           |         |         |        |
+| time_expire      | VARCHAR(14)  |         |          |           |         |         |        |
+| goods_tag        | VARCHAR(32)  |         |          |           |         |         |        |
+| notify_url       | VARCHAR(128) |         |          |           |         |         |        |
+| trade_type       | VARCHAR(128) |         |          |           |         |         |        |
+| product_id       | VARCHAR(32)  |         |          |           |         |         |        |
+| limit_pay        | VARCHAR(32)  |         |          |           |         |         |        |
+| openid           | VARCHAR(128) |         |          |           |         |         |        |
+| result_code      | VARCHAR(16)  |         |          |           |         |         |        |
+| return_msg       | VARCHAR(128) |         |          |           |         |         |        |
+| result_code      | VARCHAR(16)  |         |          |           |         |         |        |
+| err_code         | VARCHAR(128) |         |          |           |         |         |        |
+| err_code_des     | VARCHAR(128) |         |          |           |         |         |        |
+| prepay_id        | VARCHAR(64)  |         |          |           |         |         |        |
+| code_url         | VARCHAR(64)  |         |          |           |         |         |        |
 
 ## API
 
