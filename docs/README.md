@@ -85,35 +85,43 @@ headers: {
 ```js
 {
   page: 1,
-  size: 10,
-  list: [],
+  per_page: 10,
+  data: [],
 }
 ```
 
 ### Request Parameters
 
-| KEY  | TYPE  | NOT NULL | REMARK |
-|------|-------|----------|--------|
-| page | int   |          | 页码     |
-| size | int   |          | 每页数目   |
-| list | array |          | 批量信息   |
+| KEY      | TYPE  | NOT NULL | REMARK |
+|----------|-------|----------|--------|
+| page     | int   |          | 页码     |
+| per_page | int   |          | 每页数目   |
+| data     | array |          | 批量信息   |
 
 ### Response
 
 ```js
 {
-  errcode: 0,
+  errcode: 1,
   errmsg: 'ok',
-  list: [],
-  count: 2
+  page: 1,
+  pages: 3,
+  per_page: 10,
+  total: 33,
+  data: [],
+}
+{
+  errcode: 1,
+  errmsg: 'ok',
+  data: {},
 }
 ```
 
 ### Response Parameters
 
-| KEY     | TYPE   | NOT NULL | REMARK    |
-|---------|--------|----------|-----------|
-| errcode | int    | Y        | 0正常，其他值错误 |
-| errmsg  | string | Y        | 错误信息      |
-| list    | array  |          | 列表信息      |
-| count   | int    |          | 总数目       |
+| KEY     | TYPE         | NOT NULL | REMARK    |
+|---------|--------------|----------|-----------|
+| errcode | int          | Y        | 0正常，其他值错误 |
+| errmsg  | string       | Y        | 错误信息      |
+| data    | object/array |          | 返回数据      |
+| total   | int          |          | 总数目       |

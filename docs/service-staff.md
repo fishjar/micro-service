@@ -50,3 +50,6 @@ rank: {
 | id       | INT  |         | Y        | Y         | Y       |         |        |
 | staff_id | INT  |         |          |           |         |         |        |
 | job_id   | INT  |         |          |           |         |         |        |
+
+
+### 机构表
