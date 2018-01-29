@@ -16,7 +16,7 @@
 | id           | INT          |         | Y        | Y         | Y       |         |        |
 | app_type     | TINYINT      |         |          |           |         |         |        |
 | wxmch_id     | INT          |         |          |           |         |         |        |
-| name         | VARCHAR(64)  |         |          |           |         |         |        |
+| name         | VARCHAR(32)  |         |          |           |         |         |        |
 | appid        | VARCHAR(32)  |         | Y        |           |         |         |        |
 | secret       | VARCHAR(128) |         |          |           |         |         |        |
 | access_token | VARCHAR(128) |         |          |           |         |         |        |
