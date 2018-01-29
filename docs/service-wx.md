@@ -234,7 +234,7 @@ Response
 ### 修改微信用户资料
 
 ```sh
-PUT /wxusers/{appid}/{openid/unionid}
+PATCH /wxusers/{appid}/{openid/unionid}
 ```
 
 ### 微信登录

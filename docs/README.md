@@ -54,8 +54,8 @@
 | KEY         | TYPE      | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |-------------|-----------|---------|----------|-----------|---------|---------|--------|
 | id          | INT       |         | Y        | Y         | Y       |         |        |
-| create_time | TIMESTAMP |         | Y        |           |         |         |        |
-| update_time | TIMESTAMP |         | Y        |           |         |         |        |
+| created_at | TIMESTAMP |         | Y        |           |         |         |        |
+| updated_at | TIMESTAMP |         | Y        |           |         |         |        |
 | status      | TINYINT   | 0       | Y        |           |         |         |        |
 
 ```js
