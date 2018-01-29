@@ -5,29 +5,28 @@
 
 ## 数据库
 
-### 鉴权表（缓存到redis）
+### 登录认证表（缓存到redis）
 
 ```js
 `auth:{token}`： {
   `user_id`,
   `auth_type`,
-  `auth_name`,
-  `auth_expire`,
-  `permission`,
-  `token_expire`,
+  `expire_time`,
   `verify_time`,
+  `token_expire`,
+}
+```
+
+```js
+auth_type: {
+  1: `username`,
+  2: `mobile`,
+  3: `email`,
+  4: `wx`,
 }
 ```
 
 ## API
-
-### 注册
-
-- 小程序端不需要此接口
-
-```sh
-POST /register
-```
 
 ### 登录
 
@@ -42,7 +41,24 @@ Request
   appid: 'sdfdfdsfd',
   code: '123124234234',
 
-  userinfo: {}, // 小程序获取的基本信息
+  user_info: {}, // 小程序获取的基本信息
+}
+```
+
+Response
+
+```js
+{
+  name: 'zhangsan',
+  nickname: 'laozhang',
+  mobile: '13888888888',
+  email: 'zhangsan@test.com',
+  gender: 1,
+  birthday: 1516602918,
+  avatar: '/media/img/123.png',
+
+  id: 'DEF123',
+  uuid: 'ABCDEF',
 }
 ```
 

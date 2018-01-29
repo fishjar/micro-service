@@ -239,7 +239,7 @@ PUT /wxusers/{appid}/{openid/unionid}
 
 ### 微信登录
 
-- `userinfo` 表示自动创建用户资料，减少API调用次数
+- 自动创建用户资料，减少API调用次数
 
 ```sh
 POST /wxlogin
@@ -252,7 +252,7 @@ Request
   appid: 'sdfdfdsfd',
   code: '123124234234',
 
-  userinfo: {}, // 小程序获取的基本信息
+  user_info: {}, // 小程序获取的基本信息
 }
 ```
 

@@ -20,8 +20,9 @@
 
 ```JS
 verify_type: {
-  1: `mobile`,
-  2: `email`,
+  1: `username`,
+  2: `mobile`,
+  3: `email`,
 }
 ```
 

@@ -47,7 +47,6 @@
 - [商品管理](./service-product.md)
 - [库存管理](./service-stock.md)
 - [订单管理](./service-order.md)
-- [收支管理]
 - [定时任务]
 
 ## 数据库共有字段
@@ -57,13 +56,13 @@
 | id          | INT       |         | Y        | Y         | Y       |         |        |
 | create_time | TIMESTAMP |         | Y        |           |         |         |        |
 | update_time | TIMESTAMP |         | Y        |           |         |         |        |
-| status      | TINYINT   |         | Y        |           |         |         |        |
+| status      | TINYINT   | 0       | Y        |           |         |         |        |
 
 ```js
 status: {
-  1: `正常`,
-  2: `锁定`,
-  3: `删除`,
+  0: `正常`,
+  1: `锁定`,
+  2: `删除`,
 }
 ```
 
@@ -76,7 +75,8 @@ status: {
 
 ```js
 headers: {
-  authToken: 'sdfsdfsdfdfdf'
+  AuthenticationToken: 'sdfsdfsdf3434dfdf', // 身份认证
+  AuthorizationToken: 'sdf2323fds3', // 权限认证
 }
 ```
 
@@ -102,7 +102,7 @@ headers: {
 
 ```js
 {
-  errcode: 1,
+  errcode: 0,
   errmsg: 'ok',
   page: 1,
   pages: 3,
@@ -111,7 +111,7 @@ headers: {
   data: [],
 }
 {
-  errcode: 1,
+  errcode: 0,
   errmsg: 'ok',
   data: {},
 }
