@@ -104,16 +104,13 @@ headers: {
 {
   errcode: 0,
   errmsg: 'ok',
-  page: 1,
-  pages: 3,
-  per_page: 10,
-  total: 33,
-  data: [],
-}
-{
-  errcode: 0,
-  errmsg: 'ok',
-  data: {},
+  data: {
+    page: 1,
+    pages: 3,
+    per_page: 10,
+    total: 33,
+    list: [],
+  },
 }
 ```
 

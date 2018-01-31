@@ -30,7 +30,7 @@ class Wxapp extends Service {
     return wxapp.update(updates);
   }
 
-  async findByAppid(appid) {
+  async findApp(appid) {
     const wxapp = await this.ctx.model.Wxapp.findOne({ where: { appid } });
     if (!wxapp) {
       this.ctx.throw(404, 'wxapp not found');
@@ -39,19 +39,21 @@ class Wxapp extends Service {
   }
 
   async getSessionKey({ appid, secret, js_code, grant_type = 'authorization_code' }) {
-    const ctx = this.ctx;
-    // const jscode_host = 'https://api.weixin.qq.com/sns/jscode2session';
+    const { ctx, app } = this;
     const jscode_host = this.config.jscode_host;
-    const res = await ctx.curl(jscode_host, {
+    const res = await ctx.curl(app.generateHref(jscode_host, {
       appid,
       secret,
       js_code,
       grant_type
-    });
-    return res;
+    }));
+    if (res.status > 300) {
+      ctx.throw(404, 'wx jscode2session err');
+    }
+    return res.data;
   }
 
-  async encryData(appid, sessionKey, encryptedData, iv) {
+  encryData(appid, sessionKey, encryptedData, iv) {
     const pc = new WXBizDataCrypt(appid, sessionKey)
     const data = pc.decryptData(encryptedData, iv)
     return data;
