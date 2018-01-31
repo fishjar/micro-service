@@ -13,6 +13,11 @@ class HomeController extends Controller {
     const { secret } = wxapp;
     const { session_key, openid, unionid } = await ctx.service.wxapp.getSessionKey({ appid, secret, js_code });
     const wxuser = await ctx.service.wxuser.findByAppid(appid, { openid, unionid });
+    ctx.body = {
+      data: wxuser,
+      errcode: 0,
+      errmsg: 'get user!',
+    };
     // 如果用户不存在则创建后返回
     if (!wxuser) {
       // 解密数据
@@ -39,9 +44,12 @@ class HomeController extends Controller {
         province,
         country,
       });
-      return newUser;
+      ctx.body = {
+        data: newUser,
+        errcode: 0,
+        errmsg: 'create user!',
+      };
     }
-    return wxuser;
   }
 }
 

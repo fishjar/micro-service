@@ -251,8 +251,9 @@ Request
 {
   appid: 'sdfdfdsfd',
   code: '123124234234',
-
-  user_info: {}, // 小程序获取的基本信息
+  js_code, 
+  encryptedData, 
+  iv,
 }
 ```
 

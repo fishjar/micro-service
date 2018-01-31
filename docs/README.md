@@ -33,7 +33,7 @@
 
 ## 微服务网关（应用）
 
-- [小程序](./app-wxapp.md)
+- [小程序](./gateway-wxapp.md)
 
 ## 微服务
 
@@ -51,12 +51,12 @@
 
 ## 数据库共有字段
 
-| KEY         | TYPE      | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
-|-------------|-----------|---------|----------|-----------|---------|---------|--------|
-| id          | INT       |         | Y        | Y         | Y       |         |        |
+| KEY        | TYPE      | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
+|------------|-----------|---------|----------|-----------|---------|---------|--------|
+| id         | INT       |         | Y        | Y         | Y       |         |        |
 | created_at | TIMESTAMP |         | Y        |           |         |         |        |
 | updated_at | TIMESTAMP |         | Y        |           |         |         |        |
-| status      | TINYINT   | 0       | Y        |           |         |         |        |
+| status     | TINYINT   | 0       | Y        |           |         |         |        |
 
 ```js
 status: {
@@ -75,8 +75,8 @@ status: {
 
 ```js
 headers: {
-  AuthenticationToken: 'sdfsdfsdf3434dfdf', // 身份认证
-  AuthorizationToken: 'sdf2323fds3', // 权限认证
+  authenticationtoken: 'sdfsdfsdf3434dfdf', // 身份认证
+  authorizationtoken: 'sdf2323fds3', // 权限认证
 }
 ```
 

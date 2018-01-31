@@ -67,9 +67,3 @@ Response
 ```sh
 POST /logout
 ```
-
-### 上传文件
-
-```sh
-POST /upload
-```

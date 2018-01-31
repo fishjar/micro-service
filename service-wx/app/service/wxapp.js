@@ -40,7 +40,8 @@ class Wxapp extends Service {
 
   async getSessionKey({ appid, secret, js_code, grant_type = 'authorization_code' }) {
     const ctx = this.ctx;
-    const jscode_host = 'https://api.weixin.qq.com/sns/jscode2session';
+    // const jscode_host = 'https://api.weixin.qq.com/sns/jscode2session';
+    const jscode_host = this.config.jscode_host;
     const res = await ctx.curl(jscode_host, {
       appid,
       secret,
