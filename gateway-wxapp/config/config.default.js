@@ -7,7 +7,9 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1517215126304_8672';
 
   // add your config here
-  config.middleware = [];
+  // config.middleware = [];
+  // config.middleware = ['errors'];
+  config.middleware = ['auth', 'errors'];
 
   const ms_host = `localhost`
   config.ms_api = {

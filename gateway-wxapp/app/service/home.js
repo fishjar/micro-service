@@ -2,40 +2,53 @@ const Service = require('egg').Service;
 const crypto = require('crypto');
 
 class Home extends Service {
-  async getUserByToken(token) {
-    const { ctx, app, config } = this;
-    const auth = await app.redis.get(`auth:${token}`);
-    if (!auth.user_id) {
-      this.ctx.throw(404, 'user not found');
-    }
-    const res_user = await ctx.curl(`${config.user_api}/user/${auth.user_id}`);
-    this.flashToken()
-    return res_user;
+  async getAuth(token) {
+    const { app } = this;
+    return await app.redis.hgetall(`auth:${token}`);
+  }
+  async getUser(uid) {
+    const { app, config } = this;
+    return await app.API(`${config.user_api}/user/${uid}`);
   }
   async getUserByLogin({ appid, js_code, encryptedData, iv }) {
     const { ctx, app, config } = this;
-    const res_wxuser = await ctx.curl(`${config.wx_api}/wxlogin`, { appid, js_code, encryptedData, iv });
-    const res_user = await ctx.curl(`${config.user_api}/login`, {
-      auth_type: 4,
-      wxuser_id: res_wxuser.data.id,
-      user_info: res_wxuser.data,
+    const wxuser = await app.API(`${config.wx_api}/wxlogin`,{
+      method: 'POST',
+      data: {
+        appid,
+        js_code,
+        encryptedData,
+        iv,
+      }
     });
-    return res_user;
+    const user = await app.API(`${config.user_api}/login`,{
+      method: 'POST',
+      data: {
+        auth_type: 4,
+        wxuser_id: wxuser.id,
+        user_info: wxuser,
+      }
+    });
+    return user;
   }
-  async flashToken({ user_id, auth_type, expire_time, verify_time }) {
-    const token_expire = Date.now() / 1000 + 60 * 60 * 24 * 3; // 3天过期
-    Object.assign(auth, { token_expire });
-    const token = await this.generateToken({ user_id, token_expire });
-    await app.redis.set(`auth:${token}`, {
+  async flashToken({ user_id, auth_type }) {
+    const { ctx } = this;
+    const now = Date.now() / 1000;
+    const expire = 60 * 60 * 24 * 3; // 3天过期
+    const token_expire = now + expire;
+    const token = this.generateToken({ user_id, token_expire });
+    const key = `auth:${token}`;
+    const obj = {
       user_id,
       auth_type,
-      expire_time,
-      verify_time,
       token_expire,
-    });
+    }
+    await app.redis.hmset(key, app.utils.obj2arr(obj));
+    await app.redis.expire(key, expire);
+    ctx.auth = obj; // 更新全局变量
     return { token, token_expire };
   }
-  async generateToken({ user_id, token_expire }) {
+  generateToken({ user_id, token_expire }) {
     const secret = 'wxapp';
     const hash = crypto.createHmac('sha256', secret)
       .update(user_id)
@@ -43,4 +56,6 @@ class Home extends Service {
       .digest('hex');
     return hash;
   }
-}  
+}
+
+module.exports = Home;
