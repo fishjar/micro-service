@@ -6,10 +6,6 @@ class Home extends Service {
     const { app } = this;
     return await app.redis.hgetall(`auth:${token}`);
   }
-  async getUser(uid) {
-    const { app, config } = this;
-    return await app.API(`${config.user_api}/user/${uid}`);
-  }
   async getUserByLogin({ appid, js_code, encryptedData, iv }) {
     const { ctx, app, config } = this;
     const wxuser = await app.API(`${config.wx_api}/wxlogin`,{
@@ -32,7 +28,7 @@ class Home extends Service {
     return user;
   }
   async flashToken({ user_id, auth_type }) {
-    const { ctx } = this;
+    const { ctx, app } = this;
     const now = Date.now() / 1000;
     const expire = 60 * 60 * 24 * 3; // 3天过期
     const token_expire = now + expire;

@@ -75,8 +75,8 @@ status: {
 
 ```js
 headers: {
-  authenticationtoken: 'sdfsdfsdf3434dfdf', // 身份认证
-  authorizationtoken: 'sdf2323fds3', // 权限认证
+  authentication: 'sdfsdfsdf3434dfdf', // 身份认证
+  authorization: 'sdf2323fds3', // 权限认证
 }
 ```
 
