@@ -11,5 +11,14 @@ module.exports = appInfo => {
 
   config.jscode_host = 'https://api.weixin.qq.com/sns/jscode2session';
 
+  config.sequelize = {
+    dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+    database: 'mslab',
+    host: 'localhost',
+    port: '3306',
+    username: 'root',
+    password: '456'
+  };
+
   return config;
 };
