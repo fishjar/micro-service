@@ -17,8 +17,21 @@ class Wxuser extends Service {
     return wxuser;
   }
 
-  async create(wxuser) {
-    return this.ctx.model.Wxuser.create(wxuser);
+  async create({ appid, unionid, openid, session_key,
+    name, avatar, gender, nickname, city, province, country, }) {
+    return this.ctx.model.Wxuser.create({
+      appid,
+      unionid,
+      openid,
+      session_key,
+      name,
+      avatar,
+      gender,
+      nickname,
+      city,
+      province,
+      country,
+    });
   }
 
   async update({ id, updates }) {
@@ -32,7 +45,7 @@ class Wxuser extends Service {
   async findByAppid({ appid, options }) {
     const wxuser = await this.ctx.model.Wxuser.findOne({ where: { appid, ...options } });
     if (!wxuser) {
-      this.ctx.throw(404, 'wxuser not found');
+      return;
     }
     return wxuser;
   }

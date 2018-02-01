@@ -53,7 +53,7 @@ class Wxapp extends Service {
     return res.data;
   }
 
-  encryData(appid, sessionKey, encryptedData, iv) {
+  encryData({ appid, sessionKey, encryptedData, iv }) {
     const pc = new WXBizDataCrypt(appid, sessionKey)
     const data = pc.decryptData(encryptedData, iv)
     return data;
