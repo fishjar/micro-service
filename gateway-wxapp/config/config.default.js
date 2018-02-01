@@ -13,8 +13,8 @@ module.exports = appInfo => {
 
   const ms_host = `localhost`
   config.ms_api = {
-    user_api: `${ms_host}:9202`,
-    wx_api: `${ms_host}:9203`,
+    user_api: `${ms_host}:9102`,
+    wx_api: `${ms_host}:9103`,
   };
 
   config.redis = {
