@@ -8,7 +8,7 @@ class Home extends Service {
   }
   async getUserByLogin({ appid, js_code, encryptedData, iv }) {
     const { ctx, app, config } = this;
-    const wxuser = await app.API(`${config.wx_api}/wxlogin`,{
+    const wxuser = await app.API(`${config.wx_api}/wxlogin`, {
       method: 'POST',
       data: {
         appid,
@@ -17,7 +17,7 @@ class Home extends Service {
         iv,
       }
     });
-    const user = await app.API(`${config.user_api}/login`,{
+    const user = await app.API(`${config.user_api}/login`, {
       method: 'POST',
       data: {
         auth_type: 4,
