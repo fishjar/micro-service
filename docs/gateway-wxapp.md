@@ -40,8 +40,8 @@ Request
 {
   appid: 'sdfdfdsfd',
   code: '123124234234',
-
-  user_info: {}, // 小程序获取的基本信息
+  encryptedData: 'wefsdf',
+  iv: '',
 }
 ```
 
@@ -49,6 +49,11 @@ Response
 
 ```js
 {
+  token: 'trt4tefere',
+  token_expire: 1516602918,
+
+  id: 'DEF123',
+  uuid: 'ABCDEF',
   name: 'zhangsan',
   nickname: 'laozhang',
   mobile: '13888888888',
@@ -56,9 +61,28 @@ Response
   gender: 1,
   birthday: 1516602918,
   avatar: '/media/img/123.png',
+}
+```
 
+### 获取个人信息
+
+```sh
+GET /users/<id>
+```
+
+Response
+
+```js
+{
   id: 'DEF123',
   uuid: 'ABCDEF',
+  name: 'zhangsan',
+  nickname: 'laozhang',
+  mobile: '13888888888',
+  email: 'zhangsan@test.com',
+  gender: 1,
+  birthday: 1516602918,
+  avatar: '/media/img/123.png',
 }
 ```
 

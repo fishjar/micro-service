@@ -1,5 +1,5 @@
 const Service = require('egg').Service;
-const WXBizDataCrypt = require('../util/WXBizDataCrypt');
+const WXBizDataCrypt = require('../utils/WXBizDataCrypt');
 
 class Wxapp extends Service {
   async list({ offset = 0, limit = 10, order_by = 'created_at', order = 'ASC' }) {

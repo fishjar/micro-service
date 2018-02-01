@@ -9,11 +9,10 @@ class HomeController extends Controller {
   async wxlogin() {
     const { ctx } = this;
     const { appid, js_code, encryptedData, iv } = ctx.request.body;
-    const wxapp = await ctx.service.wxapp.findApp(appid);
-    const { secret } = wxapp;
+    const { secret } = await ctx.service.wxapp.findApp(appid);
     const { session_key, openid, unionid } = await ctx.service.wxapp.getSessionKey({ appid, secret, js_code });
     const wxuser = await ctx.service.wxuser.findByAppid(appid, { openid, unionid });
-    // 如果存在，这里简化直接返回!!!!正常需要更新信息才返回!!!!
+    // 如果存在，这里简单处理，直接返回!!!!正常需要更新信息才返回!!!!
     ctx.body = {
       data: wxuser,
       errcode: 0,

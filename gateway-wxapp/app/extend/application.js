@@ -16,7 +16,7 @@ module.exports = {
     if (res.data.errcode !== 0) {
       ctx.throw(401, `curl err : ${args[0]} : ${res.data.errmsg}`)
     }
-    return res.data
+    return res.data.data
   },
   generateURL(url, params) {
     const myURL = new URL(url)
