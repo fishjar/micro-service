@@ -4,7 +4,7 @@ module.exports = options => {
       await next();
       // ctx.logger.info('ok');
     } catch (err) {
-      ctx.logger.error(`auth: ${JSON.stringify(ctx.auth)}`);
+      ctx.logger.error(ctx.auth);
       ctx.logger.error(err);
       ctx.status = err.status || 400;
       ctx.body = JSON.stringify({
