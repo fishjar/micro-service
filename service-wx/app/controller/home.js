@@ -1,5 +1,3 @@
-import { userInfo } from 'os';
-
 'use strict';
 
 const Controller = require('egg').Controller;
@@ -33,7 +31,7 @@ class HomeController extends Controller {
         appid,
         sessionKey: session_key,
         encryptedData,
-        iv
+        iv,
       });
       // 创建用户
       const newUser = await ctx.service.wxuser.create(Object.assign(userInfo, {

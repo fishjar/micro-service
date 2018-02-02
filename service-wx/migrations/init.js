@@ -1,15 +1,16 @@
 'use strict';
+
 const co = require('co');
-import model from '../app/uitls/model.js';
+const model = require('../app/utils/model');
 
 module.exports = {
   up: co.wrap(function* (db, Sequelize) {
-    yield db.createTable('wxapp', model(Sequelize).wxapp);
-    yield db.createTable('wxuser', model(Sequelize).wxuser);
+    yield db.createTable('wxapps', model(Sequelize).wxapp);
+    yield db.createTable('wxusers', model(Sequelize).wxuser);
   }),
 
   down: co.wrap(function* (db) {
-    yield db.dropTable('wxapp');
-    yield db.dropTable('wxuser');
+    yield db.dropTable('wxapps');
+    yield db.dropTable('wxusers');
   }),
 };

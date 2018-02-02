@@ -1,4 +1,6 @@
-export default Sequelize => {
+'use strict';
+
+module.exports = Sequelize => {
   const { STRING, INTEGER, DATE } = Sequelize;
   return {
     wxapp: {
@@ -16,10 +18,10 @@ export default Sequelize => {
       expires_in: DATE,
       status: {
         type: INTEGER,
-        defaultValue: 0
+        defaultValue: 0,
       },
       created_at: DATE,
-      updated_at: DATE
+      updated_at: DATE,
     },
     wxuser: {
       id: {
@@ -40,10 +42,10 @@ export default Sequelize => {
       country: STRING(32),
       status: {
         type: INTEGER,
-        defaultValue: 0
+        defaultValue: 0,
       },
       created_at: DATE,
-      updated_at: DATE
+      updated_at: DATE,
     },
-  }
+  };
 };

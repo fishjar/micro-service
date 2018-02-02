@@ -1,3 +1,5 @@
+'use strict';
+
 const Service = require('egg').Service;
 const WXBizDataCrypt = require('../utils/WXBizDataCrypt');
 
@@ -6,7 +8,7 @@ class Wxapp extends Service {
     return this.ctx.model.Wxapp.findAndCountAll({
       offset,
       limit,
-      order: [[order_by, order.toUpperCase()]],
+      order: [[ order_by, order.toUpperCase() ]],
     });
   }
 
@@ -45,7 +47,7 @@ class Wxapp extends Service {
       appid,
       secret,
       js_code,
-      grant_type
+      grant_type,
     }));
     if (res.status > 300) {
       ctx.throw(404, 'wx jscode2session err');
@@ -54,8 +56,10 @@ class Wxapp extends Service {
   }
 
   encryData({ appid, sessionKey, encryptedData, iv }) {
-    const pc = new WXBizDataCrypt(appid, sessionKey)
-    const data = pc.decryptData(encryptedData, iv)
+    const pc = new WXBizDataCrypt(appid, sessionKey);
+    const data = pc.decryptData(encryptedData, iv);
     return data;
   }
-}  
+}
+
+module.exports = Wxapp;
