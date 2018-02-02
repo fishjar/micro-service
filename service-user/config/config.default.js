@@ -15,8 +15,22 @@ module.exports = appInfo => {
     host: 'localhost',
     port: '3306',
     username: 'root',
-    password: '456'
+    password: '456',
   };
+
+  config.security = {
+    csrf: {
+      // 判断是否需要 ignore 的方法，请求上下文 context 作为第一个参数
+      // ignore: ctx => isInnerIp(ctx.ip),
+      enable: false,
+    },
+    // domainWhiteList: ['http://localhost:9101'],
+  };
+
+  // config.cors = {
+  //   origin: '127.0.0.1',
+  //   allowMethods: 'GET'
+  // };
 
   return config;
 };

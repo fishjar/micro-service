@@ -1,6 +1,7 @@
 'use strict';
+
 const co = require('co');
-import model from '../app/uitls/model.js';
+const model = require('../uitls/model.js');
 
 module.exports = {
   up: co.wrap(function* (db, Sequelize) {
