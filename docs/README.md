@@ -108,8 +108,8 @@ headers: {
     page: 1,
     pages: 3,
     per_page: 10,
-    total: 33,
-    list: [],
+    count: 33,
+    rows: [],
   },
 }
 ```
@@ -121,4 +121,4 @@ headers: {
 | errcode | int          | Y        | 0正常，其他值错误 |
 | errmsg  | string       | Y        | 错误信息      |
 | data    | object/array |          | 返回数据      |
-| total   | int          |          | 总数目       |
+| count   | int          |          | 总数目       |

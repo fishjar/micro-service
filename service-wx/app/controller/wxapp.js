@@ -5,7 +5,7 @@ const Controller = require('egg').Controller;
 class WxappController extends Controller {
   async wxapps() {
     const { ctx } = this;
-    const wxapps = await ctx.service.wxapps.list(ctx.query);
+    const wxapps = await ctx.service.wxapp.list(ctx.query);
     ctx.body = {
       errcode: 0,
       errmsg: 'get wxapps success!',
