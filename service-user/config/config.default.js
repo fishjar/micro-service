@@ -11,6 +11,9 @@ module.exports = appInfo => {
 
   config.sequelize = {
     dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+    dialectOptions: {
+      charset: 'utf8mb4'
+    },
     database: 'mslab',
     host: 'localhost',
     port: '3306',

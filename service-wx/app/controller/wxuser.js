@@ -3,6 +3,16 @@
 const Controller = require('egg').Controller;
 
 class WxuserController extends Controller {
+  async wxusers() {
+    const { ctx } = this;
+    const wxusers = await ctx.service.wxuser.list(ctx.query);
+    ctx.body = {
+      errcode: 0,
+      errmsg: 'get wxusers success!',
+      data: wxusers,
+    };
+    ctx.status = 200;
+  }
   async wxuser() {
     const { ctx } = this;
     const wxuser = await ctx.service.wxuser.find(ctx.params.id);

@@ -48,9 +48,11 @@ class Wxapp extends Service {
       secret,
       js_code,
       grant_type,
-    }));
-    if (res.status > 300) {
-      ctx.throw(404, 'wx jscode2session err');
+    }),{
+      dataType: 'json'
+    });
+    if (res.data.errmsg) {
+      ctx.throw(404, res.data.errmsg);
     }
     return res.data;
   }

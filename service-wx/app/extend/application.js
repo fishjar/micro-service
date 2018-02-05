@@ -23,8 +23,7 @@ const API = async (...args) => {
 const generateURL = (url, params) => {
   const myURL = new URL(url);
   if (params) {
-    const myParams = new URLSearchParams(params);
-    myURL.searchParams = myParams;
+    Object.keys(params).forEach(key => myURL.searchParams.append(key, params[key]))
   }
   return myURL;
 };

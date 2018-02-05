@@ -13,8 +13,8 @@ class HomeController extends Controller {
       this.ctx.throw(501, 'missing params!');
     }
     const { secret } = await ctx.service.wxapp.findApp(appid);
-    const { session_key, openid, unionid } = await ctx.service.wxapp.getSessionKey({ appid, secret, js_code });
-    const wxuser = await ctx.service.wxuser.findByAppid(appid, { openid, unionid });
+    const { session_key, openid } = await ctx.service.wxapp.getSessionKey({ appid, secret, js_code });
+    const wxuser = await ctx.service.wxuser.findByAppid(appid, { openid });
     // 如果存在，这里简单处理，直接返回!!!!正常应更新信息才返回!!!!
     ctx.body = {
       data: wxuser,
@@ -36,9 +36,11 @@ class HomeController extends Controller {
       // 创建用户
       const newUser = await ctx.service.wxuser.create(Object.assign(userInfo, {
         appid,
-        unionid,
-        openid,
+        unionid: userInfo.unionId,
+        openid: userInfo.openId,
         session_key,
+        nickname: userInfo.nickName,
+        avatar: userInfo.avatarUrl,
       }));
       ctx.body = {
         data: newUser,
