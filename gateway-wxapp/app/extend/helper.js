@@ -1,6 +1,8 @@
 'use strict';
 
 const { URL } = require('url');
+const Hashids = require('hashids');
+const hashids = new Hashids('mslab');
 
 module.exports = {
   foo(param) {
@@ -21,4 +23,5 @@ module.exports = {
   generateHref(url, params) {
     return this.generateURL(url, params).href;
   },
+  hashids,
 };
