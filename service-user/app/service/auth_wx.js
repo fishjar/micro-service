@@ -11,7 +11,7 @@ class AuthWx extends Service {
 
   async create({ user_id, wxuser_id }) {
     const verify_time = Date.now();
-    const expire_time = verify_time + 60 * 60 * 24 * 365; // 一年过期
+    const expire_time = verify_time + 1000 * 60 * 60 * 24 * 365; // 一年过期
     return this.ctx.model.AuthWx.create({
       user_id,
       wxuser_id,
