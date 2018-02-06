@@ -1,5 +1,7 @@
 module.exports = options => {
   return async function auth(ctx, next) {
+    console.log('-------------ip---')
+    console.log(ctx.ip)
     const { authentication } = ctx.request.header;
     const { appid, code, encryptedData, iv } = ctx.request.body;
     if (appid && code && encryptedData && iv && ctx.request.path === '/login') {
