@@ -8,7 +8,7 @@ class User extends Service {
     return this.ctx.model.User.findAndCountAll({
       offset,
       limit,
-      order: [[ order_by, order.toUpperCase() ]],
+      order: [[order_by, order.toUpperCase()]],
     });
   }
 
@@ -20,7 +20,7 @@ class User extends Service {
     return user;
   }
 
-  async create({ name, nickname, mobile, email, gender, birthday, avatar }) {
+  async create({ name, nickname, mobile, email, gender, birthday, avatar, city, province, country, }) {
     const uuid = uuidv1();
     return this.ctx.model.User.create({
       uuid,

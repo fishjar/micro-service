@@ -41,9 +41,9 @@ class Wxapp extends Service {
   }
 
   async getSessionKey({ appid, secret, js_code, grant_type = 'authorization_code' }) {
-    const { ctx, app } = this;
+    const { ctx } = this;
     const jscode_host = this.config.jscode_host;
-    const res = await ctx.curl(app.generateHref(jscode_host, {
+    const res = await ctx.curl(ctx.helper.generateHref(jscode_host, {
       appid,
       secret,
       js_code,
