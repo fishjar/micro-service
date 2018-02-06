@@ -8,11 +8,11 @@ class HomeController extends Controller {
   }
   async login() {
     const { ctx } = this;
-    const { auth_type, wxuser_id, user_info } = ctx.request.body;
+    const { auth_type, id: wxuser_id } = ctx.request.body;
     if (!(auth_type && wxuser_id)) {
       ctx.throw(501, 'missing params!');
     }
-    if (auth_type === 4) {
+    if (+auth_type === 4) {
       const auth = await ctx.service.authWx.findByWxID(wxuser_id);
       if (auth) {
         const { user_id } = auth;
@@ -27,10 +27,13 @@ class HomeController extends Controller {
         };
         ctx.status = 201;
       } else {
-        if (!user_info) {
-          ctx.throw(501, 'missing user_info params!');
-        }
-        const newUser = await ctx.service.user.create(user_info);
+        // if (!user_info) {
+        //   ctx.throw(501, 'missing user_info params!');
+        // }
+        const { nickname,avatar,gender,city,province,country } = ctx.request.body;
+        const newUser = await ctx.service.user.create({
+          nickname,avatar,gender,city,province,country
+        });
         const newAuth = await ctx.service.authWx.create({ user_id: newUser.id, wxuser_id });
         ctx.body = {
           errcode: 0,

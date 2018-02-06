@@ -11,10 +11,10 @@ module.exports = appInfo => {
   // config.middleware = ['errors'];
   config.middleware = ['auth', 'errors'];
 
-  const ms_host = `localhost`
-  config.ms_api = {
-    user_api: `${ms_host}:9102`,
-    wx_api: `${ms_host}:9103`,
+  const _host = `localhost`
+  config.msapi = {
+    user: `${_host}:9102`,
+    wx: `${_host}:9103`,
   };
 
   config.redis = {

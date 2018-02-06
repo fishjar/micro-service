@@ -31,6 +31,9 @@ class User extends Service {
       gender,
       birthday,
       avatar,
+      city,
+      province,
+      country,
     });
   }
 

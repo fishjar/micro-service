@@ -2,8 +2,8 @@ const Service = require('egg').Service;
 
 class User extends Service {
   async find(id) {
-    const { app, config } = this;
-    return await app.API(`${config.user_api}/user/${id}`);
+    const { ctx, config } = this;
+    return await ctx.API(`${config.msapi.user}/users/${id}`, { dataType: 'json', });
   }
 }
 
