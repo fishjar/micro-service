@@ -42,5 +42,9 @@ module.exports = appInfo => {
   //   allowMethods: 'GET'
   // };
 
+  // config.security = {
+  //   domainWhiteList: ['http://localhost:9101']
+  // };
+
   return config;
 };

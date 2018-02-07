@@ -24,7 +24,6 @@ class HomeController extends Controller {
     const { appid, code, encryptedData, iv } = ctx.request.body;
     const { user } = await ctx.service.home.getUserByLogin({ appid, js_code: code, encryptedData, iv });
     const { token, token_expire } = await ctx.service.home.flashToken({ user_id: user.id, auth_type: 4 });
-    // Object.assign(user, { token, token_expire });
     // 做hashids处理
     user.id = ctx.helper.hashids.encode(user.id);
     ctx.body = {
