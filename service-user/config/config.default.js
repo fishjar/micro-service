@@ -22,14 +22,14 @@ module.exports = appInfo => {
     password: '456',
   };
 
-  // config.security = {
-  //   csrf: {
-  //     // 判断是否需要 ignore 的方法，请求上下文 context 作为第一个参数
-  //     ignore: ctx => isInnerIp(ctx.ip),
-  //     enable: false,
-  //   },
-  //   domainWhiteList: ['http://localhost:9102'],
-  // };
+  config.security = {
+    csrf: {
+      // 判断是否需要 ignore 的方法，请求上下文 context 作为第一个参数
+      // ignore: ctx => isInnerIp(ctx.ip),
+      ignore: ctx => ctx.ip === '127.0.0.1',
+      enable: false,
+    },
+  };
 
   // config.security = {
   //   domainWhiteList: ['http://localhost:4200']
