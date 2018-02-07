@@ -51,12 +51,12 @@
 
 ## 数据库共有字段
 
-| KEY        | TYPE      | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
-|------------|-----------|---------|----------|-----------|---------|---------|--------|
-| id         | INT       |         | Y        | Y         | Y       |         |        |
-| created_at | TIMESTAMP |         | Y        |           |         |         |        |
-| updated_at | TIMESTAMP |         | Y        |           |         |         |        |
-| status     | TINYINT   | 0       | Y        |           |         |         |        |
+| Field      | Type     | Null | Key | Default | Extra          |
+|------------|----------|------|-----|---------|----------------|
+| id         | int(11)  | NO   | PRI | NULL    | auto_increment |
+| status     | int(11)  | YES  |     | 0       |                |
+| created_at | datetime | YES  |     | NULL    |                |
+| updated_at | datetime | YES  |     | NULL    |                |
 
 ```js
 status: {

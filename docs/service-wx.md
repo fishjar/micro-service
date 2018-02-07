@@ -11,16 +11,16 @@
 
 ### 微信公众号，企业号，小程序表 `wxapp`
 
-| KEY          | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
-|--------------|--------------|---------|----------|-----------|---------|---------|--------|
-| id           | INT          |         | Y        | Y         | Y       |         |        |
-| app_type     | TINYINT      |         |          |           |         |         |        |
-| wxmch_id     | INT          |         |          |           |         |         |        |
-| name         | VARCHAR(32)  |         |          |           |         |         |        |
-| appid        | VARCHAR(32)  |         | Y        |           |         |         |        |
-| secret       | VARCHAR(128) |         |          |           |         |         |        |
-| access_token | VARCHAR(128) |         |          |           |         |         |        |
-| expires_in   | TIMESTAMP    |         |          |           |         |         |        |
+| Field        | Type        | Null | Key | Default | Extra          |
+|--------------|-------------|------|-----|---------|----------------|
+| id           | int(11)     | NO   | PRI | NULL    | auto_increment |
+| app_type     | int(11)     | YES  |     | NULL    |                |
+| wxmch_id     | int(11)     | YES  |     | NULL    |                |
+| name         | varchar(32) | YES  |     | NULL    |                |
+| appid        | varchar(32) | YES  |     | NULL    |                |
+| secret       | varchar(32) | YES  |     | NULL    |                |
+| access_token | varchar(32) | YES  |     | NULL    |                |
+| expires_in   | datetime    | YES  |     | NULL    |                |
 
 ```js
 app_type: {
@@ -41,20 +41,19 @@ app_type: {
 
 ### 微信用户表 `wxuser`
 
-| KEY         | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
-|-------------|--------------|---------|----------|-----------|---------|---------|--------|
-| id          | INT          |         | Y        | Y         | Y       |         |        |
-| appid       | VARCHAR(32)  |         | Y        |           |         |         |        |
-| unionid     | VARCHAR(32)  |         |          |           |         |         |        |
-| openid      | VARCHAR(32)  |         |          |           |         |         |        |
-| session_key | VARCHAR(64)  |         |          |           |         |         |        |
-| name        | VARCHAR(64)  |         |          |           |         |         |        |
-| avatar      | VARCHAR(128) |         |          |           |         |         |        |
-| gender      | TINYINT      |         |          |           |         |         |        |
-| nickname    | VARCHAR(64)  |         |          |           |         |         |        |
-| city        | VARCHAR(32)  |         |          |           |         |         |        |
-| province    | VARCHAR(32)  |         |          |           |         |         |        |
-| country     | VARCHAR(32)  |         |          |           |         |         |        |
+| Field       | Type         | Null | Key | Default | Extra          |
+|-------------|--------------|------|-----|---------|----------------|
+| id          | int(11)      | NO   | PRI | NULL    | auto_increment |
+| appid       | varchar(32)  | YES  |     | NULL    |                |
+| unionid     | varchar(32)  | YES  |     | NULL    |                |
+| openid      | varchar(32)  | YES  |     | NULL    |                |
+| session_key | varchar(64)  | YES  |     | NULL    |                |
+| nickname    | varchar(64)  | YES  |     | NULL    |                |
+| avatar      | varchar(255) | YES  |     | NULL    |                |
+| gender      | int(11)      | YES  |     | NULL    |                |
+| city        | varchar(32)  | YES  |     | NULL    |                |
+| province    | varchar(32)  | YES  |     | NULL    |                |
+| country     | varchar(32)  | YES  |     | NULL    |                |
 
 ### 微信支付表 `wxpay`
 

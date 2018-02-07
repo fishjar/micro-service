@@ -19,8 +19,8 @@ class UserController extends Controller {
       errcode: 0,
       errmsg: 'get success',
       data: user,
-    }
-    ctx.status = 200
+    };
+    ctx.status = 200;
   }
 }
 

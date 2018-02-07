@@ -9,9 +9,9 @@ module.exports = appInfo => {
   // add your config here
   // config.middleware = [];
   // config.middleware = ['errors'];
-  config.middleware = ['auth', 'errors'];
+  config.middleware = [ 'auth', 'errors' ];
 
-  const _host = `localhost`
+  const _host = 'localhost';
   config.msapi = {
     user: `${_host}:9102`,
     wx: `${_host}:9103`,
@@ -19,8 +19,8 @@ module.exports = appInfo => {
 
   config.redis = {
     client: {
-      port: 6379,          // Redis port
-      host: '127.0.0.1',   // Redis host
+      port: 6379, // Redis port
+      host: '127.0.0.1', // Redis host
       password: null,
       db: 0,
     },

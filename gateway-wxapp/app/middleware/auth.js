@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = options => {
   return async function auth(ctx, next) {
     ctx.logger.info(`Client IP: ${ctx.ip}`);
@@ -16,13 +18,13 @@ module.exports = options => {
         } else {
           ctx.body = {
             errcode: 101,
-            errmsg: 'auth exprie!'
-          }
-          ctx.status = 201
+            errmsg: 'auth exprie!',
+          };
+          ctx.status = 201;
         }
       } else {
-        ctx.throw(401, `need auth info!`);
+        ctx.throw(401, 'need auth info!');
       }
     }
-  }
+  };
 };

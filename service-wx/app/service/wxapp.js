@@ -48,8 +48,8 @@ class Wxapp extends Service {
       secret,
       js_code,
       grant_type,
-    }),{
-      dataType: 'json'
+    }), {
+      dataType: 'json',
     });
     if (res.data.errmsg) {
       ctx.throw(404, res.data.errmsg);

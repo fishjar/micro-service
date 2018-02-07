@@ -20,7 +20,7 @@ class HomeController extends Controller {
   }
 
   async login() {
-    const { ctx, app } = this;
+    const { ctx } = this;
     const { appid, code, encryptedData, iv } = ctx.request.body;
     const { user } = await ctx.service.home.getUserByLogin({ appid, js_code: code, encryptedData, iv });
     const { token, token_expire } = await ctx.service.home.flashToken({ user_id: user.id, auth_type: 4 });
@@ -34,8 +34,8 @@ class HomeController extends Controller {
         token,
         token_expire,
       },
-    }
-    ctx.status = 201
+    };
+    ctx.status = 201;
   }
 }
 

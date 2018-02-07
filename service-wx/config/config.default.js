@@ -8,14 +8,14 @@ module.exports = appInfo => {
 
   // add your config here
   // config.middleware = [];
-  config.middleware = ['auth', 'errors'];
+  config.middleware = [ 'auth', 'errors' ];
 
   config.jscode_host = 'https://api.weixin.qq.com/sns/jscode2session';
 
   config.sequelize = {
     dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
     dialectOptions: {
-      charset: 'utf8mb4'
+      charset: 'utf8mb4',
     },
     database: 'mslab',
     host: 'localhost',

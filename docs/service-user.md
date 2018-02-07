@@ -43,27 +43,27 @@ auth_type: {
 
 ### 微信用户认证表 `auth_wx`
 
-| KEY         | TYPE      | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
-|-------------|-----------|---------|----------|-----------|---------|---------|--------|
-| id          | INT       |         | Y        | Y         | Y       |         |        |
-| user_id     | INT       |         |          |           |         |         |        |
-| wxuser_id   | INT       |         |          |           |         |         |        |
-| expire_time | TIMESTAMP |         |          |           |         |         |        |
-| verify_time | TIMESTAMP |         |          |           |         |         |        |
+| Field       | Type     | Null | Key | Default | Extra          |
+|-------------|----------|------|-----|---------|----------------|
+| id          | int(11)  | NO   | PRI | NULL    | auto_increment |
+| user_id     | int(11)  | YES  |     | NULL    |                |
+| wxuser_id   | int(11)  | YES  |     | NULL    |                |
+| expire_time | datetime | YES  |     | NULL    |                |
+| verify_time | datetime | YES  |     | NULL    |                |
 
 ### 用户资料表 `user`
 
-| KEY      | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
-|----------|--------------|---------|----------|-----------|---------|---------|--------|
-| id       | INT          |         | Y        | Y         | Y       |         |        |
-| uuid     | VARCHAR(32)  |         | Y        |           |         |         |        |
-| name     | VARCHAR(64)  |         |          |           |         |         |        |
-| nickname | VARCHAR(64)  |         |          |           |         |         |        |
-| mobile   | VARCHAR(16)  |         |          |           |         |         |        |
-| email    | VARCHAR(64)  |         |          |           |         |         |        |
-| gender   | TINYINT      |         |          |           |         |         |        |
-| birthday | TIMESTAMP    |         |          |           |         |         |        |
-| avatar   | VARCHAR(128) |         |          |           |         |         |        |
+| Field    | Type         | Null | Key | Default | Extra          |
+|----------|--------------|------|-----|---------|----------------|
+| id       | int(11)      | NO   | PRI | NULL    | auto_increment |
+| uuid     | varchar(64)  | YES  |     | NULL    |                |
+| name     | varchar(64)  | YES  |     | NULL    |                |
+| avatar   | varchar(255) | YES  |     | NULL    |                |
+| gender   | int(11)      | YES  |     | NULL    |                |
+| nickname | varchar(64)  | YES  |     | NULL    |                |
+| city     | varchar(32)  | YES  |     | NULL    |                |
+| province | varchar(32)  | YES  |     | NULL    |                |
+| country  | varchar(32)  | YES  |     | NULL    |                |
 
 ```js
 gender: {

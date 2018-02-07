@@ -11,8 +11,6 @@
 `auth:{token}`： {
   `user_id`,
   `auth_type`,
-  `expire_time`,
-  `verify_time`,
   `token_expire`,
 }
 ```
@@ -52,15 +50,17 @@ Response
   token: 'trt4tefere',
   token_expire: 1516602918,
 
-  id: 'DEF123',
-  uuid: 'ABCDEF',
-  name: 'zhangsan',
-  nickname: 'laozhang',
-  mobile: '13888888888',
-  email: 'zhangsan@test.com',
-  gender: 1,
-  birthday: 1516602918,
-  avatar: '/media/img/123.png',
+  user: {
+    id: 'DEF123',
+    uuid: 'ABCDEF',
+    name: 'zhangsan',
+    nickname: 'laozhang',
+    mobile: '13888888888',
+    email: 'zhangsan@test.com',
+    gender: 1,
+    birthday: 1516602918,
+    avatar: '/media/img/123.png',
+  },
 }
 ```
 

@@ -1,3 +1,5 @@
+'use strict';
+
 const Service = require('egg').Service;
 const crypto = require('crypto');
 
@@ -16,12 +18,12 @@ class Home extends Service {
         js_code,
         encryptedData,
         iv,
-      }
+      },
     });
     const { user, auth } = await ctx.API(`${config.msapi.user}/login`, {
       method: 'POST',
       dataType: 'json',
-      data: Object.assign({ auth_type: 4 }, wxuser, { obj: { a: 1 } })
+      data: Object.assign({ auth_type: 4 }, wxuser, { obj: { a: 1 } }),
       // data: {
       //   auth_type: 4,
       //   wxuser_id: wxuser.id,
@@ -41,12 +43,12 @@ class Home extends Service {
       user_id,
       auth_type,
       token_expire,
-    }
+    };
     await app.redis.hmset(key, ctx.helper.obj2arr(obj));
     await app.redis.expire(key, expire);
-    console.log('----------auth------------')
-    console.log({ key })
-    console.log(await app.redis.hgetall(key))
+    console.log('----------auth------------');
+    console.log({ key });
+    console.log(await app.redis.hgetall(key));
     ctx.auth = obj; // 更新全局变量
     return { token, token_expire };
   }

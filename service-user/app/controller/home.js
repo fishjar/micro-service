@@ -30,9 +30,9 @@ class HomeController extends Controller {
         // if (!user_info) {
         //   ctx.throw(501, 'missing user_info params!');
         // }
-        const { nickname,avatar,gender,city,province,country } = ctx.request.body;
+        const { nickname, avatar, gender, city, province, country } = ctx.request.body;
         const newUser = await ctx.service.user.create({
-          nickname,avatar,gender,city,province,country
+          nickname, avatar, gender, city, province, country,
         });
         const newAuth = await ctx.service.authWx.create({ user_id: newUser.id, wxuser_id });
         ctx.body = {

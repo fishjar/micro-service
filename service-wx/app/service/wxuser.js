@@ -7,7 +7,7 @@ class Wxuser extends Service {
     return this.ctx.model.Wxuser.findAndCountAll({
       offset,
       limit,
-      order: [[order_by, order.toUpperCase()]],
+      order: [[ order_by, order.toUpperCase() ]],
     });
   }
 
