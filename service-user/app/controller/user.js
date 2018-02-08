@@ -3,6 +3,7 @@
 const Controller = require('egg').Controller;
 
 class UserController extends Controller {
+
   async user() {
     const { ctx } = this;
     const user = await ctx.service.user.find(ctx.params.id);
@@ -11,8 +12,19 @@ class UserController extends Controller {
       errmsg: 'get user success!',
       data: user,
     };
-    ctx.status = 200;
   }
+
+  async update() {
+    const { ctx } = this;
+    const userInfo = ctx.request.body;
+    const user = await ctx.service.user.update(ctx.params.id, userInfo);
+    ctx.body = {
+      errcode: 0,
+      errmsg: 'update user success!',
+      data: user,
+    };
+  }
+
 }
 
 module.exports = UserController;

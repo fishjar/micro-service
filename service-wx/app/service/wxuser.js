@@ -7,7 +7,7 @@ class Wxuser extends Service {
     return this.ctx.model.Wxuser.findAndCountAll({
       offset,
       limit,
-      order: [[ order_by, order.toUpperCase() ]],
+      order: [[order_by, order.toUpperCase()]],
     });
   }
 
@@ -19,24 +19,15 @@ class Wxuser extends Service {
     return wxuser;
   }
 
-  async create({ appid, unionid, openid, session_key,
-    name, avatar, gender, nickname, city, province, country }) {
-    return this.ctx.model.Wxuser.create({
-      appid,
-      unionid,
-      openid,
-      session_key,
-      name,
-      avatar,
-      gender,
-      nickname,
-      city,
-      province,
-      country,
-    });
+  async findOrCreate(options) {
+    return this.ctx.model.Wxuser.findOrCreate(options);
   }
 
-  async update({ id, updates }) {
+  async create(wxuser) {
+    return this.ctx.model.Wxuser.create(wxuser);
+  }
+
+  async update(id, updates) {
     const wxuser = await this.ctx.model.Wxuser.findById(id);
     if (!wxuser) {
       this.ctx.throw(404, 'wxuser not found');
@@ -44,8 +35,8 @@ class Wxuser extends Service {
     return wxuser.update(updates);
   }
 
-  async findByAppid(appid, options) {
-    const wxuser = await this.ctx.model.Wxuser.findOne({ where: Object.assign({ appid }, options) });
+  async findOne(options) {
+    const wxuser = await this.ctx.model.Wxuser.findOne({ where: options });
     if (!wxuser) {
       return;
     }

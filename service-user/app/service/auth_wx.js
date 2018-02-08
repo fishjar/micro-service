@@ -4,9 +4,17 @@ const Service = require('egg').Service;
 
 class AuthWx extends Service {
 
-  async findByWxID(wxuser_id) {
+  async findOne(options) {
     const { ctx } = this;
-    return await ctx.model.AuthWx.findOne({ where: { wxuser_id } });
+    return await ctx.model.AuthWx.findOne({ where: options });
+  }
+
+  async find(id) {
+    const auth = await this.ctx.model.AuthWx.findById(id);
+    if (!auth) {
+      this.ctx.throw(404, 'auth not found');
+    }
+    return auth;
   }
 
   async create({ user_id, wxuser_id }) {

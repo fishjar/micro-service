@@ -8,7 +8,7 @@ class Wxapp extends Service {
     return this.ctx.model.Wxapp.findAndCountAll({
       offset,
       limit,
-      order: [[ order_by, order.toUpperCase() ]],
+      order: [[order_by, order.toUpperCase()]],
     });
   }
 
@@ -24,7 +24,7 @@ class Wxapp extends Service {
     return this.ctx.model.Wxapp.create(wxapp);
   }
 
-  async update({ id, updates }) {
+  async update(id, updates) {
     const wxapp = await this.ctx.model.Wxapp.findById(id);
     if (!wxapp) {
       this.ctx.throw(404, 'wxapp not found');
@@ -49,8 +49,8 @@ class Wxapp extends Service {
       js_code,
       grant_type,
     }), {
-      dataType: 'json',
-    });
+        dataType: 'json',
+      });
     if (res.data.errmsg) {
       ctx.throw(404, res.data.errmsg);
     }

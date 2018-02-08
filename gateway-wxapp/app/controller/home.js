@@ -19,7 +19,7 @@ class HomeController extends Controller {
     // }
   }
 
-  async login() {
+  async _login() {
     const { ctx } = this;
     const { appid, code, encryptedData, iv } = ctx.request.body;
     const { user } = await ctx.service.home.getUserByLogin({ appid, js_code: code, encryptedData, iv });
@@ -37,6 +37,45 @@ class HomeController extends Controller {
     };
     ctx.status = 201;
   }
+
+  // 登录
+  async login() {
+    const { ctx } = this;
+    const { appid, code } = ctx.request.body;
+    if (!(appid && code)) {
+      ctx.throw(501, 'missing params!');
+    }
+    const { auth, user } = await ctx.service.home.login({ appid, js_code: code });
+    const { token, expire } = await ctx.service.home.flashToken({ aid: auth.id, uid: auth.user_id });
+    user.id = ctx.helper.hashids.encode(user.id); //hashids处理
+    ctx.body = {
+      errcode: 0,
+      errmsg: 'login success',
+      data: {
+        user,
+        token,
+        expire,
+      },
+    };
+  }
+
+  // 解密并更新用户资料
+  async wxuser() {
+    const { ctx } = this;
+    const { encryptedData, iv } = ctx.request.body;
+    if (!(encryptedData && iv)) {
+      ctx.throw(501, 'missing params!');
+    }
+    const { aid } = ctx.auth;
+    const { user } = await ctx.service.home.wxuser({ aid, encryptedData, iv });
+    user.id = ctx.helper.hashids.encode(user.id);
+    ctx.body = {
+      errcode: 0,
+      errmsg: 'get and update success',
+      data: user,
+    };
+  }
+
 }
 
 module.exports = HomeController;

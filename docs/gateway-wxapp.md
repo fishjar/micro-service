@@ -9,9 +9,10 @@
 
 ```js
 `auth:{token}`： {
-  `user_id`,
-  `auth_type`,
-  `token_expire`,
+  `aid`,
+  `uid`,
+  `atype`,
+  `expire`,
 }
 ```
 
