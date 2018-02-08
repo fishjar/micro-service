@@ -16,7 +16,7 @@ module.exports = {
     return this[BAR];
   },
   async API(url, options) {
-    const res = await this.curl(url, Object.assign({ dataType: 'json' }, options));
+    const res = await this.curl(url, Object.assign({ dataType: 'json', contentType: 'json' }, options));
     if (res.status > 300) {
       this.throw(res.status, `curl err : ${url}`);
     }

@@ -9,5 +9,5 @@ module.exports = app => {
   router.post('/login', controller.home.login);
   router.get('/users/:id', controller.user.user);
   router.put('/users/:id', controller.user.update);
-  router.get('/auth_wx/:id', controller.auth_wx.auth_wx);
+  router.get('/auth_wx/:id', controller.authWx.auth_wx);
 };

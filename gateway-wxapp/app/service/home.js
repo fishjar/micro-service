@@ -47,7 +47,7 @@ class Home extends Service {
       dataType: 'json',
       data: {
         auth_type: 4,
-        wxuser,
+        wxuser, // 这里不能是对象
       },
     });
     return { wxuser, user, auth };
@@ -73,9 +73,9 @@ class Home extends Service {
   }
   async flashToken({ aid, uid, atype = 4 }) {
     const { ctx, app } = this;
-    const now = Date.now() / 1000;
+    const now = ~~(Date.now() / 1000);
     const expire_offset = 60 * 60 * 24 * 3; // 3天过期
-    const expire = ~~now + expire_offset;
+    const expire = now + expire_offset;
     const token = this.generateToken({ aid, uid, atype, expire });
     const key = `auth:${token}`;
     const obj = {

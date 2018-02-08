@@ -7,7 +7,7 @@ class Wxuser extends Service {
     return this.ctx.model.Wxuser.findAndCountAll({
       offset,
       limit,
-      order: [[order_by, order.toUpperCase()]],
+      order: [[ order_by, order.toUpperCase() ]],
     });
   }
 
@@ -20,7 +20,7 @@ class Wxuser extends Service {
   }
 
   async findOrCreate(options) {
-    return this.ctx.model.Wxuser.findOrCreate(options);
+    return this.ctx.model.Wxuser.findOrCreate({ where: options });
   }
 
   async create(wxuser) {

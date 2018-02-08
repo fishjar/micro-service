@@ -17,7 +17,7 @@ class HomeController extends Controller {
     }
     const { secret } = await ctx.service.wxapp.findApp(appid);
     const { session_key, openid } = await ctx.service.wxapp.getSessionKey({ appid, secret, js_code });
-    const wxuser = await ctx.service.wxuser.findOrCreate({ appid, openid });
+    const wxuser = (await ctx.service.wxuser.findOrCreate({ appid, openid }))[0];
     // 更新 session_key 信息
     await ctx.service.wxuser.update(wxuser.id, {
       session_key,
@@ -47,11 +47,11 @@ class HomeController extends Controller {
       province,
       country,
     } = ctx.service.wxapp.encryData({
-        appid,
-        sessionKey: session_key,
-        encryptedData,
-        iv,
-      });
+      appid,
+      sessionKey: session_key,
+      encryptedData,
+      iv,
+    });
     const wxuser = await ctx.service.wxuser.update(wxuser_id, {
       nickname: nickName,
       unionid: unionId,

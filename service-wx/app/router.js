@@ -8,7 +8,7 @@ module.exports = app => {
   router.get('/', controller.home.index);
   router.post('/login', controller.home.login);
   router.post('/wxuser', controller.home.wxuser);
-  router.post('/wxlogin', controller.home.wxlogin);
+  // router.post('/wxlogin', controller.home.wxlogin);
   router.get('/wxusers/:id', controller.wxuser.wxuser);
   router.get('/wxusers', controller.wxuser.wxusers);
   router.get('/wxapps/:id', controller.wxapp.wxapp);

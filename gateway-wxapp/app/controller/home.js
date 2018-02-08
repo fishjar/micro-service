@@ -47,7 +47,7 @@ class HomeController extends Controller {
     }
     const { auth, user } = await ctx.service.home.login({ appid, js_code: code });
     const { token, expire } = await ctx.service.home.flashToken({ aid: auth.id, uid: auth.user_id });
-    user.id = ctx.helper.hashids.encode(user.id); //hashids处理
+    user.id = ctx.helper.hashids.encode(user.id); // hashids处理
     ctx.body = {
       errcode: 0,
       errmsg: 'login success',

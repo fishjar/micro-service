@@ -5,7 +5,7 @@ module.exports = options => {
     ctx.logger.info(`Client IP: ${ctx.ip}`);
     const { authentication } = ctx.request.header;
     const { appid, code, encryptedData, iv } = ctx.request.body;
-    if (appid && code && encryptedData && iv && ctx.request.path === '/login') {
+    if (appid && code && ctx.request.path === '/login') {
       await next();
     } else {
       if (authentication) {
