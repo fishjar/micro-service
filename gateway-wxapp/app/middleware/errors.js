@@ -8,9 +8,9 @@ module.exports = options => {
     } catch (err) {
       ctx.logger.error(ctx.auth);
       ctx.logger.error(err);
-      ctx.status = err.status || 400;
+      ctx.status = 400;
       ctx.body = JSON.stringify({
-        errcode: `${err.code || 100}`,
+        errcode: 100,
         errmsg: `${err.msg || err.message}`,
       });
     }

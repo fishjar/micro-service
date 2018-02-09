@@ -4,39 +4,16 @@ const Service = require('egg').Service;
 const crypto = require('crypto');
 
 class Home extends Service {
+
   async getAuth(token) {
     const { app } = this;
     return await app.redis.hgetall(`auth:${token}`);
   }
-  async getUserByLogin({ appid, js_code, encryptedData, iv }) {
-    const { ctx, config } = this;
-    const wxuser = await ctx.API(`${config.msapi.wx}/wxlogin`, {
-      method: 'POST',
-      dataType: 'json',
-      data: {
-        appid,
-        js_code,
-        encryptedData,
-        iv,
-      },
-    });
-    const { user, auth } = await ctx.API(`${config.msapi.user}/login`, {
-      method: 'POST',
-      dataType: 'json',
-      data: Object.assign({ auth_type: 4 }, wxuser, { obj: { a: 1 } }),
-      // data: {
-      //   auth_type: 4,
-      //   wxuser_id: wxuser.id,
-      //   user_info: wxuser,
-      // }
-    });
-    return { user, auth };
-  }
+
   async login({ appid, js_code }) {
     const { ctx, config } = this;
     const wxuser = await ctx.API(`${config.msapi.wx}/login`, {
       method: 'POST',
-      dataType: 'json',
       data: {
         appid,
         js_code,
@@ -44,20 +21,19 @@ class Home extends Service {
     });
     const { user, auth } = await ctx.API(`${config.msapi.user}/login`, {
       method: 'POST',
-      dataType: 'json',
       data: {
         auth_type: 4,
-        wxuser, // 这里不能是对象
+        wxuser,
       },
     });
     return { wxuser, user, auth };
   }
+
   async wxuser({ aid, encryptedData, iv }) {
     const { ctx, config } = this;
     const { wxuser_id, user_id } = await ctx.API(`${config.msapi.user}/auth_wx/${aid}`);
     const wxuser = await ctx.API(`${config.msapi.wx}/wxuser`, {
       method: 'POST',
-      dataType: 'json',
       data: {
         wxuser_id,
         encryptedData,
@@ -66,11 +42,11 @@ class Home extends Service {
     });
     const user = await ctx.API(`${config.msapi.user}/users/${user_id}`, {
       method: 'PUT',
-      dataType: 'json',
       data: wxuser,
     });
     return { wxuser, user };
   }
+
   async flashToken({ aid, uid, atype = 4 }) {
     const { ctx, app } = this;
     const now = ~~(Date.now() / 1000);
@@ -92,6 +68,12 @@ class Home extends Service {
     ctx.auth = obj; // 更新全局变量
     return { token, expire };
   }
+
+  async flushToken(token) {
+    const { app } = this;
+    return app.redis.del(`auth:${token}`);
+  }
+
   generateToken({ aid, uid, atype, expire }) {
     const secret = 'wxapp';
     const hash = crypto.createHmac('sha256', secret)
@@ -102,6 +84,7 @@ class Home extends Service {
       .digest('hex');
     return hash;
   }
+
 }
 
 module.exports = Home;
