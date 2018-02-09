@@ -68,6 +68,13 @@ const request = function (url, data = {}, method = "GET") {
       if (res.statusCode < 300) {
         if (res.data.errcode === 0) {
           resolve(res.data.data)
+        } else if (res.data.errcode === 101) {
+          wx.showModal({
+            title: '登陆过期!',
+            showCancel: false
+          })
+          wx.removeStorageSync('auth')
+          reject(res)
         } else {
           wx.showModal({
             title: '出错啦!',
@@ -76,11 +83,10 @@ const request = function (url, data = {}, method = "GET") {
           })
           reject(res.data.errmsg)
         }
-
       } else {
         wx.showModal({
           title: '服务器错误!',
-          content: `[${res.statusCode}] ${res.data.slice(0, 100)}`,
+          content: `[${res.statusCode}] ${res.data}`,
           showCancel: false
         })
         reject(res)
