@@ -58,6 +58,7 @@ class Wxapp extends Service {
   }
 
   encryData({ appid, sessionKey, encryptedData, iv }) {
+    console.log({ appid, sessionKey, encryptedData, iv })
     const pc = new WXBizDataCrypt(appid, sessionKey);
     const data = pc.decryptData(encryptedData, iv);
     return data;
