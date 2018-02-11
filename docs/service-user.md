@@ -23,15 +23,15 @@
 
 ### 用户认证表 `auth`
 
-| KEY         | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
-|-------------|--------------|---------|----------|-----------|---------|---------|--------|
-| id          | INT          |         | Y        | Y         | Y       |         |        |
-| user_id     | INT          |         | Y        |           |         | Y       |        |
-| auth_type   | TINYINT      |         | Y        |           |         |         |        |
-| auth_name   | VARCHAR(64)  |         | Y        |           |         |         |        |
-| auth_code   | VARCHAR(128) |         | Y        |           |         |         |        |
-| expire_time | TIMESTAMP    |         | Y        |           |         |         |        |
-| verify_time | TIMESTAMP    |         | Y        |           |         |         |        |
+| Field       | Type         | Null | Key | Default | Extra          |
+|-------------|--------------|------|-----|---------|----------------|
+| id          | int(11)      | NO   | PRI | NULL    | auto_increment |
+| user_id     | INT          |      |     |         |                |
+| auth_type   | TINYINT      |      |     |         |                |
+| auth_name   | VARCHAR(64)  |      |     |         |                |
+| auth_code   | VARCHAR(128) |      |     |         |                |
+| expire_time | TIMESTAMP    |      |     |         |                |
+| verify_time | TIMESTAMP    |      |     |         |                |
 
 ```js
 auth_type: {
