@@ -90,6 +90,9 @@ class Wxpay extends Service {
         return_msg: 'out_trade_no not exist!'
       })
     }
+
+    // 此处需要验证数据正确性
+
     await ctx.service.wxpay.update(wxpay.id, Object.assign({
       trade_state: 'SUCCESS',
       trade_state_desc: 'update by action'
