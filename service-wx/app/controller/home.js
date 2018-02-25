@@ -87,7 +87,6 @@ class HomeController extends Controller {
       out_trade_no: Date.now(),
       total_fee: 1,
       spbill_create_ip: ctx.ip,
-      notify_url: 'http://a.yiheni.cn/pay/action',
       trade_type: 'JSAPI',
       appid: 'wx7aacccc73ccea206',
       openid: 'o4pXt0ILIpIVIObuYG_JvunqP8JE'
@@ -98,6 +97,11 @@ class HomeController extends Controller {
       errcode: 0,
       errmsg: 'create wxpay!',
     };
+  }
+
+  async payaction() {
+    const { ctx } = this;
+    ctx.body = await ctx.service.wxpay.payaction(ctx.request.body.xml);
   }
 
 }

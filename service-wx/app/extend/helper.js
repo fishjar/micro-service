@@ -32,7 +32,7 @@ module.exports = {
     return XML.stringify(json, 'xml');
   },
   wxSign(obj, key) {
-    const stringA = Object.keys(obj).sort().filter(k => obj[k]).map(k => `${k}=${obj[k]}`).join('&');
+    const stringA = Object.keys(obj).sort().filter(k => k !== 'sign' && obj[k]).map(k => `${k}=${obj[k]}`).join('&');
     const stringSignTemp = stringA + "&key=" + key;
     const sign = crypto.createHash('md5').update(stringSignTemp).digest('hex').toUpperCase();
     return sign;

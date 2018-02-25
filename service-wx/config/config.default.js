@@ -8,10 +8,11 @@ module.exports = appInfo => {
 
   // add your config here
   // config.middleware = [];
-  config.middleware = [ 'auth', 'errors' ];
+  config.middleware = [ 'auth', 'xmlparser', 'errors' ];
 
   config.jscode_host = 'https://api.weixin.qq.com/sns/jscode2session';
   config.unifiedorder_host = 'https://api.mch.weixin.qq.com/pay/unifiedorder';
+  config.notify_url = 'http://a.yiheni.cn/pay/action';
 
   config.sequelize = {
     dialect: 'mysql', // support: mysql, mariadb, postgres, mssql

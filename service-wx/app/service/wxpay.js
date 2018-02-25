@@ -19,6 +19,14 @@ class Wxpay extends Service {
     return wxpay;
   }
 
+  async findOne(options) {
+    const wxpay = await this.ctx.model.Wxpay.findOne({ where: options });
+    if (!wxpay) {
+      return;
+    }
+    return wxpay;
+  }
+
   async create(wxapp) {
     return this.ctx.model.Wxpay.create(wxapp);
   }
@@ -36,11 +44,12 @@ class Wxpay extends Service {
     const { appid } = args;
     const { wxmch_id } = await ctx.service.wxapp.findApp(appid);
     const { mchid, secret } = await ctx.service.wxmch.find(wxmch_id);
-    const { unifiedorder_host } = config;
+    const { unifiedorder_host, notify_url } = config;
     const nonce_str = Math.random().toString(36).substr(2, 16);
     const signObj = Object.assign({
       mch_id: mchid,
       nonce_str,
+      notify_url,
     }, args);
     const sign = ctx.helper.wxSign(signObj, secret);
     const xml = ctx.helper.json2xml(Object.assign({ sign }, signObj));
@@ -55,8 +64,41 @@ class Wxpay extends Service {
     if (res.return_code !== 'SUCCESS' || res.result_code !== 'SUCCESS') {
       this.ctx.throw(500, `wxpay err! [${res.err_code}]: ${res.err_code_des}`);
     }
+    const checkSign = ctx.helper.wxSign(res, secret);
+    if (res.sign !== checkSign) {
+      this.ctx.throw(500, `wxpay err! sign err!!`);
+    }
     const wxpay = await ctx.service.wxpay.create(Object.assign({ sign }, signObj, res));
     return wxpay
+  }
+
+  async payaction(body) {
+    const { ctx } = this;
+    const res = ctx.helper.xml2json(body);
+
+    if (res.return_code !== 'SUCCESS' || res.result_code !== 'SUCCESS') {
+      return ctx.helper.json2xml({
+        return_code: 'FAIL',
+        return_msg: res.return_msg
+      })
+    }
+
+    const wxpay = await ctx.service.wxpay.findOne({ out_trade_no: res.out_trade_no });
+    if (!wxpay) {
+      return ctx.helper.json2xml({
+        return_code: 'FAIL',
+        return_msg: 'out_trade_no not exist!'
+      })
+    }
+    await ctx.service.wxpay.update(wxpay.id, Object.assign({
+      trade_state: 'SUCCESS',
+      trade_state_desc: 'update by action'
+    }, res))
+
+    return ctx.helper.json2xml({
+      return_code: 'SUCCESS',
+      return_msg: ''
+    });
   }
 
 }

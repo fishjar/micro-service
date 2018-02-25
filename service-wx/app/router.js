@@ -18,4 +18,5 @@ module.exports = app => {
   router.get('/wxmchs', controller.wxmch.wxmchs);
   router.post('/wxmchs', controller.wxmch.create);
   router.post('/unifiedorder', controller.home.unifiedorder);
+  router.post('/payaction', controller.home.payaction);
 };

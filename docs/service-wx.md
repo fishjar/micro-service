@@ -57,6 +57,42 @@ app_type: {
 
 ### 微信支付表 `wxpay`
 
+| Field                | Type         | Null | Key | Default | Extra          |
+|----------------------|--------------|------|-----|---------|----------------|
+| id                   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| appid                | VARCHAR(32)  |      |     |         |                |
+| mch_id               | VARCHAR(32)  |      |     |         |                |
+| device_info          | VARCHAR(32)  |      |     |         |                |
+| body                 | VARCHAR(128) |      |     |         |                |
+| detail               | TEXT(6000)   |      |     |         |                |
+| attach               | VARCHAR(128) |      |     |         |                |
+| out_trade_no         | VARCHAR(32)  |      |     |         |                |
+| fee_type             | VARCHAR(16)  |      |     |         |                |
+| total_fee            | INT          |      |     |         |                |
+| spbill_create_ip     | VARCHAR(16)  |      |     |         |                |
+| time_start           | VARCHAR(14)  |      |     |         |                |
+| time_expire          | VARCHAR(14)  |      |     |         |                |
+| goods_tag            | VARCHAR(32)  |      |     |         |                |
+| trade_type           | VARCHAR(128) |      |     |         |                |
+| product_id           | VARCHAR(32)  |      |     |         |                |
+| limit_pay            | VARCHAR(32)  |      |     |         |                |
+| openid               | VARCHAR(128) |      |     |         |                |
+| prepay_id            | VARCHAR(64)  |      |     |         |                |
+| code_url             | VARCHAR(64)  |      |     |         |                |
+| is_subscribe         | VARCHAR(1)   |      |     |         |                |
+| trade_state          | VARCHAR(32)  |      |     |         |                |
+| bank_type            | VARCHAR(16)  |      |     |         |                |
+| settlement_total_fee | INT          |      |     |         |                |
+| cash_fee             | INT          |      |     |         |                |
+| cash_fee_type        | VARCHAR(16)  |      |     |         |                |
+| coupon_fee           | INT          |      |     |         |                |
+| coupon_count         | INT          |      |     |         |                |
+| transaction_id       | VARCHAR(32)  |      |     |         |                |
+| time_end             | VARCHAR(14)  |      |     |         |                |
+| trade_state_desc     | VARCHAR(255) |      |     |         |                |
+
+#### 微信预支付表 `wxpaypre`
+
 | Field            | Type         | Null | Key | Default | Extra          |
 |------------------|--------------|------|-----|---------|----------------|
 | id               | int(11)      | NO   | PRI | NULL    | auto_increment |
@@ -88,6 +124,40 @@ app_type: {
 | err_code_des     | VARCHAR(128) |      |     |         |                |
 | prepay_id        | VARCHAR(64)  |      |     |         |                |
 | code_url         | VARCHAR(64)  |      |     |         |                |
+
+#### 微信支付结果表 `wxpayaction`
+
+| Field                | Type         | Null | Key | Default | Extra          |
+|----------------------|--------------|------|-----|---------|----------------|
+| id                   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| return_code          | VARCHAR(16)  |      |     |         |                |
+| return_msg           | VARCHAR(128) |      |     |         |                |
+| appid                | VARCHAR(32)  |      |     |         |                |
+| mch_id               | VARCHAR(32)  |      |     |         |                |
+| device_info          | VARCHAR(32)  |      |     |         |                |
+| nonce_str            | VARCHAR(32)  |      |     |         |                |
+| sign                 | VARCHAR(32)  |      |     |         |                |
+| sign_type            | VARCHAR(32)  |      |     |         |                |
+| result_code          | VARCHAR(16)  |      |     |         |                |
+| err_code             | VARCHAR(32)  |      |     |         |                |
+| err_code_des         | VARCHAR(128) |      |     |         |                |
+| openid               | VARCHAR(128) |      |     |         |                |
+| is_subscribe         | VARCHAR(1)   |      |     |         |                |
+| trade_type           | VARCHAR(16)  |      |     |         |                |
+| bank_type            | VARCHAR(16)  |      |     |         |                |
+| total_fee            | INT          |      |     |         |                |
+| settlement_total_fee | INT          |      |     |         |                |
+| fee_type             | VARCHAR(8)   |      |     |         |                |
+| cash_fee             | INT          |      |     |         |                |
+| cash_fee_type        | VARCHAR(16)  |      |     |         |                |
+| coupon_fee           | INT          |      |     |         |                |
+| coupon_count         | INT          |      |     |         |                |
+| transaction_id       | VARCHAR(32)  |      |     |         |                |
+| out_trade_no         | VARCHAR(32)  |      |     |         |                |
+| attach               | VARCHAR(128) |      |     |         |                |
+| time_end             | VARCHAR(14)  |      |     |         |                |
+| trade_state          | VARCHAR(32)  |      |     |         |                |
+| trade_state_desc     | VARCHAR(255) |      |     |         |                |
 
 ## API
 
