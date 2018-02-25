@@ -47,11 +47,11 @@ class HomeController extends Controller {
       province,
       country,
     } = ctx.service.wxapp.encryData({
-      appid,
-      sessionKey: session_key,
-      encryptedData,
-      iv,
-    });
+        appid,
+        sessionKey: session_key,
+        encryptedData,
+        iv,
+      });
     const wxuser = await ctx.service.wxuser.update(wxuser_id, {
       nickname: nickName,
       unionid: unionId,
@@ -65,6 +65,18 @@ class HomeController extends Controller {
       data: wxuser,
       errcode: 0,
       errmsg: 'update user info!',
+    };
+  }
+
+  // 微信统一下单
+  async unifiedorder() {
+    const { ctx } = this;
+    const body = ctx.request.body;
+    const wxpay = await ctx.service.wxpay.unifiedorder(body);
+    ctx.body = {
+      data: wxpay,
+      errcode: 0,
+      errmsg: 'create wxpay!',
     };
   }
 

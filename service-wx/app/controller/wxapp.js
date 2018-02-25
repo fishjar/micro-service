@@ -29,6 +29,12 @@ class WxappController extends Controller {
     ctx.status = 201;
     ctx.body = created;
   }
+  async update() {
+    const { ctx } = this;
+    const id = +ctx.params.id;
+    const body = ctx.request.body;
+    ctx.body = await ctx.service.wxapp.update(id, body);
+  }
 }
 
 module.exports = WxappController;

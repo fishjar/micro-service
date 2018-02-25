@@ -32,12 +32,12 @@ app_type: {
 
 ### 微信商户号表 `wxmch`
 
-| KEY    | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
-|--------|--------------|---------|----------|-----------|---------|---------|--------|
-| id     | INT          |         | Y        | Y         | Y       |         |        |
-| name   | VARCHAR(64)  |         |          |           |         |         |        |
-| mchid  | VARCHAR(32)  |         | Y        |           |         |         |        |
-| secret | VARCHAR(128) |         |          |           |         |         |        |
+| Field  | Type         | Null | Key | Default | Extra          |
+|--------|--------------|------|-----|---------|----------------|
+| id     | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name   | VARCHAR(64)  |      |     |         |                |
+| mchid  | VARCHAR(32)  |      |     |         |                |
+| secret | VARCHAR(128) |      |     |         |                |
 
 ### 微信用户表 `wxuser`
 
@@ -57,37 +57,37 @@ app_type: {
 
 ### 微信支付表 `wxpay`
 
-| KEY              | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
-|------------------|--------------|---------|----------|-----------|---------|---------|--------|
-| id               | INT          |         | Y        | Y         | Y       |         |        |
-| appid            | VARCHAR(32)  |         |          |           |         |         |        |
-| mch_id           | VARCHAR(32)  |         |          |           |         |         |        |
-| device_info      | VARCHAR(32)  |         |          |           |         |         |        |
-| nonce_str        | VARCHAR(32)  |         |          |           |         |         |        |
-| sign             | VARCHAR(32)  |         |          |           |         |         |        |
-| sign_type        | VARCHAR(32)  |         |          |           |         |         |        |
-| body             | VARCHAR(128) |         |          |           |         |         |        |
-| detail           | TEXT(6000)   |         |          |           |         |         |        |
-| attach           | VARCHAR(128) |         |          |           |         |         |        |
-| out_trade_no     | VARCHAR(32)  |         |          |           |         |         |        |
-| fee_type         | VARCHAR(16)  |         |          |           |         |         |        |
-| total_fee        | INT          |         |          |           |         |         |        |
-| spbill_create_ip | VARCHAR(16)  |         |          |           |         |         |        |
-| time_start       | VARCHAR(14)  |         |          |           |         |         |        |
-| time_expire      | VARCHAR(14)  |         |          |           |         |         |        |
-| goods_tag        | VARCHAR(32)  |         |          |           |         |         |        |
-| notify_url       | VARCHAR(128) |         |          |           |         |         |        |
-| trade_type       | VARCHAR(128) |         |          |           |         |         |        |
-| product_id       | VARCHAR(32)  |         |          |           |         |         |        |
-| limit_pay        | VARCHAR(32)  |         |          |           |         |         |        |
-| openid           | VARCHAR(128) |         |          |           |         |         |        |
-| result_code      | VARCHAR(16)  |         |          |           |         |         |        |
-| return_msg       | VARCHAR(128) |         |          |           |         |         |        |
-| result_code      | VARCHAR(16)  |         |          |           |         |         |        |
-| err_code         | VARCHAR(128) |         |          |           |         |         |        |
-| err_code_des     | VARCHAR(128) |         |          |           |         |         |        |
-| prepay_id        | VARCHAR(64)  |         |          |           |         |         |        |
-| code_url         | VARCHAR(64)  |         |          |           |         |         |        |
+| Field            | Type         | Null | Key | Default | Extra          |
+|------------------|--------------|------|-----|---------|----------------|
+| id               | int(11)      | NO   | PRI | NULL    | auto_increment |
+| appid            | VARCHAR(32)  |      |     |         |                |
+| mch_id           | VARCHAR(32)  |      |     |         |                |
+| device_info      | VARCHAR(32)  |      |     |         |                |
+| nonce_str        | VARCHAR(32)  |      |     |         |                |
+| sign             | VARCHAR(32)  |      |     |         |                |
+| sign_type        | VARCHAR(32)  |      |     |         |                |
+| body             | VARCHAR(128) |      |     |         |                |
+| detail           | TEXT(6000)   |      |     |         |                |
+| attach           | VARCHAR(128) |      |     |         |                |
+| out_trade_no     | VARCHAR(32)  |      |     |         |                |
+| fee_type         | VARCHAR(16)  |      |     |         |                |
+| total_fee        | INT          |      |     |         |                |
+| spbill_create_ip | VARCHAR(16)  |      |     |         |                |
+| time_start       | VARCHAR(14)  |      |     |         |                |
+| time_expire      | VARCHAR(14)  |      |     |         |                |
+| goods_tag        | VARCHAR(32)  |      |     |         |                |
+| notify_url       | VARCHAR(128) |      |     |         |                |
+| trade_type       | VARCHAR(128) |      |     |         |                |
+| product_id       | VARCHAR(32)  |      |     |         |                |
+| limit_pay        | VARCHAR(32)  |      |     |         |                |
+| openid           | VARCHAR(128) |      |     |         |                |
+| result_code      | VARCHAR(16)  |      |     |         |                |
+| return_msg       | VARCHAR(128) |      |     |         |                |
+| result_code      | VARCHAR(16)  |      |     |         |                |
+| err_code         | VARCHAR(128) |      |     |         |                |
+| err_code_des     | VARCHAR(128) |      |     |         |                |
+| prepay_id        | VARCHAR(64)  |      |     |         |                |
+| code_url         | VARCHAR(64)  |      |     |         |                |
 
 ## API
 
@@ -236,12 +236,10 @@ Response
 PATCH /wxusers/{appid}/{openid/unionid}
 ```
 
-### 微信登录
-
-- 自动创建用户资料，减少API调用次数
+### 微信登录，更新 `session_key`
 
 ```sh
-POST /wxlogin
+POST /login
 ```
 
 Request
@@ -249,9 +247,32 @@ Request
 ```js
 {
   appid: 'sdfdfdsfd',
-  code: '123124234234',
-  js_code, 
-  encryptedData, 
+  js_code,
+}
+```
+
+Response
+
+```js
+{
+  id: 'DEF123',
+  unionid: 'sdfdfdfdsdfd',
+  openid: 'sdfsdfdsfd',
+}
+```
+
+### 解密并更新用户资料
+
+```sh
+POST /wxuser
+```
+
+Request
+
+```js
+{
+  wxuser_id: 123,
+  encryptedData,
   iv,
 }
 ```
@@ -272,4 +293,16 @@ Response
   unionid: 'sdfdfdfdsdfd',
   openid: 'sdfsdfdsfd',
 }
+```
+
+### 添加微信商户号
+
+```sh
+POST /wxmchs
+```
+
+### 获取微信商户号
+
+```sh
+GET /wxmchs/{wxmch_id}
 ```

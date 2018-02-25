@@ -12,5 +12,9 @@ module.exports = app => {
   router.get('/wxusers', controller.wxuser.wxusers);
   router.get('/wxapps/:id', controller.wxapp.wxapp);
   router.get('/wxapps', controller.wxapp.wxapps);
+  router.put('/wxapps/:id', controller.wxapp.update);
   router.post('/wxapps', controller.wxapp.create);
+  router.get('/wxmchs', controller.wxmch.wxmchs);
+  router.post('/wxmchs', controller.wxmch.create);
+  router.post('/unifiedorder', controller.home.unifiedorder);
 };

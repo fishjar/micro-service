@@ -11,6 +11,7 @@ module.exports = appInfo => {
   config.middleware = [ 'auth', 'errors' ];
 
   config.jscode_host = 'https://api.weixin.qq.com/sns/jscode2session';
+  config.unifiedorder_host = 'https://api.mch.weixin.qq.com/pay/unifiedorder';
 
   config.sequelize = {
     dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
