@@ -89,7 +89,7 @@ module.exports = Sequelize => {
       product_id: STRING(32),
       limit_pay: STRING(32),
       openid: STRING(128),
-      result_code: STRING(16),
+      return_code: STRING(16),
       return_msg: STRING(128),
       result_code: STRING(16),
       err_code: STRING(128),

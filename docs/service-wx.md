@@ -81,7 +81,7 @@ app_type: {
 | product_id       | VARCHAR(32)  |      |     |         |                |
 | limit_pay        | VARCHAR(32)  |      |     |         |                |
 | openid           | VARCHAR(128) |      |     |         |                |
-| result_code      | VARCHAR(16)  |      |     |         |                |
+| return_code      | VARCHAR(16)  |      |     |         |                |
 | return_msg       | VARCHAR(128) |      |     |         |                |
 | result_code      | VARCHAR(16)  |      |     |         |                |
 | err_code         | VARCHAR(128) |      |     |         |                |

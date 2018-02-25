@@ -34,9 +34,29 @@ class Wxpay extends Service {
   async unifiedorder(args) {
     const { ctx, config } = this;
     const { appid } = args;
-    const { mchid, secret } = await ctx.service.wxapp.findApp(appid);
+    const { wxmch_id } = await ctx.service.wxapp.findApp(appid);
+    const { mchid, secret } = await ctx.service.wxmch.find(wxmch_id);
     const { unifiedorder_host } = config;
-
+    const nonce_str = Math.random().toString(36).substr(2, 16);
+    const signObj = Object.assign({
+      mch_id: mchid,
+      nonce_str,
+    }, args);
+    const sign = ctx.helper.wxSign(signObj, secret);
+    const xml = ctx.helper.json2xml(Object.assign({ sign }, signObj));
+    const r = await ctx.curl(unifiedorder_host, {
+      method: 'POST',
+      content: xml,
+      headers: {
+        'content-type': 'text/html',
+      },
+    });
+    const res = ctx.helper.xml2json(r.data);
+    if (res.return_code !== 'SUCCESS' || res.result_code !== 'SUCCESS') {
+      this.ctx.throw(500, `wxpay err! [${res.err_code}]: ${res.err_code_des}`);
+    }
+    const wxpay = await ctx.service.wxpay.create(Object.assign({ sign }, signObj, res));
+    return wxpay
   }
 
 }
