@@ -91,7 +91,21 @@ class Wxpay extends Service {
       })
     }
 
-    // 此处需要验证数据正确性
+    const { wxmch_id } = await ctx.service.wxapp.findApp(appid);
+    const { mchid, secret } = await ctx.service.wxmch.find(wxmch_id);
+    if (mchid !== res.mch_id) {
+      return ctx.helper.json2xml({
+        return_code: 'FAIL',
+        return_msg: 'mchid err!'
+      })
+    }
+    const checkSign = ctx.helper.wxSign(res, secret);
+    if (checkSign !== res.sign) {
+      return ctx.helper.json2xml({
+        return_code: 'FAIL',
+        return_msg: 'sign err!'
+      })
+    }
 
     await ctx.service.wxpay.update(wxpay.id, Object.assign({
       trade_state: 'SUCCESS',
