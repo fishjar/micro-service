@@ -204,6 +204,5 @@ module.exports = Sequelize => {
     },
 
 
-
   };
 };

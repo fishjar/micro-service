@@ -5,7 +5,12 @@
   "private": true,
   "dependencies": {
     "egg": "^2.2.1",
-    "egg-scripts": "^2.5.0"
+    "egg-cors": "^2.0.0",
+    "egg-scripts": "^2.5.0",
+    "egg-security": "^2.0.0",
+    "egg-sequelize": "^3.1.1",
+    "egg-validate": "^1.0.0",
+    "mysql2": "^1.5.2"
   },
   "devDependencies": {
     "autod": "^3.0.1",
@@ -21,16 +26,19 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-service-product",
+    "start": "egg-scripts start --port=9104 --daemon --title=egg-server-service-product",
     "stop": "egg-scripts stop --title=egg-server-service-product",
-    "dev": "egg-bin dev",
+    "dev": "egg-bin dev --port=9104",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",
     "test-local": "egg-bin test",
     "cov": "egg-bin cov",
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
-    "autod": "autod"
+    "autod": "autod",
+    "migrate:new": "egg-sequelize migration:create",
+    "migrate:up": "egg-sequelize db:migrate",
+    "migrate:down": "egg-sequelize db:migrate:undo"
   },
   "ci": {
     "version": "8"

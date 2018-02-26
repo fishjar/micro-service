@@ -26,12 +26,12 @@ module.exports = options => {
       // 从 error 对象上读出各个属性，设置到响应中
       ctx.body = {
         errcode: 100,
-        errmsg: error
+        errmsg: error,
       };
       if (status === 422) {
         ctx.body = {
           errcode: 102,
-          errmsg: err.errors
+          errmsg: err.errors,
         };
       }
       ctx.status = status;

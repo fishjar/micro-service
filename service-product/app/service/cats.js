@@ -8,7 +8,7 @@ class CatService extends Service {
     return this.ctx.model.Cat.findAndCountAll({
       offset,
       limit,
-      order: [[order_by, order.toUpperCase()]],
+      order: [[ order_by, order.toUpperCase() ]],
     });
   }
 

@@ -4,10 +4,17 @@ const Controller = require('egg').Controller;
 
 const createRule = {
   name: 'string',
-  pid: 'int',
-  is_parent: { type: 'enum', values: ['N', 'Y'], required: false },
-  sort: 'int',
-  description: 'string',
+  pid: { type: 'int', required: false },
+  is_parent: { type: 'enum', values: [ 'N', 'Y' ], required: false },
+  sort: { type: 'int', required: false },
+  description: { type: 'string', required: false },
+};
+
+const testData = {
+  "name": "电子产品",
+  "is_parent": "Y",
+  "sort": 1,
+  "description": "个人电子产品，不包含家电"
 };
 
 class CatController extends Controller {
