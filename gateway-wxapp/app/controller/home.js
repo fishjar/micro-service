@@ -19,6 +19,11 @@ class HomeController extends Controller {
     // }
   }
 
+  async test() {
+    const { ctx } = this;
+    ctx.body = await ctx.service.home.wxpay();
+  }
+
   // 登录
   async login() {
     const { ctx } = this;

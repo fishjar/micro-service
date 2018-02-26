@@ -19,14 +19,14 @@
 
 ### 分类表 `cat`
 
-| KEY         | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
-|-------------|--------------|---------|----------|-----------|---------|---------|--------|
-| id          | INT          |         | Y        | Y         | Y       |         |        |
-| name        | VARCHAR(64)  |         |          |           |         |         |        |
-| pid         | INT          |         |          |           |         |         |        |
-| is_parent   | TINYINT      |         |          |           |         |         |        |
-| sort        | INT          |         |          |           |         |         |        |
-| description | VARCHAR(128) |         |          |           |         |         |        |
+| KEY         | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK    |
+|-------------|--------------|---------|----------|-----------|---------|---------|-----------|
+| id          | INT          |         | Y        | Y         | Y       |         |           |
+| name        | VARCHAR(64)  |         |          |           |         |         |           |
+| pid         | INT          |         |          |           |         |         | parent id |
+| is_parent   | TINYINT      |         |          |           |         |         |           |
+| sort        | INT          |         |          |           |         |         |           |
+| description | VARCHAR(128) |         |          |           |         |         |           |
 
 ```js
 is_parent: {
