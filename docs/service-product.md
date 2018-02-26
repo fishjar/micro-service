@@ -96,7 +96,7 @@ is_parent: {
 |----------------|-------------|---------|----------|-----------|---------|---------|--------|
 | id             | INT         |         | Y        | Y         | Y       |         |        |
 | brand_id       | INT         |         |          |           |         |         |        |
-| cat_id         | INT         |         |          |           |         |         |        |
+| cat_id         | INT         |         |          |           |         |         | 冗余字段   |
 | manufacturer   | INT         |         |          |           |         |         |        |
 | name           | VARCHAR(64) |         |          |           |         |         |        |
 | price          | INT         |         |          |           |         |         |        |
@@ -190,7 +190,7 @@ pron_type: {
   5: `图片`,
 }
 is_sku: {
-  0: `商品商品`,
+  0: `商品属性`,
   1: `SKU属性`,
   2: `均有属性`,
 }
@@ -205,8 +205,8 @@ is_sku: {
 | product_id | INT          |         |          |           |         |         |        |
 | is_suk     | TINYINT      |         |          |           |         |         |        |
 | suk_id     | INT          |         |          |           |         |         |        |
-| value      | VARCHAR(128) |         |          |           |         |         |        |
-| image      | VARCHAR(128) |         |          |           |         |         |        |
+| value      | VARCHAR(255) |         |          |           |         |         |        |
+| image      | VARCHAR(255) |         |          |           |         |         |        |
 
 ```js
 is_sku: {

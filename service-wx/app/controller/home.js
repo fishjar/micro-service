@@ -81,16 +81,16 @@ class HomeController extends Controller {
   // 微信统一下单
   async unifiedorder() {
     const { ctx } = this;
-    // const body = ctx.request.body;
-    const body = {
-      body: 'test',
-      out_trade_no: Date.now(),
-      total_fee: 1,
-      spbill_create_ip: ctx.ip,
-      trade_type: 'JSAPI',
-      appid: 'wx7aacccc73ccea206',
-      openid: 'o4pXt0ILIpIVIObuYG_JvunqP8JE'
-    };
+    const body = ctx.request.body;
+    // const body = {
+    //   body: 'test',
+    //   out_trade_no: Date.now(),
+    //   total_fee: 1,
+    //   spbill_create_ip: ctx.ip,
+    //   trade_type: 'JSAPI',
+    //   appid: 'wx7aacccc73ccea206',
+    //   openid: 'o4pXt0ILIpIVIObuYG_JvunqP8JE'
+    // };
     const wxpay = await ctx.service.wxpay.unifiedorder(body);
     ctx.body = {
       data: wxpay,

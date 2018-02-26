@@ -17,11 +17,8 @@ module.exports = {
   },
   async API(url, options) {
     const res = await this.curl(url, Object.assign({ dataType: 'json', contentType: 'json' }, options));
-    if (res.status > 300) {
-      this.throw(res.status, `curl err : ${url}`);
-    }
-    if (res.data.errcode > 0) {
-      this.throw(401, `curl err : ${url} : ${res.data.errmsg}`);
+    if (res.status > 300 || res.data.errcode > 0) {
+      this.throw(res.status || 401, `[curl err!][${url}]: ${res.data.errmsg}`);
     }
     return res.data.data;
   },
