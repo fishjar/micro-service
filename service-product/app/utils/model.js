@@ -187,11 +187,11 @@ module.exports = Sequelize => {
 
       pron_id: INTEGER,
       product_id: INTEGER,
-      is_suk: {
+      is_sku: {
         type: STRING(1),
         defaultValue: 'N',
       },
-      suk_id: INTEGER,
+      sku_id: INTEGER,
       value: STRING(255),
       image: STRING(255),
 

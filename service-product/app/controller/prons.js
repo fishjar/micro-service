@@ -11,6 +11,7 @@ const createRule = {
 const testData = {
   "cat_id": 3,
   "pron_type": 1,
+  "is_sku": "Y",
   "name": "颜色"
 };
 

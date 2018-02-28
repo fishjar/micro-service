@@ -204,7 +204,7 @@ is_sku: {
 | pron_id    | INT          |         |          |           |         |         |        |
 | product_id | INT          |         |          |           |         |         |        |
 | is_sku     | VARCHAR(1)   |         |          |           |         |         |        |
-| suk_id     | INT          |         |          |           |         |         |        |
+| sku_id     | INT          |         |          |           |         |         |        |
 | value      | VARCHAR(255) |         |          |           |         |         |        |
 | image      | VARCHAR(255) |         |          |           |         |         |        |
 
