@@ -11,6 +11,8 @@ module.exports = options => {
       if (authentication) {
         const auth = await ctx.service.home.getAuth(authentication);
         if (auth.uid) {
+          // 延期token
+          await ctx.service.home.deferToken(authentication)
           // 挂载用户鉴权信息
           // 如果用户资料保存在redis，也可考虑挂载用户资料
           ctx.auth = auth;

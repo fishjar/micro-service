@@ -11,6 +11,9 @@ module.exports = appInfo => {
   // config.middleware = ['errors'];
   config.middleware = [ 'auth', 'errors' ];
 
+  // config.expire_offset = 60 * 60 * 24 * 3; // 3天过期
+  config.expire_offset = 60 * 3; // 3分钟过期
+
   const _host = 'localhost';
   config.msapi = {
     user: `${_host}:9102`,
