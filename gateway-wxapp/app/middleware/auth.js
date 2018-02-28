@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = options => {
+module.exports = () => {
   return async function auth(ctx, next) {
     ctx.logger.info(`Client IP: ${ctx.ip}`);
     const { authentication } = ctx.request.header;
