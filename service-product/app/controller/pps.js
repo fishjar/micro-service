@@ -3,25 +3,19 @@
 const Controller = require('egg').Controller;
 
 const createRule = {
-  name: 'string',
-  pid: { type: 'int', required: false },
-  is_parent: { type: 'enum', values: [ 'N', 'Y' ], required: false },
-  sort: { type: 'int', required: false },
-  description: { type: 'string', required: false },
+  pron_id: 'int',
 };
 
 const testData = {
-  "name": "电子产品",
-  "is_parent": "Y",
-  "sort": 1,
-  "description": "个人电子产品，不包含家电"
+  "pron_id": 1,
+  "product_id": 3,
 };
 
 class RESTController extends Controller {
 
   async index() {
     const { ctx } = this;
-    const data = await ctx.service.cats.list(ctx.query);
+    const data = await ctx.service.productPron.list(ctx.query);
     ctx.body = {
       errcode: 0,
       errmsg: 'get list success!',
@@ -32,7 +26,7 @@ class RESTController extends Controller {
   async create() {
     const { ctx } = this;
     ctx.validate(createRule);
-    const data = await ctx.service.cats.create(ctx.request.body);
+    const data = await ctx.service.productPron.create(ctx.request.body);
     ctx.body = {
       errcode: 0,
       errmsg: 'create success!',
@@ -42,7 +36,7 @@ class RESTController extends Controller {
 
   async show() {
     const { ctx } = this;
-    const data = await ctx.service.cats.find(ctx.params.id);
+    const data = await ctx.service.productPron.find(ctx.params.id);
     ctx.body = {
       errcode: 0,
       errmsg: 'get success!',
@@ -53,7 +47,7 @@ class RESTController extends Controller {
   async update() {
     const { ctx } = this;
     const body = ctx.request.body;
-    const data = await ctx.service.cats.update(ctx.params.id, body);
+    const data = await ctx.service.productPron.update(ctx.params.id, body);
     ctx.body = {
       errcode: 0,
       errmsg: 'update success!',
@@ -64,7 +58,7 @@ class RESTController extends Controller {
   async destroy() {
     const { ctx } = this;
     const { id } = ctx.params;
-    await ctx.service.cats.del(id);
+    await ctx.service.productPron.del(id);
     ctx.body = {
       errcode: 0,
       errmsg: 'delete success!',
