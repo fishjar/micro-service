@@ -114,6 +114,9 @@ product_status: {
 
 ### 单品表 `sku`
 
+- SKU=Stock Keeping Unit（库存量单位）
+- 属性提升为SKU，区分规则：是否影响价格
+
 | KEY          | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |--------------|-------------|---------|----------|-----------|---------|---------|--------|
 | id           | INT         |         | Y        | Y         | Y       |         |        |
