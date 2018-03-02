@@ -151,19 +151,30 @@ shipping_type: {
 
 ### 快递单表 `waybill`
 
-| KEY        | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
-|------------|-------------|---------|----------|-----------|---------|---------|--------|
-| id         | INT         |         | Y        | Y         | Y       |         |        |
-| name       | VARCHAR(64) |         |          |           |         |         |        |
-| express_id | INT         |         |          |           |         |         |        |
-| waybill_no | VARCHAR(64) |         |          |           |         |         |        |
+| KEY        | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK      |
+|------------|--------------|---------|----------|-----------|---------|---------|-------------|
+| id         | INT          |         | Y        | Y         | Y       |         |             |
+| name       | VARCHAR(64)  |         |          |           |         |         |             |
+| express_id | INT          |         |          |           |         |         |             |
+| waybill_no | VARCHAR(64)  |         |          |           |         |         |             |
+| from_name  | VARCHAR(64)  |         |          |           |         |         |             |
+| from_phone | VARCHAR(16)  |         |          |           |         |         |             |
+| from_addr  | VARCHAR(128) |         |          |           |         |         |             |
+| from_code  | VARCHAR(6)   |         |          |           |         |         | 邮编          |
+| to_name    | VARCHAR(64)  |         |          |           |         |         |             |
+| to_phone   | VARCHAR(16)  |         |          |           |         |         |             |
+| to_addr    | VARCHAR(128) |         |          |           |         |         |             |
+| to_code    | VARCHAR(6)   |         |          |           |         |         |             |
+| operator   | INT          |         |          |           |         |         | 经手人，用户ID/工号 |
+| remark     | VARCHAR(255) |         |          |           |         |         |             |
 
 ### 快递公司表 `express`
 
-| KEY     | TYPE | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
-|---------|------|---------|----------|-----------|---------|---------|--------|
-| id      | INT  |         | Y        | Y         | Y       |         |        |
-| corp_id | INT  |         |          |           |         |         |        |
+| KEY     | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
+|---------|-------------|---------|----------|-----------|---------|---------|--------|
+| id      | INT         |         | Y        | Y         | Y       |         |        |
+| name    | VARCHAR(64) |         |          |           |         |         |        |
+| corp_id | INT         |         |          |           |         |         |        |
 
 ### 支付表 `pay`
 
