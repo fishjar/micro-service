@@ -124,7 +124,7 @@ module.exports = Sequelize => {
 
       product_id: INTEGER,
       name: STRING(64),
-      no: STRING(64),
+      sku_no: STRING(64),
       price: {
         type: INTEGER,
         defaultValue: 0,

@@ -17,16 +17,16 @@
 |---------------|--------------|---------|----------|-----------|---------|---------|---------|
 | id            | INT          |         | Y        | Y         | Y       |         |         |
 | order_no      | VARCHAR(64)  |         |          |           |         |         | 订单编号，唯一 |
-| order_type    | TINYINT      |         |          |           |         |         | 订单类型    |
+| order_type    | TINYINT      | 0       |          |           |         |         | 订单类型    |
 | user_id       | INT          |         |          |           |         |         | 用户ID    |
 | crop_id       | INT          |         |          |           |         |         | 企业用户ID  |
 | address_id    | INT          |         |          |           |         |         | 收件人地址ID |
-| address       | VARCHAR(128) |         |          |           |         |         | 地址快照    |
+| address       | VARCHAR(255) |         |          |           |         |         | 地址快照    |
 | waybill_id    | INT          |         |          |           |         |         | 快递单ID   |
-| order_status  | TINYINT      |         |          |           |         |         | 订单状态    |
-| bag_status    | TINYINT      |         |          |           |         |         | 货物状态    |
-| pay_status    | TINYINT      |         |          |           |         |         | 支付状态    |
-| shipping_type | TINYINT      |         |          |           |         |         | 配送方式    |
+| order_status  | TINYINT      | 1       |          |           |         |         | 订单状态    |
+| bag_status    | TINYINT      | 1       |          |           |         |         | 货物状态    |
+| pay_status    | TINYINT      | 1       |          |           |         |         | 支付状态    |
+| shipping_type | TINYINT      | 0       |          |           |         |         | 配送方式    |
 | all_fee       | INT          |         |          |           |         |         | 总金额     |
 | dis_fee       | INT          |         |          |           |         |         | 折扣金额    |
 | coupon_fee    | INT          |         |          |           |         |         | 代金券     |
@@ -51,8 +51,8 @@ order_status: {
   3: "已确认",
   4: "已发货",
   5: "已完成",
-  6: "已取消",
-  7: "已评价",
+  6: "已评价",
+  7: "已取消",
 },
 // 订单状态（作废）
 order_status: {
@@ -72,6 +72,7 @@ order_status: {
   13: "已退款，待客户收款",
   14: "客户已收款，待评价",
   15: "已评价（完成）",
+  15: "已取消",
 },
 // 货物状态
 bag_status：{
@@ -96,20 +97,33 @@ pay_status: {
   6: "已退款，待客户确认收款",
   7: "客户已收款，退款完成",
 }
+// 配送方式
+shipping_type: {
+  0: "默认", //无需配送
+  1: "快递",
+}
 ```
 
 ### 订单详情表 `oditem`
 
-| KEY      | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
-|----------|-------------|---------|----------|-----------|---------|---------|--------|
-| id       | INT         |         | Y        | Y         | Y       |         |        |
-| sku_id   | INT         |         |          |           |         |         |        |
-| title    | VARCHAR(64) |         |          |           |         |         |        |
-| sku_fee  |             |         |          |           |         |         | 单价     |
-| number   | INT         |         |          |           |         |         | 数量     |
-| all_fee  | INT         |         |          |           |         |         | 总价     |
-| dis_fee  | INT         |         |          |           |         |         | 折扣     |
-| real_fee | INT         |         |          |           |         |         | 实际支付   |
+- 多个冗余字段，用来保存商品快照
+
+| KEY          | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
+|--------------|-------------|---------|----------|-----------|---------|---------|--------|
+| id           | INT         |         | Y        | Y         | Y       |         |        |
+| sku_id       | INT         |         |          |           |         |         |        |
+| number       | INT         |         |          |           |         |         | 数量     |
+| all_fee      | INT         |         |          |           |         |         | 总价     |
+| dis_fee      | INT         |         |          |           |         |         | 折扣     |
+| real_fee     | INT         |         |          |           |         |         | 实际支付   |
+| product_id   | INT         |         |          |           |         |         | 冗余字段   |
+| product_name | VARCHAR(64) |         |          |           |         |         | 冗余字段   |
+| sku_fee      | INT         |         |          |           |         |         | 冗余字段   |
+| sku_name     | VARCHAR(64) |         |          |           |         |         | 冗余字段   |
+| sku_no       | VARCHAR(64) |         |          |           |         |         | 冗余字段   |
+| sku_extend   | TEXT        |         |          |           |         |         | 冗余字段   |
+| sku_subs     | TEXT        |         |          |           |         |         | 冗余字段   |
+| sku_unit     | VARCHAR(16) |         |          |           |         |         | 冗余字段   |
 
 ### 收件人表 `address`
 
@@ -142,7 +156,7 @@ pay_status: {
 | id         | INT         |         | Y        | Y         | Y       |         |        |
 | name       | VARCHAR(64) |         |          |           |         |         |        |
 | express_id | INT         |         |          |           |         |         |        |
-| no         | VARCHAR(64) |         |          |           |         |         |        |
+| waybill_no | VARCHAR(64) |         |          |           |         |         |        |
 
 ### 快递公司表 `express`
 
@@ -157,8 +171,10 @@ pay_status: {
 |-------------|--------------|---------|----------|-----------|---------|---------|--------|
 | id          | INT          |         | Y        | Y         | Y       |         |        |
 | order_id    | INT          |         |          |           |         |         | 订单ID   |
+| order_no    | VARCHAR(64)  |         |          |           |         |         |        |
 | pay_type    | TINYINT      |         |          |           |         |         | 支付方式   |
 | thirdpay_id | INT          |         |          |           |         |         | 微信支付ID |
+| thirdpay_no | VARCHAR(64)  |         |          |           |         |         | 微信的订单号 |
 | pay_fee     | INT          |         |          |           |         |         | 支付金额   |
 | pay_result  | TINYINT      |         |          |           |         |         | 支付结果   |
 | pay_time    | TIMESTAMP    |         |          |           |         |         | 支付时间   |

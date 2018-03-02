@@ -91,7 +91,7 @@ app_type: {
 | time_end             | VARCHAR(14)  |      |     |         |                |
 | trade_state_desc     | VARCHAR(255) |      |     |         |                |
 
-#### 微信预支付表 `wxpaypre`
+#### 微信预支付表 `wxpaypre` (作废)
 
 | Field            | Type         | Null | Key | Default | Extra          |
 |------------------|--------------|------|-----|---------|----------------|
@@ -125,7 +125,7 @@ app_type: {
 | prepay_id        | VARCHAR(64)  |      |     |         |                |
 | code_url         | VARCHAR(64)  |      |     |         |                |
 
-#### 微信支付结果表 `wxpayaction`
+#### 微信支付结果表 `wxpayaction` (作废)
 
 | Field                | Type         | Null | Key | Default | Extra          |
 |----------------------|--------------|------|-----|---------|----------------|

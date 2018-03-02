@@ -40,6 +40,7 @@ is_parent: {
 | KEY         | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |-------------|--------------|---------|----------|-----------|---------|---------|--------|
 | id          | INT          |         | Y        | Y         | Y       |         |        |
+| pid         | INT          |         |          |           |         |         |        |
 | name        | VARCHAR(64)  |         |          |           |         |         |        |
 | corp_code   | VARCHAR(64)  |         |          |           |         |         |        |
 | phone       | VARCHAR(16)  |         |          |           |         |         |        |
@@ -95,6 +96,7 @@ is_parent: {
 | KEY            | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |----------------|-------------|---------|----------|-----------|---------|---------|--------|
 | id             | INT         |         | Y        | Y         | Y       |         |        |
+| product_no     | VARCHAR(64) |         |          |           |         |         |        |
 | brand_id       | INT         |         |          |           |         |         |        |
 | cat_id         | INT         |         |          |           |         |         | 冗余字段   |
 | manufacturer   | INT         |         |          |           |         |         |        |
@@ -122,7 +124,7 @@ product_status: {
 | id           | INT         |         | Y        | Y         | Y       |         |        |
 | product_id   | INT         |         |          |           |         |         |        |
 | name         | VARCHAR(64) |         |          |           |         |         |        |
-| no           | VARCHAR(64) |         |          |           |         |         |        |
+| sku_no       | VARCHAR(64) |         |          |           |         |         |        |
 | price        | INT         |         |          |           |         |         |        |
 | sku_status   | TINYINT     |         |          |           |         |         |        |
 | extend       | TEXT        |         |          |           |         |         |        |
