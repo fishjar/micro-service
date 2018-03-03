@@ -20,6 +20,7 @@
 | name        | VARCHAR(64)  |         | Y        |           |         |         |        |
 | ext         | CHAR(4)      |         | Y        |           |         |         |        |
 | path        | VARCHAR(128) |         | Y        |           |         |         |        |
+| url         | VARCHAR(128) |         |          |           |         |         |        |
 | description | VARCHAR(128) |         |          |           |         |         |        |
 | size        | INT          |         | Y        |           |         |         |        |
 | width       | INT          |         |          |           |         |         |        |

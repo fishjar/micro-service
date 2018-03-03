@@ -31,5 +31,7 @@ module.exports = appInfo => {
     },
   };
 
+  config.baseDir = '/home/gabe/tmp/egg';
+
   return config;
 };

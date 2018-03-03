@@ -17,6 +17,7 @@ module.exports = Sequelize => {
       name: STRING(64),
       ext: STRING(4),
       path: STRING(128),
+      url: STRING(128),
       description: STRING(255),
       size: INTEGER,
       width: INTEGER,
