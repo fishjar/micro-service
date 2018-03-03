@@ -33,7 +33,7 @@
     "start": "egg-scripts start --port=9106 --daemon --title=egg-server-service-media",
     "stop": "egg-scripts stop --title=egg-server-service-media",
     "dev": "egg-bin dev --port=9106",
-    "debug": "egg-bin debug",
+    "debug": "egg-bin debug --port=9106",
     "test": "npm run lint -- --fix && npm run test-local",
     "test-local": "egg-bin test",
     "cov": "egg-bin cov",

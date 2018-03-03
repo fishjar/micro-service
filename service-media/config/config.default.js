@@ -8,7 +8,7 @@ module.exports = appInfo => {
 
   // add your config here
   // config.middleware = [];
-  config.middleware = ['auth', 'errors'];
+  config.middleware = [ 'auth', 'errors' ];
 
   config.sequelize = {
     dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
@@ -32,6 +32,7 @@ module.exports = appInfo => {
   };
 
   config.baseDir = '/home/gabe/tmp/egg';
+  config.baseUrl = 'http://media.fishjar.com/';
 
   return config;
 };

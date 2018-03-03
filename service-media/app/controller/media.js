@@ -6,7 +6,7 @@ const createRule = {
   media_type: 'int',
   name: 'string',
   ext: 'string',
-  path: 'string'
+  path: 'string',
 };
 
 class RESTController extends Controller {
