@@ -35,7 +35,7 @@ is_parent: {
 }
 ```
 
-### 公司表 `corporation`
+### 公司表 `corp` corporation
 
 | KEY         | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |-------------|--------------|---------|----------|-----------|---------|---------|--------|
@@ -201,7 +201,7 @@ is_sku: {
 }
 ```
 
-### 商品-属性表 `product_pron`
+### 商品-属性表 `prodpron`
 
 | KEY        | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |------------|--------------|---------|----------|-----------|---------|---------|--------|

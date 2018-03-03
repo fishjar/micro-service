@@ -143,7 +143,7 @@ shipping_type: {
 | latitude  | FLOAT        |         |          |           |         |         |        |
 | longitude | FLOAT        |         |          |           |         |         |        |
 
-### 促销表 `order_promo`
+### 促销表 `odpromo`
 
 | KEY | TYPE | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |-----|------|---------|----------|-----------|---------|---------|--------|
