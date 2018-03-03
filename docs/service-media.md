@@ -28,11 +28,36 @@
 ```js
 media_type: {
   0: `未知`,
-  1: `图片`,
-  2: `视频`
-  3: `doc文档`,
-  4: `PDF`,
+  1: `images`,
+  2: `text`
+  3: `tar`,
+  4: `video`,
 }
+const whitelist = [
+  // images
+  '.jpg', '.jpeg', // image/jpeg
+  '.png', // image/png, image/x-png
+  '.gif', // image/gif
+  '.bmp', // image/bmp
+  '.wbmp', // image/vnd.wap.wbmp
+  '.webp',
+  '.tif',
+  '.psd',
+  // text
+  '.svg',
+  '.js', '.jsx',
+  '.json',
+  '.css', '.less',
+  '.html', '.htm',
+  '.xml',
+  // tar
+  '.zip',
+  '.gz', '.tgz', '.gzip',
+  // video
+  '.mp3',
+  '.mp4',
+  '.avi',
+];
 ```
 
 ## API
