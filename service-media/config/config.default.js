@@ -8,7 +8,7 @@ module.exports = appInfo => {
 
   // add your config here
   // config.middleware = [];
-  config.middleware = [ 'auth', 'errors' ];
+  config.middleware = ['auth', 'errors'];
 
   config.sequelize = {
     dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
@@ -31,8 +31,49 @@ module.exports = appInfo => {
     },
   };
 
+  config.fileTypes = [
+    [
+      // images
+      '.jpg', '.jpeg', // image/jpeg
+      '.png', // image/png, image/x-png
+      '.gif', // image/gif
+      '.bmp', // image/bmp
+      '.wbmp', // image/vnd.wap.wbmp
+      '.webp',
+      '.tif',
+      '.psd',
+    ],
+    [
+      // text
+      '.svg',
+      '.js', '.jsx',
+      '.json',
+      '.css', '.less',
+      '.html', '.htm',
+      '.xml',
+    ],
+    [
+      // tar
+      '.zip',
+      '.gz', '.tgz', '.gzip',
+    ],
+    [
+      // video
+      '.mp3',
+      '.mp4',
+      '.avi',
+    ]
+  ];
   config.baseDir = '/home/gabe/tmp/egg';
   config.baseUrl = 'http://media.fishjar.com/';
+  config.multipart = {
+    fileSize: '10mb',
+    // whitelist: [
+    //   '.png',
+    //   '.jpg',
+    // ],
+  };
+
 
   return config;
 };

@@ -20,6 +20,10 @@ class RESTService extends Service {
     return res;
   }
 
+  async findOne(options) {
+    return await this.ctx.model.Media.findOne({ where: options });
+  }
+
   async create(params) {
     return this.ctx.model.Media.create(params);
   }

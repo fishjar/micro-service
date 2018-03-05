@@ -13,8 +13,9 @@ module.exports = Sequelize => {
 
       user_id: INTEGER,
       media_type: INTEGER,
-      title: STRING(64),
-      name: STRING(64),
+      filename: STRING(128),
+      title: STRING(128),
+      hashname: STRING(64),
       ext: STRING(4),
       path: STRING(128),
       url: STRING(128),

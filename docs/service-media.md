@@ -16,12 +16,13 @@
 | id          | INT          |         | Y        | Y         | Y       |         |        |
 | user_id     | INT          |         |          |           |         | Y       |        |
 | media_type  | TINYINT      |         | Y        |           |         |         |        |
+| filename    | VARCHAR(128) |         |          |           |         |         |        |
 | title       | VARCHAR(64)  |         |          |           |         |         |        |
-| name        | VARCHAR(64)  |         | Y        |           |         |         |        |
+| hashname    | VARCHAR(64)  |         | Y        |           |         |         |        |
 | ext         | CHAR(4)      |         | Y        |           |         |         |        |
 | path        | VARCHAR(128) |         | Y        |           |         |         |        |
 | url         | VARCHAR(128) |         |          |           |         |         |        |
-| description | VARCHAR(128) |         |          |           |         |         |        |
+| description | VARCHAR(255) |         |          |           |         |         |        |
 | size        | INT          |         | Y        |           |         |         |        |
 | width       | INT          |         |          |           |         |         |        |
 | height      | INT          |         |          |           |         |         |        |
