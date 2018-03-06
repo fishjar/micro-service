@@ -90,7 +90,7 @@ Response
   ext: 'png',
   path: '/media/img/abc/def.png',
   description: '',
-  size: 123, //单位K
+  size: 123, //单位bytes
 }
 ```
 
