@@ -8,6 +8,7 @@
     "egg-redis": "^1.0.2",
     "egg-scripts": "^2.1.0",
     "egg-security": "^2.0.0",
+    "formstream": "^1.1.0",
     "hashids": "^1.1.4"
   },
   "devDependencies": {

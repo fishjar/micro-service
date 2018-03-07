@@ -28,12 +28,12 @@ class UploadController extends Controller {
   //   ctx.body = { url: '/public/' + filename };
   // }
   async ajax() {
+    console.log('-----------------')
     const { ctx, config } = this;
+    console.log(ctx.request.headers);
     const data = {};
-
     const stream = await ctx.getFileStream();
-    // console.log('-----------------')
-    // console.log({ stream })
+    console.log({ stream })
 
     let buf;
     try {

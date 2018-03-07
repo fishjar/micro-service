@@ -14,7 +14,6 @@ class Wxapp extends Service {
 
   async find(id) {
     const wxapp = await this.ctx.model.Wxapp.findById(id);
-    console.log({ wxapp })
     if (!wxapp) {
       this.ctx.throw(404, 'wxapp not found');
     }
@@ -59,7 +58,6 @@ class Wxapp extends Service {
   }
 
   encryData({ appid, sessionKey, encryptedData, iv }) {
-    console.log({ appid, sessionKey, encryptedData, iv })
     const pc = new WXBizDataCrypt(appid, sessionKey);
     const data = pc.decryptData(encryptedData, iv);
     return data;

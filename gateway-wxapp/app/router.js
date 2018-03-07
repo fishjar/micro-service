@@ -10,4 +10,5 @@ module.exports = app => {
   router.post('/login', controller.home.login);
   router.post('/wxuser', controller.home.wxuser);
   router.get('/users/:id', controller.user.user);
+  router.post('/upload', controller.home.upload);
 };

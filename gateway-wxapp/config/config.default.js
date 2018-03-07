@@ -15,6 +15,7 @@ module.exports = appInfo => {
   config.msapi = {
     user: `${_host}:9102`,
     wx: `${_host}:9103`,
+    media: `${_host}:9106`,
   };
 
   config.redis = {

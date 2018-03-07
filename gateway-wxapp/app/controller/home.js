@@ -1,6 +1,7 @@
 'use strict';
 
 const Controller = require('egg').Controller;
+const FromStream = require('formstream');
 
 class HomeController extends Controller {
   async index() {
@@ -61,6 +62,30 @@ class HomeController extends Controller {
       errcode: 0,
       errmsg: 'get and update success',
       data: user,
+    };
+  }
+
+  // 上传文件
+  async upload() {
+    const { ctx, config } = this;
+    const stream = await ctx.getFileStream();
+    console.log(stream)
+    // const form = new FromStream();
+    
+    const res = await ctx.API(`${config.msapi.media}/upload/ajax`, {
+      'method': 'POST',
+      'dataType': 'json',
+      'stream': stream,
+      'headers': ctx.request.headers,
+      // 'headers': {
+      //   'content-type': 'multipart/form-data',
+      // }
+    });
+    
+    ctx.body = {
+      errcode: 0,
+      errmsg: 'upload success',
+      data: res,
     };
   }
 
