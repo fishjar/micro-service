@@ -6,7 +6,7 @@
 
 ## 数据库
 
-### 注册日志表 `register_log`
+### 注册日志表 `reglog` register_log
 
 | KEY             | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |-----------------|-------------|---------|----------|-----------|---------|---------|--------|
@@ -27,7 +27,7 @@ register_type: {
 }
 ```
 
-### 登录、登出日志表 `login_log`
+### 登录、登出日志表 `loginlog`
 
 | KEY         | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |-------------|--------------|---------|----------|-----------|---------|---------|--------|
@@ -59,7 +59,7 @@ command: {
 }
 ```
 
-### 操作日志表 `operate_log`
+### 操作日志表 `oplog`
 
 | KEY          | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |--------------|--------------|---------|----------|-----------|---------|---------|--------|

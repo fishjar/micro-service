@@ -38,7 +38,7 @@
 | entering_time | TIMESTAMP    |         |          |           |         |         |        |
 | remark        | VARCHAR(128) |         |          |           |         |         |        |
 
-### 入库详单 `entering_detail`
+### 入库详单 `etitem`
 
 | KEY           | TYPE      | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |---------------|-----------|---------|----------|-----------|---------|---------|--------|
@@ -63,7 +63,7 @@
 | outbound_time | TIMESTAMP    |         |          |           |         |         |        |
 | remark        | VARCHAR(128) |         |          |           |         |         |        |
 
-### 出库详单 `outbound_detail`
+### 出库详单 `obitem`
 
 | KEY           | TYPE      | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |---------------|-----------|---------|----------|-----------|---------|---------|--------|

@@ -23,15 +23,15 @@
 
 ### 用户认证表 `auth`
 
-| KEY         | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
-|-------------|--------------|---------|----------|-----------|---------|---------|--------|
-| id          | INT          |         | Y        | Y         | Y       |         |        |
-| user_id     | INT          |         | Y        |           |         | Y       |        |
-| auth_type   | TINYINT      |         | Y        |           |         |         |        |
-| auth_name   | VARCHAR(64)  |         | Y        |           |         |         |        |
-| auth_code   | VARCHAR(128) |         | Y        |           |         |         |        |
-| expire_time | TIMESTAMP    |         | Y        |           |         |         |        |
-| verify_time | TIMESTAMP    |         | Y        |           |         |         |        |
+| Field       | Type         | Null | Key | Default | Extra          |
+|-------------|--------------|------|-----|---------|----------------|
+| id          | int(11)      | NO   | PRI | NULL    | auto_increment |
+| user_id     | INT          |      |     |         |                |
+| auth_type   | TINYINT      |      |     |         |                |
+| auth_name   | VARCHAR(64)  |      |     |         |                |
+| auth_code   | VARCHAR(128) |      |     |         |                |
+| expire_time | TIMESTAMP    |      |     |         |                |
+| verify_time | TIMESTAMP    |      |     |         |                |
 
 ```js
 auth_type: {
@@ -41,7 +41,7 @@ auth_type: {
 }
 ```
 
-### 微信用户认证表 `auth_wx`
+### 微信用户认证表 `authwx`
 
 | Field       | Type     | Null | Key | Default | Extra          |
 |-------------|----------|------|-----|---------|----------------|
@@ -91,11 +91,12 @@ Request
   auth_code: '****',
   user_info: {}, // 可选
 }
-// 微信用户
+// 微信用户，登录失败直接注册
 {
   auth_type: 4,
-  wxuser_id: 123,
-  user_info: {}, // 可选
+  wxuser: {
+    id: 12323
+  }
 }
 ```
 
@@ -112,28 +113,18 @@ Response
 
 ```js
 {
-  result_code: 1, //1登录，2注册，3失败
-  result_msg: 'ok',
-  expire_time: 1516602918,
-  verify_time: 1516602918,
-  user_info: {},
+  user: {},
+  auth: {},
 }
+```
+
+### 获取微信认证信息
+
+```sh
+GET /auth_wx/{auth_wx_id}
 ```
 
 ### 修改密码
-
-```sh
-POST /password/{user_id}
-```
-
-Request
-
-```js
-{
-  user_id: 1234,
-  auth_code: '****',
-}
-```
 
 ### 添加用户
 
@@ -200,5 +191,5 @@ GET /users/{user_id}
 ### 更新用户资料
 
 ```sh
-PATCH /users/{user_id}
+PUT /users/{user_id}
 ```

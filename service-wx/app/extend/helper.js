@@ -1,6 +1,8 @@
 'use strict';
 
 const { URL } = require('url');
+const XML = require('pixl-xml');
+const crypto = require('crypto');
 
 module.exports = {
   foo(param) {
@@ -10,7 +12,8 @@ module.exports = {
     return param;
   },
   obj2arr(obj) {
-    return Object.keys(obj).reduce((arr, key) => [ ...arr, key, obj[key] ], []);
+    // {a:1,b:2} -> [ 'a', 1, 'b', 2 ]
+    return Object.keys(obj).reduce((arr, key) => [...arr, key, obj[key]], []);
   },
   generateURL(url, params) {
     const myURL = new URL(url);
@@ -22,4 +25,16 @@ module.exports = {
   generateHref(url, params) {
     return this.generateURL(url, params).href;
   },
+  xml2json(xml) {
+    return XML.parse(xml);
+  },
+  json2xml(json) {
+    return XML.stringify(json, 'xml');
+  },
+  wxSign(obj, key) {
+    const stringA = Object.keys(obj).sort().filter(k => k !== 'sign' && obj[k]).map(k => `${k}=${obj[k]}`).join('&');
+    const stringSignTemp = stringA + "&key=" + key;
+    const sign = crypto.createHash('md5').update(stringSignTemp).digest('hex').toUpperCase();
+    return sign;
+  }
 };

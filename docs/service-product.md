@@ -19,27 +19,28 @@
 
 ### 分类表 `cat`
 
-| KEY         | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
-|-------------|--------------|---------|----------|-----------|---------|---------|--------|
-| id          | INT          |         | Y        | Y         | Y       |         |        |
-| name        | VARCHAR(64)  |         |          |           |         |         |        |
-| pid         | INT          |         |          |           |         |         |        |
-| is_parent   | TINYINT      |         |          |           |         |         |        |
-| sort        | INT          |         |          |           |         |         |        |
-| description | VARCHAR(128) |         |          |           |         |         |        |
+| KEY         | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK    |
+|-------------|--------------|---------|----------|-----------|---------|---------|-----------|
+| id          | INT          |         | Y        | Y         | Y       |         |           |
+| name        | VARCHAR(64)  |         |          |           |         |         |           |
+| pid         | INT          |         |          |           |         |         | parent id |
+| is_parent   | VARCHAR(1)   |         |          |           |         |         |           |
+| sort        | INT          |         |          |           |         |         |           |
+| description | VARCHAR(128) |         |          |           |         |         |           |
 
 ```js
 is_parent: {
-  0: '非父类'
-  1: '父类'
+  'N': '非父类'
+  'Y': '父类'
 }
 ```
 
-### 公司表 `corporation`
+### 公司表 `corp` corporation
 
 | KEY         | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |-------------|--------------|---------|----------|-----------|---------|---------|--------|
 | id          | INT          |         | Y        | Y         | Y       |         |        |
+| pid         | INT          |         |          |           |         |         |        |
 | name        | VARCHAR(64)  |         |          |           |         |         |        |
 | corp_code   | VARCHAR(64)  |         |          |           |         |         |        |
 | phone       | VARCHAR(16)  |         |          |           |         |         |        |
@@ -85,8 +86,8 @@ is_parent: {
 | cat_id      | INT          |         |          |           |         |         |        |
 | name_en     | VARCHAR(64)  |         |          |           |         |         |        |
 | name_cn     | VARCHAR(64)  |         |          |           |         |         |        |
-| description | VARCHAR(128) |         |          |           |         |         |        |
-| logo        | VARCHAR(128) |         |          |           |         |         |        |
+| description | VARCHAR(255) |         |          |           |         |         |        |
+| logo        | VARCHAR(255) |         |          |           |         |         |        |
 | website     | VARCHAR(128) |         |          |           |         |         |        |
 | story       | TEXT         |         |          |           |         |         |        |
 
@@ -95,8 +96,9 @@ is_parent: {
 | KEY            | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |----------------|-------------|---------|----------|-----------|---------|---------|--------|
 | id             | INT         |         | Y        | Y         | Y       |         |        |
+| product_no     | VARCHAR(64) |         |          |           |         |         |        |
 | brand_id       | INT         |         |          |           |         |         |        |
-| cat_id         | INT         |         |          |           |         |         |        |
+| cat_id         | INT         |         |          |           |         |         | 冗余字段   |
 | manufacturer   | INT         |         |          |           |         |         |        |
 | name           | VARCHAR(64) |         |          |           |         |         |        |
 | price          | INT         |         |          |           |         |         |        |
@@ -114,18 +116,21 @@ product_status: {
 
 ### 单品表 `sku`
 
+- SKU=Stock Keeping Unit（库存量单位）
+- 属性提升为SKU，区分规则：是否影响价格
+
 | KEY          | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |--------------|-------------|---------|----------|-----------|---------|---------|--------|
 | id           | INT         |         | Y        | Y         | Y       |         |        |
 | product_id   | INT         |         |          |           |         |         |        |
 | name         | VARCHAR(64) |         |          |           |         |         |        |
-| no           | VARCHAR(64) |         |          |           |         |         |        |
+| sku_no       | VARCHAR(64) |         |          |           |         |         |        |
 | price        | INT         |         |          |           |         |         |        |
 | sku_status   | TINYINT     |         |          |           |         |         |        |
 | extend       | TEXT        |         |          |           |         |         |        |
 | product_code | VARCHAR(64) |         |          |           |         |         |        |
 | bar_code     | VARCHAR(64) |         |          |           |         |         |        |
-| is_pack      | TINYINT     |         |          |           |         |         |        |
+| is_pack      | VARCHAR(1)  |         |          |           |         |         |        |
 | subs         | TEXT        |         |          |           |         |         |        |
 | unit         | VARCHAR(16) |         |          |           |         |         | 冗余字段   |
 
@@ -137,8 +142,8 @@ sku_status: {
   4: `停产`,
 }
 is_pack: {
-  0: `非组合商品`,
-  1: `组合商品`,
+  'N': `非组合商品`,
+  'Y': `组合商品`,
 }
 subs: [{
   sku_id: 232332,
@@ -177,7 +182,7 @@ subs: [{
 | id        | INT         |         | Y        | Y         | Y       |         |        |
 | cat_id    | INT         |         |          |           |         |         |        |
 | pron_type | TINYINT     |         |          |           |         |         |        |
-| is_sku    | TINYINT     |         |          |           |         |         |        |
+| is_sku    | VARCHAR(1)  |         |          |           |         |         |        |
 | name      | VARCHAR(64) |         |          |           |         |         |        |
 | sort      | INT         |         |          |           |         |         |        |
 
@@ -190,28 +195,29 @@ pron_type: {
   5: `图片`,
 }
 is_sku: {
-  0: `商品商品`,
-  1: `SKU属性`,
-  2: `均有属性`,
+  'P': `商品属性`,
+  'S': `SKU属性`,
+  'A': `均有属性`,
 }
 ```
 
-### 商品-属性表 `product_pron`
+### 商品-属性表 `prodpron`
 
 | KEY        | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |------------|--------------|---------|----------|-----------|---------|---------|--------|
 | id         | INT          |         | Y        | Y         | Y       |         |        |
 | pron_id    | INT          |         |          |           |         |         |        |
 | product_id | INT          |         |          |           |         |         |        |
-| is_suk     | TINYINT      |         |          |           |         |         |        |
-| suk_id     | INT          |         |          |           |         |         |        |
-| value      | VARCHAR(128) |         |          |           |         |         |        |
-| image      | VARCHAR(128) |         |          |           |         |         |        |
+| is_sku     | VARCHAR(1)   |         |          |           |         |         |        |
+| sku_id     | INT          |         |          |           |         |         |        |
+| value      | VARCHAR(255) |         |          |           |         |         |        |
+| image      | VARCHAR(255) |         |          |           |         |         |        |
 
 ```js
 is_sku: {
-  0: `商品商品`,
-  1: `SKU属性`,
+  'P': `商品属性`,
+  'S': `SKU属性`,
+  'A': `均有属性`,
 }
 ```
 

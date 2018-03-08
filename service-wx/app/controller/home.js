@@ -1,11 +1,21 @@
 'use strict';
 
 const Controller = require('egg').Controller;
+const XML = require('pixl-xml');
 
 class HomeController extends Controller {
 
   async index() {
     this.ctx.body = 'hi, egg';
+  }
+
+  async test() {
+    const json = {
+      a: 1,
+      b: 2,
+      ab: 3
+    }
+    this.ctx.body = XML.stringify(json, 'xml');
   }
 
   // 登录
@@ -47,11 +57,11 @@ class HomeController extends Controller {
       province,
       country,
     } = ctx.service.wxapp.encryData({
-      appid,
-      sessionKey: session_key,
-      encryptedData,
-      iv,
-    });
+        appid,
+        sessionKey: session_key,
+        encryptedData,
+        iv,
+      });
     const wxuser = await ctx.service.wxuser.update(wxuser_id, {
       nickname: nickName,
       unionid: unionId,
@@ -66,6 +76,32 @@ class HomeController extends Controller {
       errcode: 0,
       errmsg: 'update user info!',
     };
+  }
+
+  // 微信统一下单
+  async unifiedorder() {
+    const { ctx } = this;
+    const body = ctx.request.body;
+    // const body = {
+    //   body: 'test',
+    //   out_trade_no: Date.now(),
+    //   total_fee: 1,
+    //   spbill_create_ip: ctx.ip,
+    //   trade_type: 'JSAPI',
+    //   appid: 'wx7aacccc73ccea206',
+    //   openid: 'o4pXt0ILIpIVIObuYG_JvunqP8JE'
+    // };
+    const wxpay = await ctx.service.wxpay.unifiedorder(body);
+    ctx.body = {
+      data: wxpay,
+      errcode: 0,
+      errmsg: 'create wxpay!',
+    };
+  }
+
+  async payaction() {
+    const { ctx } = this;
+    ctx.body = await ctx.service.wxpay.payaction(ctx.request.body.xml);
   }
 
 }

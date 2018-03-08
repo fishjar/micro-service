@@ -48,10 +48,9 @@ class Home extends Service {
   }
 
   async flashToken({ aid, uid, atype = 4 }) {
-    const { ctx, app } = this;
+    const { ctx, app, config } = this;
     const now = ~~(Date.now() / 1000);
-    const expire_offset = 60 * 60 * 24 * 3; // 3天过期
-    const expire = now + expire_offset;
+    const expire = now + config.expire_offset;
     const token = this.generateToken({ aid, uid, atype, expire });
     const key = `auth:${token}`;
     const obj = {
@@ -61,7 +60,7 @@ class Home extends Service {
       expire,
     };
     await app.redis.hmset(key, ctx.helper.obj2arr(obj));
-    await app.redis.expire(key, expire);
+    await app.redis.expire(key, config.expire_offset);
     console.log('----------auth------------');
     console.log({ key });
     console.log(await app.redis.hgetall(key));
@@ -74,6 +73,12 @@ class Home extends Service {
     return app.redis.del(`auth:${token}`);
   }
 
+  async deferToken(token) {
+    const { app, config } = this;
+    const key = `auth:${token}`;
+    return app.redis.expire(key, config.expire_offset);
+  }
+
   generateToken({ aid, uid, atype, expire }) {
     const secret = 'wxapp';
     const hash = crypto.createHmac('sha256', secret)
@@ -83,6 +88,23 @@ class Home extends Service {
       .update(`${expire}`)
       .digest('hex');
     return hash;
+  }
+
+  async wxpay() {
+    const { ctx, config } = this;
+    const wxpay = await ctx.API(`${config.msapi.wx}/unifiedorder`, {
+      method: 'POST',
+      data: {
+        body: 'test',
+        out_trade_no: Date.now(),
+        total_fee: 2,
+        spbill_create_ip: ctx.ip,
+        trade_type: 'JSAPI',
+        appid: 'wx7aacccc73ccea206',
+        openid: 'o4pXt0ILIpIVIObuYG_JvunqP8JE'
+      },
+    });
+    return wxpay;
   }
 
 }

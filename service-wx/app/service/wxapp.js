@@ -8,7 +8,7 @@ class Wxapp extends Service {
     return this.ctx.model.Wxapp.findAndCountAll({
       offset,
       limit,
-      order: [[ order_by, order.toUpperCase() ]],
+      order: [[order_by, order.toUpperCase()]],
     });
   }
 
@@ -49,8 +49,8 @@ class Wxapp extends Service {
       js_code,
       grant_type,
     }), {
-      dataType: 'json',
-    });
+        dataType: 'json',
+      });
     if (res.data.errmsg) {
       ctx.throw(404, res.data.errmsg);
     }
@@ -58,7 +58,6 @@ class Wxapp extends Service {
   }
 
   encryData({ appid, sessionKey, encryptedData, iv }) {
-    console.log({ appid, sessionKey, encryptedData, iv })
     const pc = new WXBizDataCrypt(appid, sessionKey);
     const data = pc.decryptData(encryptedData, iv);
     return data;

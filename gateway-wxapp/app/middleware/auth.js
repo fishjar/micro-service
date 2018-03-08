@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = options => {
+module.exports = () => {
   return async function auth(ctx, next) {
     ctx.logger.info(`Client IP: ${ctx.ip}`);
     const { authentication } = ctx.request.header;
@@ -11,6 +11,8 @@ module.exports = options => {
       if (authentication) {
         const auth = await ctx.service.home.getAuth(authentication);
         if (auth.uid) {
+          // 延期token
+          await ctx.service.home.deferToken(authentication)
           // 挂载用户鉴权信息
           // 如果用户资料保存在redis，也可考虑挂载用户资料
           ctx.auth = auth;

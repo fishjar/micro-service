@@ -1,6 +1,7 @@
 'use strict';
 
 const Controller = require('egg').Controller;
+const FromStream = require('formstream');
 
 class HomeController extends Controller {
   async index() {
@@ -17,6 +18,11 @@ class HomeController extends Controller {
     //   foo1: await app.redis.hgetall('foo1'),
     //   foo2: await app.redis.hgetall('foo2'),
     // }
+  }
+
+  async test() {
+    const { ctx } = this;
+    ctx.body = await ctx.service.home.wxpay();
   }
 
   // 登录
@@ -56,6 +62,28 @@ class HomeController extends Controller {
       errcode: 0,
       errmsg: 'get and update success',
       data: user,
+    };
+  }
+
+  // 上传文件
+  async upload() {
+    const { ctx, config } = this;
+    const stream = await ctx.getFileStream();
+    const form = new FromStream();
+    Object.keys(stream.fields).forEach(key => form.field(key, stream.fields[key]));
+    form.stream(stream.fieldname, stream, stream.filename);
+
+    const res = await ctx.API(`${config.msapi.media}/upload/ajax`, {
+      method: 'POST',
+      dataType: 'json',
+      stream: form,
+      headers: form.headers(),
+    });
+
+    ctx.body = {
+      errcode: 0,
+      errmsg: 'upload success',
+      data: res,
     };
   }
 
