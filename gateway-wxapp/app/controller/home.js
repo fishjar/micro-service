@@ -69,19 +69,17 @@ class HomeController extends Controller {
   async upload() {
     const { ctx, config } = this;
     const stream = await ctx.getFileStream();
-    console.log(stream)
-    // const form = new FromStream();
-    
+    const form = new FromStream();
+    Object.keys(stream.fields).forEach(key => form.field(key, stream.fields[key]));
+    form.stream(stream.fieldname, stream, stream.filename);
+
     const res = await ctx.API(`${config.msapi.media}/upload/ajax`, {
-      'method': 'POST',
-      'dataType': 'json',
-      'stream': stream,
-      'headers': ctx.request.headers,
-      // 'headers': {
-      //   'content-type': 'multipart/form-data',
-      // }
+      method: 'POST',
+      dataType: 'json',
+      stream: form,
+      headers: form.headers(),
     });
-    
+
     ctx.body = {
       errcode: 0,
       errmsg: 'upload success',
