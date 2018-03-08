@@ -12,7 +12,7 @@
 |------------|-------------|---------|----------|-----------|---------|---------|--------|
 | id         | INT         |         | Y        | Y         | Y       |         |        |
 | user_id    | INT         |         |          |           |         | Y       |        |
-| staff_id   | VARCHAR(16) |         |          |           |         |         |        |
+| staff_no   | VARCHAR(16) |         |          |           |         |         |        |
 | title      | VARCHAR(16) |         |          |           |         |         |        |
 | entry_time | TIMESTAMP   |         |          |           |         |         |        |
 
@@ -50,7 +50,7 @@ action: {
 | role_id     | INT  |         |          |           |         |         |        |
 | resource_id | INT  |         |          |           |         |         |        |
 
-### 员工-角色表 `staff_role`
+### 员工-角色表 `staffrole`
 
 | KEY      | TYPE | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |----------|------|---------|----------|-----------|---------|---------|--------|
@@ -65,11 +65,10 @@ action: {
 | id   | INT         |         | Y        | Y         | Y       |         |        |
 | name | VARCHAR(64) |         |          |           |         |         |        |
 
-### 员工-机构表 `staff_org`
+### 员工-机构表 `stafforg`
 
 | KEY      | TYPE | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |----------|------|---------|----------|-----------|---------|---------|--------|
 | id       | INT  |         | Y        | Y         | Y       |         |        |
 | staff_id | INT  |         |          |           |         |         |        |
 | org_id   | INT  |         |          |           |         |         |        |
-
