@@ -47,5 +47,7 @@ module.exports = appInfo => {
   //   domainWhiteList: ['http://localhost:9101']
   // };
 
+  config.appid = 'wx7aacccc73ccea206';
+
   return config;
 };
