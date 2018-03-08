@@ -11,4 +11,5 @@ module.exports = app => {
   router.post('/wxuser', controller.home.wxuser);
   router.get('/users/:id', controller.user.user);
   router.post('/upload', controller.home.upload);
+  router.post('/wxpay', controller.home.wxpay);
 };

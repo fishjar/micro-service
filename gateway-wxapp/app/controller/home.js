@@ -56,8 +56,9 @@ class HomeController extends Controller {
       ctx.throw(501, 'missing params!');
     }
     const { aid } = ctx.auth;
-    const { user } = await ctx.service.home.wxuser({ aid, encryptedData, iv });
+    const { wxuser, user } = await ctx.service.home.wxuser({ aid, encryptedData, iv });
     user.id = ctx.helper.hashids.encode(user.id);
+    user.openid = wxuser.openid;
     ctx.body = {
       errcode: 0,
       errmsg: 'get and update success',
@@ -85,6 +86,31 @@ class HomeController extends Controller {
       errmsg: 'upload success',
       data: res,
     };
+  }
+
+  // 微信支付测试
+  async wxpay() {
+    const { ctx, config } = this;
+    const { body, total_fee, appid, openid } = ctx.request.body;
+    const res = await ctx.API(`${config.msapi.wx}/unifiedorder`, {
+      method: 'POST',
+      data: {
+        body,
+        out_trade_no: Date.now(),
+        total_fee,
+        spbill_create_ip: ctx.ip,
+        trade_type: 'JSAPI',
+        appid,
+        openid,
+      },
+    });
+
+    ctx.body = {
+      errcode: 0,
+      errmsg: 'unifiedorder success',
+      data: res,
+    };
+
   }
 
 }

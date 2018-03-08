@@ -76,7 +76,7 @@ class UploadController extends Controller {
         let rW = Math.min(resize, width);
         let rH = rW * height / width;
         if (height > width) {
-          rH = Math.min(size, height);
+          rH = Math.min(resize, height);
           rW = rW * width / height;
         }
         const resize_filepath = path.join(extname.slice(1), hashname.slice(0, 2), hashname.slice(2, 4), hashname + '_' + Math.max(rW, rH) + extname);

@@ -69,7 +69,16 @@ class Wxpay extends Service {
       this.ctx.throw(500, `wxpay err! sign err!!`);
     }
     const wxpay = await ctx.service.wxpay.create(Object.assign({ sign }, signObj, res));
-    return wxpay
+    // return wxpay
+    const data = {
+      appId: appid,
+      timeStamp: `${~~(Date.now() / 1000)}`,
+      nonceStr: Math.random().toString(36).substr(2, 16),
+      package: `prepay_id=${res.prepay_id}`,
+      signType: 'MD5',
+    }
+    const paySign = ctx.helper.wxSign(data, secret);
+    return Object.assign(data, { paySign });
   }
 
   async payaction(body) {
