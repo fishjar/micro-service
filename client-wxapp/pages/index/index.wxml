@@ -8,6 +8,15 @@
     </block>
   </view>
   <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+    <text class="user-motto" bindtap="bindPay">{{motto}}</text>
+  </view>
+  <view>
+    <button bindtap="login">重新登陆</button>
+  </view>
+  <view>
+    <button bindtap="uploadFile">上传文件</button>
+  </view>
+  <view>
+    <button bindtap="wxPay">微信支付</button>
   </view>
 </view>
