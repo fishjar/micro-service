@@ -56,9 +56,8 @@ class HomeController extends Controller {
       ctx.throw(501, 'missing params!');
     }
     const { aid } = ctx.auth;
-    const { wxuser, user } = await ctx.service.home.wxuser({ aid, encryptedData, iv });
+    const { user } = await ctx.service.home.wxuser({ aid, encryptedData, iv });
     user.id = ctx.helper.hashids.encode(user.id);
-    user.openid = wxuser.openid;
     ctx.body = {
       errcode: 0,
       errmsg: 'get and update success',
@@ -91,7 +90,8 @@ class HomeController extends Controller {
   // 微信支付测试
   async wxpay() {
     const { ctx, config } = this;
-    const { body, total_fee, appid, openid } = ctx.request.body;
+    const { body, total_fee } = ctx.request.body;
+    const { appid, openid } = await ctx.service.home.getOpenid();
     const res = await ctx.API(`${config.msapi.wx}/unifiedorder`, {
       method: 'POST',
       data: {

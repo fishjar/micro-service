@@ -90,21 +90,14 @@ class Home extends Service {
     return hash;
   }
 
-  async wxpay() {
+  async getOpenid() {
     const { ctx, config } = this;
-    const wxpay = await ctx.API(`${config.msapi.wx}/unifiedorder`, {
-      method: 'POST',
-      data: {
-        body: 'test',
-        out_trade_no: Date.now(),
-        total_fee: 2,
-        spbill_create_ip: ctx.ip,
-        trade_type: 'JSAPI',
-        appid: 'wx7aacccc73ccea206',
-        openid: 'o4pXt0ILIpIVIObuYG_JvunqP8JE'
-      },
-    });
-    return wxpay;
+    if (!ctx.auth || !ctx.auth.aid) {
+      ctx.throw(500, 'auth not found');
+    }
+    const { wxuser_id } = await ctx.API(`${config.msapi.user}/auth_wx/${ctx.auth.aid}`);
+    const wxuser = await ctx.API(`${config.msapi.wx}/wxusers/${wxuser_id}`);
+    return wxuser;
   }
 
 }
