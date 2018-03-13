@@ -1,6 +1,5 @@
 //index.js
 const { promise, request } = require('../../utils/util')
-const { appid } = require('../../utils/config')
 //获取应用实例
 const app = getApp()
 
@@ -11,22 +10,17 @@ Page({
     hasUserInfo: false,
   },
   onLoad: function () {
-    //
+    app.checkLogin().then((res) => {
+      console.log(res)
+      this.setData({ userInfo: res, hasUserInfo: true })
+    }).catch(err => {
+      console.log(err)
+    })
   },
   bindViewTap() {
-    promise(wx.getUserInfo).then(res => {
-      console.log(res);
-      const { encryptedData, iv } = res;
-      return request('/wxuser', { encryptedData, iv }, 'POST')
-    }).then(res => {
-      const auth = wx.getStorageSync('auth') || {}
-      Object.assign(auth.user, res)
-      wx.setStorageSync('auth', auth)
-      this.setData({
-        userInfo: res,
-        hasUserInfo: true,
-      })
-    }).catch(err => console.log(err))
+    app.getUserInfo().then((res) => {
+      this.setData({ userInfo: res, hasUserInfo: true })
+    })
   },
   bindUserTap() {
     const { id } = this.data.userInfo;
@@ -77,13 +71,7 @@ Page({
     })
   },
   wxPay() {
-    const { openid } = this.data.userInfo;
-    if (!openid) {
-      return
-    }
     request(`/wxpay`, {
-      appid,
-      openid,
       body: 'test',
       total_fee: 1,
     }, 'POST').then(res => {
@@ -109,5 +97,8 @@ Page({
       });
 
     })
+  },
+  bindTest() {
+    console.log(app.globalData)
   },
 })
