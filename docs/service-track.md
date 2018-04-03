@@ -6,19 +6,38 @@
 
 ## 数据库
 
-### 推广码表 `track`
+<!-- ### 推广码表 `track`
+
+| KEY        | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |     |
+|------------|-------------|---------|----------|-----------|---------|---------|--------|-----|
+| id         | INT         |         | Y        | Y         | Y       |         |        |     |
+| track_type | INT         |         | Y        |           |         |         |        |     |
+| user_id    | INT         |         | Y        |           |         | Y       |        |     |
+| referrer   | INT         |         |          |           |         | Y       |        |     |
+| promcode   | VARCHAR(64) |         | Y        |           |         |         |        | --> |
+
+### 推广码表 `promo`
+
+| KEY      | TYPE         | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
+|----------|--------------|---------|----------|-----------|---------|---------|--------|
+| id       | INT          |         | Y        | Y         | Y       |         |        |
+| user_id  | INT          |         | Y        |           |         | Y       |        |
+| promcode | VARCHAR(64)  |         | Y        |           |         |         |        |
+| wxbcode  | VARCHAR(128) |         |          |           |         |         |        |
+
+### 推广码跟踪表 `track`
 
 | KEY        | TYPE        | DEFAULT | NOT NULL | INCREMENT | PRIMARY | FOREIGN | REMARK |
 |------------|-------------|---------|----------|-----------|---------|---------|--------|
 | id         | INT         |         | Y        | Y         | Y       |         |        |
 | track_type | INT         |         | Y        |           |         |         |        |
 | user_id    | INT         |         | Y        |           |         | Y       |        |
-| referrer   | INT         |         |          |           |         | Y       |        |
-| promcode   | VARCHAR(64) |         | Y        |           |         |         |        |
+| promo_id   | INT         |         |          |           |         | Y       |        |
 
 ```js
 track_type: {
-  1: `注册`, // 其他类型根据需要随时添加
+  1: `访问`,
+  2: `新用户`, // 其他类型根据需要随时添加
 }
 ```
 
