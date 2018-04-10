@@ -31,5 +31,10 @@ module.exports = appInfo => {
     },
   };
 
+  const _host = 'localhost';
+  config.msapi = {
+    wx: `${_host}:9103`,
+  };
+
   return config;
 };

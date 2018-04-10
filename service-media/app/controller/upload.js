@@ -5,10 +5,10 @@ const fs = require('fs-extra');
 const path = require('path');
 const Controller = require('egg').Controller;
 const toArray = require('stream-to-array');
-const awaitWriteStream = require('await-stream-ready').write;
+// const awaitWriteStream = require('await-stream-ready').write;
 const sendToWormhole = require('stream-wormhole');
 const crypto = require('crypto');
-const sharp = require('sharp');
+// const sharp = require('sharp');
 
 class UploadController extends Controller {
 

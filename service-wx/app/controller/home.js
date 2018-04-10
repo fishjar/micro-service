@@ -104,6 +104,30 @@ class HomeController extends Controller {
     ctx.body = await ctx.service.wxpay.payaction(ctx.request.body.xml);
   }
 
+  async token() {
+    const { ctx } = this;
+    const access_token = await ctx.service.wxapp.getToken(ctx.params.appid);
+    ctx.body = {
+      data: access_token,
+      errcode: 0,
+      errmsg: 'get access_token!',
+    };
+  }
+
+  async wxcode() {
+    const { ctx } = this;
+    const { appid, ctype } = ctx.params;
+    const { body } = ctx.request;
+    const { url } = await ctx.service.wxapp.getWxcode({ appid, ctype, body });
+    ctx.body = {
+      data: {
+        url,
+      },
+      errcode: 0,
+      errmsg: 'get wxcode!',
+    };
+  }
+
 }
 
 module.exports = HomeController;

@@ -7,6 +7,8 @@ module.exports = app => {
   const { router, controller } = app;
   router.get('/', controller.home.index);
   router.get('/test', controller.home.test);
+  router.get('/token/:appid', controller.home.token);
+  router.post('/wxcode/:appid/:ctype', controller.home.wxcode);
   router.post('/login', controller.home.login);
   router.post('/wxuser', controller.home.wxuser);
   router.get('/wxusers/:id', controller.wxuser.wxuser);

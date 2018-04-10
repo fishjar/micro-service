@@ -16,9 +16,10 @@ module.exports = Sequelize => {
         type: INTEGER,
         defaultValue: 1,
       },
-      promocode: STRING(32),
+      appid: STRING(32),
+      promocode: STRING(64),
       wxbcode: STRING(255),
-      path: STRING(255),
+      page: STRING(255),
 
       status: {
         type: INTEGER,

@@ -11,16 +11,16 @@
 
 ### 微信公众号，企业号，小程序表 `wxapp`
 
-| Field        | Type        | Null | Key | Default | Extra          |
-|--------------|-------------|------|-----|---------|----------------|
-| id           | int(11)     | NO   | PRI | NULL    | auto_increment |
-| app_type     | int(11)     | YES  |     | NULL    |                |
-| wxmch_id     | int(11)     | YES  |     | NULL    |                |
-| name         | varchar(32) | YES  |     | NULL    |                |
-| appid        | varchar(32) | YES  |     | NULL    |                |
-| secret       | varchar(32) | YES  |     | NULL    |                |
-| access_token | varchar(32) | YES  |     | NULL    |                |
-| expires_in   | datetime    | YES  |     | NULL    |                |
+| Field        | Type         | Null | Key | Default | Extra          |
+|--------------|--------------|------|-----|---------|----------------|
+| id           | int(11)      | NO   | PRI | NULL    | auto_increment |
+| app_type     | int(11)      | YES  |     | NULL    |                |
+| wxmch_id     | int(11)      | YES  |     | NULL    |                |
+| name         | varchar(32)  | YES  |     | NULL    |                |
+| appid        | varchar(32)  | YES  |     | NULL    |                |
+| secret       | varchar(64)  | YES  |     | NULL    |                |
+| access_token | varchar(512) | YES  |     | NULL    |                |
+| expires_in   | datetime     | YES  |     | NULL    |                |
 
 ```js
 app_type: {

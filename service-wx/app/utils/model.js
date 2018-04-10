@@ -13,8 +13,8 @@ module.exports = Sequelize => {
       wxmch_id: INTEGER,
       name: STRING(32),
       appid: STRING(32),
-      secret: STRING(32),
-      access_token: STRING(32),
+      secret: STRING(64),
+      access_token: STRING(512),
       expires_in: DATE,
       status: {
         type: INTEGER,

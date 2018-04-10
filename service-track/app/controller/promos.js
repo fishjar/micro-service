@@ -4,7 +4,7 @@ const Controller = require('egg').Controller;
 
 const createRule = {
   user_id: 'int',
-  promo_type: 'int',
+  promo_type: { type: 'int', required: false },
   promocode: 'string',
 };
 

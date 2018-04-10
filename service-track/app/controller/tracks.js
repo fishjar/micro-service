@@ -20,7 +20,7 @@ class RESTController extends Controller {
 
   async index() {
     const { ctx } = this;
-    const data = await ctx.service.stracks.list(ctx.query);
+    const data = await ctx.service.tracks.list(ctx.query);
     ctx.body = {
       errcode: 0,
       errmsg: 'get list success!',
@@ -31,7 +31,7 @@ class RESTController extends Controller {
   async create() {
     const { ctx } = this;
     ctx.validate(createRule);
-    const data = await ctx.service.stracks.create(ctx.request.body);
+    const data = await ctx.service.tracks.create(ctx.request.body);
     ctx.body = {
       errcode: 0,
       errmsg: 'create success!',
@@ -41,7 +41,7 @@ class RESTController extends Controller {
 
   async show() {
     const { ctx } = this;
-    const data = await ctx.service.stracks.find(ctx.params.id);
+    const data = await ctx.service.tracks.find(ctx.params.id);
     ctx.body = {
       errcode: 0,
       errmsg: 'get success!',
@@ -52,7 +52,7 @@ class RESTController extends Controller {
   async update() {
     const { ctx } = this;
     const body = ctx.request.body;
-    const data = await ctx.service.stracks.update(ctx.params.id, body);
+    const data = await ctx.service.tracks.update(ctx.params.id, body);
     ctx.body = {
       errcode: 0,
       errmsg: 'update success!',
@@ -63,7 +63,7 @@ class RESTController extends Controller {
   async destroy() {
     const { ctx } = this;
     const { id } = ctx.params;
-    await ctx.service.stracks.del(id);
+    await ctx.service.tracks.del(id);
     ctx.body = {
       errcode: 0,
       errmsg: 'delete success!',

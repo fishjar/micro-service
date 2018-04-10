@@ -8,7 +8,7 @@ class RESTService extends Service {
     return this.ctx.model.Promo.findAndCountAll({
       offset,
       limit,
-      order: [[ order_by, order.toUpperCase() ]],
+      order: [[order_by, order.toUpperCase()]],
     });
   }
 
@@ -42,6 +42,36 @@ class RESTService extends Service {
       this.ctx.throw(404, 'Promo not found');
     }
     return res.destroy();
+  }
+
+  async getPromo({ user_id, promo_type = 1, appid }) {
+    const { ctx, config } = this;
+    let data = await this.findOne({ user_id, promo_type, appid });
+    if (!data) {
+      const promocode = ctx.helper.hashids.encode(user_id);
+      const page = 'pages/index/index';
+      const wxcode_api = `${config.msapi.wx}/wxcode/${appid}/b`;
+      const res = await ctx.curl(wxcode_api, {
+        method: 'POST',
+        dataType: 'json',
+        data: {
+          page,
+          scene: promocode,
+        },
+      });
+      if (res.data.errcode !== 0) {
+        this.ctx.throw(500, res.data.errmsg);
+      }
+      data = await this.create({
+        user_id,
+        promo_type,
+        appid,
+        promocode,
+        wxbcode: res.data.data.url,
+        page,
+      });
+    }
+    return data;
   }
 
 }

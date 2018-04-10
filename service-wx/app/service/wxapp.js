@@ -2,6 +2,7 @@
 
 const Service = require('egg').Service;
 const WXBizDataCrypt = require('../utils/WXBizDataCrypt');
+const crypto = require('crypto');
 
 class Wxapp extends Service {
   async list({ offset = 0, limit = 10, order_by = 'created_at', order = 'ASC' }) {
@@ -48,11 +49,9 @@ class Wxapp extends Service {
       secret,
       js_code,
       grant_type,
-    }), {
-        dataType: 'json',
-      });
+    }), { dataType: 'json' });
     if (res.data.errmsg) {
-      ctx.throw(404, res.data.errmsg);
+      ctx.throw(500, res.data.errmsg);
     }
     return res.data;
   }
@@ -62,6 +61,58 @@ class Wxapp extends Service {
     const data = pc.decryptData(encryptedData, iv);
     return data;
   }
+
+  async getToken(appid) {
+    const { ctx, config } = this;
+    const wxapp = await this.findApp(appid);
+    let { access_token, expires_in } = wxapp;
+    const now = new Date().getTime() / 1000;
+    expires_in = new Date(expires_in).getTime() / 1000;
+    if (access_token && expires_in > now) {
+      return access_token;
+    }
+
+    const token_host = config.token_host;
+    const grant_type = 'client_credential';
+    const { id, secret } = wxapp;
+    const res = await ctx.curl(ctx.helper.generateHref(token_host, {
+      appid,
+      secret,
+      grant_type,
+    }), { dataType: 'json' });
+    if (res.data.errmsg) {
+      ctx.throw(500, res.data.errmsg);
+    }
+    expires_in = new Date().getTime() + res.data.expires_in;
+    access_token = res.data.access_token;
+    await this.update(id, {
+      expires_in,
+      access_token,
+    });
+    return access_token;
+  }
+
+  async getWxcode({ appid, body, ctype = 'b' }) {
+    const { ctx, config } = this;
+    const access_token = await this.getToken(appid);
+    const wxcode_host = config.wxcode_host[ctype];
+    const api_url = ctx.helper.generateHref(wxcode_host, {
+      access_token,
+    });
+    const res = await ctx.curl(api_url, {
+      method: 'POST',
+      data: JSON.stringify(body),
+    });
+    if (!(res.status === 200 && res.headers['content-type'] === 'image/jpeg')) {
+      ctx.throw(500, 'curl wxcode host err!');
+    }
+    const hashname = crypto.createHash('md5').update(res.data).digest('hex');
+    const path = `${config.baseDir}/wxcode/${ctype}/${hashname}.jpg`;
+    const url = `${config.baseUrl}/wxcode/${ctype}/${hashname}.jpg`;
+    await ctx.helper.createFile(path, res.data);
+    return { url, path };
+  }
+
 }
 
 module.exports = Wxapp;

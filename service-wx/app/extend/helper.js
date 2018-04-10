@@ -4,6 +4,9 @@ const { URL } = require('url');
 const XML = require('pixl-xml');
 const crypto = require('crypto');
 
+const fs = require('fs-extra');
+const path = require('path');
+
 module.exports = {
   foo(param) {
     // this 是 helper 对象，在其中可以调用其他 helper 方法
@@ -36,5 +39,12 @@ module.exports = {
     const stringSignTemp = stringA + "&key=" + key;
     const sign = crypto.createHash('md5').update(stringSignTemp).digest('hex').toUpperCase();
     return sign;
-  }
+  },
+  async createFile(target, buf) {
+    if (await fs.exists(target)) {
+      return;
+    }
+    await fs.ensureDir(path.dirname(target));
+    return fs.writeFile(target, buf);
+  },
 };

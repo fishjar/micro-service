@@ -8,11 +8,20 @@ module.exports = appInfo => {
 
   // add your config here
   // config.middleware = [];
-  config.middleware = [ 'auth', 'xmlparser', 'errors' ];
+  config.middleware = ['auth', 'xmlparser', 'errors'];
 
+  config.token_host = 'https://api.weixin.qq.com/cgi-bin/token';
   config.jscode_host = 'https://api.weixin.qq.com/sns/jscode2session';
   config.unifiedorder_host = 'https://api.mch.weixin.qq.com/pay/unifiedorder';
   config.notify_url = 'http://a.yiheni.cn/pay/action';
+  config.wxcode_host = {
+    a: 'https://api.weixin.qq.com/wxa/getwxacode',
+    b: 'https://api.weixin.qq.com/wxa/getwxacodeunlimit',
+    c: 'https://api.weixin.qq.com/cgi-bin/wxaapp/createwxaqrcode',
+  };
+
+  config.baseDir = '/home/gabe/tmp/egg';
+  config.baseUrl = 'http://media.fishjar.com';
 
   config.sequelize = {
     dialect: 'mysql', // support: mysql, mariadb, postgres, mssql

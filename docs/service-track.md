@@ -23,13 +23,14 @@
 | id         | INT          |         | Y        | Y         | Y       |         |                |
 | user_id    | INT          |         | Y        |           |         | Y       |                |
 | promo_type | INT          | 1       | Y        |           |         |         |                |
+| appid      | VARCHAR(32)  |         |          |           |         |         |                |
 | promocode  | VARCHAR(64)  |         | Y        |           |         |         | 全表唯一，考虑hashids |
 | wxbcode    | VARCHAR(255) |         |          |           |         |         |                |
 | path       | VARCHAR(255) |         |          |           |         |         |                |
 
 ```js
 promo_type: {
-  1: `全局推广`, // 默认
+  1: `小程序推广`, // 默认
 }
 ```
 
