@@ -19,13 +19,17 @@ class Home extends Service {
         js_code,
       },
     });
-    const { user, auth } = await ctx.API(`${config.msapi.user}/login`, {
+    const { user, auth, isnew } = await ctx.API(`${config.msapi.user}/login`, {
       method: 'POST',
       data: {
         auth_type: 4,
         wxuser,
       },
     });
+    if (isnew) {
+      // 新用户
+      return { wxuser, user, auth, isnew };
+    }
     return { wxuser, user, auth };
   }
 

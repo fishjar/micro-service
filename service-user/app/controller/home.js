@@ -36,6 +36,7 @@ class HomeController extends Controller {
           data: {
             user: newUser,
             auth: newAuth,
+            isnew: true,
           },
         };
         ctx.status = 201;

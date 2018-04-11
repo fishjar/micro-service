@@ -33,7 +33,7 @@ class HomeController extends Controller {
     if (!(appid && code)) {
       ctx.throw(501, 'missing params!');
     }
-    const { auth, user } = await ctx.service.home.login({ appid, js_code: code });
+    const { auth, user, isnew } = await ctx.service.home.login({ appid, js_code: code });
     const { token, expire } = await ctx.service.home.flashToken({ aid: auth.id, uid: auth.user_id });
     await ctx.service.home.flushToken(authentication);
     user.id = ctx.helper.hashids.encode(user.id); // hashids处理
@@ -42,6 +42,7 @@ class HomeController extends Controller {
       errmsg: 'login success',
       data: {
         user,
+        isnew,
         token,
         expire,
       },
