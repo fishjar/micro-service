@@ -30,8 +30,8 @@
   },
   "scripts": {
     "start": "egg-scripts start --port=9103 --daemon --title=egg-server-service-wx",
-    "stop": "egg-scripts stop",
-    "dev": "egg-bin dev --port=9103 --title=egg-server-service-wx",
+    "stop": "egg-scripts stop --title=egg-server-service-wx",
+    "dev": "egg-bin dev --port=9103",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",
     "test-local": "egg-bin test",

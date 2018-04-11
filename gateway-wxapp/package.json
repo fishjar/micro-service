@@ -26,8 +26,8 @@
   },
   "scripts": {
     "start": "egg-scripts start --port=9101 --daemon --title=egg-server-gateway-wxapp",
-    "stop": "egg-scripts stop",
-    "dev": "egg-bin dev --port=9101 --title=egg-server-gateway-wxapp",
+    "stop": "egg-scripts stop --title=egg-server-gateway-wxapp",
+    "dev": "egg-bin dev --port=9101",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",
     "test-local": "egg-bin test",

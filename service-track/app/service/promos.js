@@ -44,12 +44,11 @@ class RESTService extends Service {
     return res.destroy();
   }
 
-  async getPromo({ user_id, promo_type = 1, appid }) {
+  async getPromo({ user_id, promo_type = 1, appid, page = 'pages/index/index' }) {
     const { ctx, config } = this;
     let data = await this.findOne({ user_id, promo_type, appid });
     if (!data) {
       const promocode = ctx.helper.hashids.encode(user_id);
-      const page = 'pages/index/index';
       const wxcode_api = `${config.msapi.wx}/wxcode/${appid}/b`;
       const res = await ctx.curl(wxcode_api, {
         method: 'POST',
