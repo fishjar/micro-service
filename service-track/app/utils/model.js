@@ -58,7 +58,7 @@ module.exports = Sequelize => {
       },
 
       share_type: INTEGER,
-      path: STRING(255),
+      page: STRING(255),
       user_id: INTEGER,
       promocode: STRING(32),
 

@@ -26,7 +26,7 @@
 | appid      | VARCHAR(32)  |         |          |           |         |         |                |
 | promocode  | VARCHAR(64)  |         | Y        |           |         |         | 全表唯一，考虑hashids |
 | wxbcode    | VARCHAR(255) |         |          |           |         |         |                |
-| path       | VARCHAR(255) |         |          |           |         |         |                |
+| page       | VARCHAR(255) |         |          |           |         |         |                |
 
 ```js
 promo_type: {
@@ -62,7 +62,7 @@ referrer {
 |------------|--------------|---------|----------|-----------|---------|---------|--------|
 | id         | INT          |         | Y        | Y         | Y       |         |        |
 | share_type | INT          |         |          |           |         |         |        |
-| path       | VARCHAR(255) |         |          |           |         |         |        |
+| page       | VARCHAR(255) |         |          |           |         |         |        |
 | user_id    | INT          |         |          |           |         | Y       |        |
 | promocode  | VARCHAR(64)  |         |          |           |         |         |        |
 

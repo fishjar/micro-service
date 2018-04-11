@@ -116,9 +116,11 @@ class HomeController extends Controller {
   // 获取推广码
   async promo() {
     const { ctx, config } = this;
+    const body = ctx.request.body;
+    body.user_id = ctx.helper.hashids.decode(body.user_id)[0];
     const res = await ctx.API(`${config.msapi.track}/promo`, {
       method: 'POST',
-      data: ctx.request.body,
+      data: body,
     });
 
     ctx.body = {
@@ -131,9 +133,11 @@ class HomeController extends Controller {
   // 上报推广码使用
   async tracks() {
     const { ctx, config } = this;
+    const body = ctx.request.body;
+    body.user_id = ctx.helper.hashids.decode(body.user_id)[0];
     const res = await ctx.API(`${config.msapi.track}/tracks`, {
       method: 'POST',
-      data: ctx.request.body,
+      data: body,
     });
 
     ctx.body = {
@@ -146,9 +150,11 @@ class HomeController extends Controller {
   // 上报转发
   async shares() {
     const { ctx, config } = this;
+    const body = ctx.request.body;
+    body.user_id = ctx.helper.hashids.decode(body.user_id)[0];
     const res = await ctx.API(`${config.msapi.track}/shares`, {
       method: 'POST',
-      data: ctx.request.body,
+      data: body,
     });
 
     ctx.body = {

@@ -4,7 +4,7 @@ const Controller = require('egg').Controller;
 
 const createRule = {
   share_type: 'int',
-  path: 'string',
+  page: 'string',
   user_id: 'int',
 };
 
