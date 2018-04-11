@@ -13,7 +13,7 @@ module.exports = appInfo => {
   config.token_host = 'https://api.weixin.qq.com/cgi-bin/token';
   config.jscode_host = 'https://api.weixin.qq.com/sns/jscode2session';
   config.unifiedorder_host = 'https://api.mch.weixin.qq.com/pay/unifiedorder';
-  config.notify_url = 'http://a.yiheni.cn/pay/action';
+  config.notify_url = 'http://api.rayjar.com/pay/action';
   config.wxcode_host = {
     a: 'https://api.weixin.qq.com/wxa/getwxacode',
     b: 'https://api.weixin.qq.com/wxa/getwxacodeunlimit',
