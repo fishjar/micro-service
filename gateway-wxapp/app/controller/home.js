@@ -118,8 +118,15 @@ class HomeController extends Controller {
   async promo() {
     const { ctx, config } = this;
     const body = ctx.request.body;
-    body.user_id = ctx.helper.hashids.decode(body.user_id)[0];
-    const res = await ctx.API(`${config.msapi.track}/promo`, {
+    // body.user_id = ctx.helper.hashids.decode(body.user_id)[0];
+    body.user_id = ~~ctx.auth.uid
+    const {
+      page,
+      promo_type,
+      promocode,
+      wxbcode,
+      user_id,
+    } = await ctx.API(`${config.msapi.track}/promo`, {
       method: 'POST',
       data: body,
     });
@@ -127,7 +134,13 @@ class HomeController extends Controller {
     ctx.body = {
       errcode: 0,
       errmsg: 'get promo success',
-      data: res,
+      data: {
+        page,
+        promo_type,
+        promocode,
+        wxbcode,
+        user_id: ctx.helper.hashids.encode(user_id),
+      },
     };
   }
 
@@ -135,8 +148,14 @@ class HomeController extends Controller {
   async tracks() {
     const { ctx, config } = this;
     const body = ctx.request.body;
-    body.user_id = ctx.helper.hashids.decode(body.user_id)[0];
-    const res = await ctx.API(`${config.msapi.track}/tracks`, {
+    // body.user_id = ctx.helper.hashids.decode(body.user_id)[0];
+    body.user_id = ~~ctx.auth.uid
+    const {
+      scene,
+      promocode,
+      track_type,
+      detail,
+    } = await ctx.API(`${config.msapi.track}/tracks`, {
       method: 'POST',
       data: body,
     });
@@ -144,7 +163,12 @@ class HomeController extends Controller {
     ctx.body = {
       errcode: 0,
       errmsg: 'create tracks success',
-      data: res,
+      data: {
+        scene,
+        promocode,
+        track_type,
+        detail,
+      },
     };
   }
 
@@ -152,8 +176,12 @@ class HomeController extends Controller {
   async shares() {
     const { ctx, config } = this;
     const body = ctx.request.body;
-    body.user_id = ctx.helper.hashids.decode(body.user_id)[0];
-    const res = await ctx.API(`${config.msapi.track}/shares`, {
+    // body.user_id = ctx.helper.hashids.decode(body.user_id)[0];
+    body.user_id = ~~ctx.auth.uid
+    const {
+      page,
+      share_type,
+    } = await ctx.API(`${config.msapi.track}/shares`, {
       method: 'POST',
       data: body,
     });
@@ -161,7 +189,10 @@ class HomeController extends Controller {
     ctx.body = {
       errcode: 0,
       errmsg: 'create shares success',
-      data: res,
+      data: {
+        page,
+        share_type,
+      },
     };
   }
 
