@@ -80,7 +80,10 @@ class Home extends Service {
   async deferToken(token) {
     const { app, config } = this;
     const key = `auth:${token}`;
-    return app.redis.expire(key, config.expire_offset);
+    const now = ~~(Date.now() / 1000);
+    const expire = now + config.expire_offset;
+    await app.redis.expire(key, config.expire_offset);
+    return expire;
   }
 
   generateToken({ aid, uid, atype, expire }) {

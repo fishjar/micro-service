@@ -12,11 +12,12 @@ module.exports = () => {
         const auth = await ctx.service.home.getAuth(authentication);
         if (auth.uid) {
           // 延期token
-          await ctx.service.home.deferToken(authentication)
+          const expire = await ctx.service.home.deferToken(authentication);
           // 挂载用户鉴权信息
           // 如果用户资料保存在redis，也可考虑挂载用户资料
           ctx.auth = auth;
           await next();
+          ctx.set('expire', expire);
         } else {
           ctx.body = {
             errcode: 101,
